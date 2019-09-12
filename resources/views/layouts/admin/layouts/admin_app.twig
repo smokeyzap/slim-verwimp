@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>{{title}}</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" href="{{base_url()}}/public/logo/favicon.ico" type="image/x-icon">
+        <!-- Bootstrap 3.3.7 -->
+        <link rel="stylesheet" href="{{base_url()}}/public/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{{base_url()}}/public/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="{{base_url()}}/public/css/ionicons.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="{{base_url()}}/public/css/AdminLTE.min.css">
+        <!-- Skin red -->
+        <link rel="stylesheet" href="{{base_url()}}/public/css/skin-red.min.css">
+        <!-- Font style -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600" rel="stylesheet">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="{{base_url()}}/public/css/dataTables.bootstrap.min.css">
+    </head>
+    <body class="hold-transition skin-red sidebar-mini">
+        <div class="wrapper">
+            {% include 'layouts/admin/layouts/admin_main_header.twig' %}
+            {% include 'layouts/admin/layouts/admin_aside.twig' %}
+             <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+              <h1>
+                {{title}}
+              </h1>
+            </section>
+
+            <!-- Main content -->
+            <section class="content container-fluid">
+                {% block content %}{% endblock %}
+            </section>
+            <!-- /.content -->
+            </div>
+            <!-- /.content-wrapper -->
+            {% include 'layouts/admin/layouts/admin_footer.twig' %}
+        </div>        
+        <script src="{{base_url()}}/public/js/jquery.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="{{base_url()}}/public/js/bootstrap.min.js"></script>
+        <script src="{{base_url()}}/public/js/adminlte.min.js"></script>
+        <script src="{{base_url()}}/public/js/jquery.dataTables.min.js"></script>
+        <script src="{{base_url()}}/public/js/dataTables.bootstrap.min.js"></script>
+        <script src="{{base_url()}}/public/js/{{title | lower | replace({' ': '_'})}}.js"></script>
+    </body>
+</html>

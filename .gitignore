@@ -1,0 +1,5 @@
+.env
+.envlive
+vendor/
+public/img/
+.vscode

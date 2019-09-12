@@ -1,0 +1,15 @@
+body{font-family: Montserrat, sans-serif; font-size: 11px;}
+.navbar{border-radius:0 !important;margin-bottom: 1px;background-color: white;}
+.navbar-default .navbar-nav>li>a {padding: 5px;}
+.modal-body {
+    max-height: calc(100vh - 210px);
+    overflow-y: auto;
+}
+.spacer{margin-top: 10px;}
+
+@media (min-width: 992px){
+    .navbar li {
+        margin : 0;
+        padding: 0;
+    }
+}

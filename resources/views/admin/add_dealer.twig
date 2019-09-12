@@ -1,0 +1,78 @@
+{% extends 'layouts/admin/layouts/admin_app.twig' %}
+
+{% block content %}
+    <div class="row">
+    	<div class="col-md-6 col-md-offset-3">
+    		{% include 'layouts/flash.twig' %}
+    		<div class="box">
+    			<form action="{{path_for('admin.post.add.dealer')}}" method="post">
+	    			<div class="box-header">
+	    				<h3 class="box-title">Customer info</h3>
+	    			</div>
+	    			<div class="box-body">
+						<div class="form-group">
+							<label for="customer_number">{{lang.label.customer_number}}</label>
+							<input type="text" name="customer_number" id="customer_number" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label for="customer_name">{{lang.label.customer_name}}</label>
+							<input type="text" name="customer_name" id="customer_name" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label for="customer_address">{{lang.label.customer_address}}</label>
+							<input type="text" name="customer_address" id="customer_address" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="customer_zip">{{lang.label.customer_zip}}</label>
+							<input type="text" name="customer_zip" id="customer_zip" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="customer_country">{{lang.label.customer_country}}</label>
+							<input type="text" name="customer_country" id="customer_country" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="customer_city">{{lang.label.customer_city}}</label>
+							<input type="text" name="customer_city" id="customer_city" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="customer_phone">{{lang.label.customer_phone}}</label>
+							<input type="text" name="customer_phone" id="customer_phone" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="customer_fax">{{lang.label.customer_fax}}</label>
+							<input type="text" name="customer_fax" id="customer_fax" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="customer_email">{{lang.label.customer_email}}</label>
+							<input type="text" name="customer_email" id="customer_email" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="customer_vat_number">{{lang.label.customer_vat_number}}</label>
+							<input type="text" name="customer_vat_number" id="customer_vat_number" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="customer_password1">{{lang.label.password}}</label>
+							<input type="password" name="customer_password1" id="customer_password1" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="customer_password2">{{lang.label.confirm}} {{lang.label.password}}</label>
+							<input type="text" name="customer_password2" id="customer_password2" class="form-control">
+						</div>
+						<div class="form-group">
+							<label for="is_admin">{{lang.label.admin}}</label>
+							<select name="is_admin" id="is_admin" class="form-control">
+								<option value="no">No</option>
+								<option value="yes">Yes</option>
+							</select>
+						</div>
+						{{csrf_field() | raw}}
+					
+	    			</div>
+	    			<div class="box-footer">
+	    				<input type="submit" class="btn btn-primary" value="{{lang.label.submit}}">
+	    			</div>
+    			</form>
+    		</div>
+    	</div>
+    </div>
+{% endblock %}

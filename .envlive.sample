@@ -1,0 +1,9 @@
+DB_DRIVER=mysql
+DB_NAME=your_db_name
+DB_HOSTNAME=localhost
+DB_USERNAME=db_username
+DB_PASSWORD=db_password
+DISPLAY_ERRORS=true
+CLIENT_URL=client_url
+
+SENDGRID_API_KEY='send_grid_api_key'

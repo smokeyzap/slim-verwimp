@@ -1,0 +1,32 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table" id="{{lang.label.product_table}}">
+        	<thead>
+        		<tr>
+        			<th>{{lang.label.description}}</th>
+        			<th>{{lang.label.stock}}</th>
+        			<th>{{lang.label.item_number}}</th>
+        			<th>{{lang.label.quantity}}</th>
+        			<th>{{lang.label.order_number}}</th>
+        			<th>{{lang.label.date}}</th>
+        			<th>Gewenste leverdatum</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		{% for d in data %}
+				<tr>
+					<td>{{d.description}}</td>
+					<td>{{d.stock}}</td>
+					<td>{{d.item_number}}</td>
+					<td>{{d.quantity}}</td>
+					<td>{{d.order_number}}</td>
+					<td>{{d.date}}</td>
+					<td>{{d.delivery_date}}</td>
+				</tr>
+        		{% endfor %}
+        	</tbody>
+        </table>
+    </div>
+{% endblock %}

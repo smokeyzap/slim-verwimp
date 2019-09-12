@@ -1,0 +1,71 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-4 col-md-offset-4">
+    	{% include 'layouts/flash.twig' %}
+        <h3>{{lang.label.question_label}}</h3>
+        <hr>
+        <form action="{{path_for('post.ask.question')}}" method="post">
+        	<div class="form-group">
+        		<div class="radio">
+				 	<label>
+				   		<input type="radio" name="question_options" value="{{lang.label.q_part}}" required>
+				    	{{lang.label.q_part}}
+				  	</label>
+				</div>
+				<div class="radio">
+				 	<label>
+				   		<input type="radio" name="question_options" value="{{lang.label.q_warranty}}">
+				    	{{lang.label.q_warranty}}
+				  	</label>
+				</div>
+				<div class="radio">
+				 	<label>
+				   		<input type="radio" name="question_options" value="{{lang.label.q_invoices}}">
+				    	{{lang.label.q_invoices}}
+				  	</label>
+				</div>
+				<div class="radio">
+				 	<label>
+				   		<input type="radio" name="question_options" value="{{lang.label.q_payments}}">
+				    	{{lang.label.q_payments}}
+				  	</label>
+				</div>
+				<div class="radio">
+				 	<label>
+				   		<input type="radio" name="question_options" value="{{lang.label.q_backorders}}">
+				    	{{lang.label.q_backorders}}
+				  	</label>
+				</div>
+				<div class="radio">
+				 	<label>
+				   		<input type="radio" name="question_options" value="{{lang.label.q_shipments}}">
+				    	{{lang.label.q_shipments}}
+				  	</label>
+				</div>
+				<div class="radio">
+				 	<label>
+				   		<input type="radio" name="question_options" value="{{lang.label.q_price_request}}">
+				    	{{lang.label.q_price_request}}
+				  	</label>
+				</div>
+				<div class="radio">
+				 	<label>
+				   		<input type="radio" name="question_options" value="{{lang.label.q_other}}">
+				    	{{lang.label.q_other}}
+				    	<input type="text" class="form-control" name="others">
+				  	</label>
+
+				</div>
+        	</div>
+        	<div class="form-group">
+        		<label for="comments">{{lang.label.q_type_your_question}}</label>
+        		<textarea class="form-control" name="question" rows="3" id="comments" required></textarea>
+        	</div>
+        	<div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-block btn-lg" value="{{lang.label.submit}}">
+                </div>
+        	{{csrf_field() | raw}}
+        </form>
+    </div>
+{% endblock %}

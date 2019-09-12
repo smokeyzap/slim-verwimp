@@ -1,0 +1,43 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+            {% set total_amount = 0 %}
+            {% for t in orders %}
+                  {% set total_amount = total_amount + (t.quantity * t.retail_price) %}
+            {% endfor %}
+            <h3 class="text-left">Total: {{total_amount}} &euro;</h3>
+            <p class="text-right">
+                  <a href="#" onclick="return confirm('You are about to send orders. Continue?')" class="btn btn-primary"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send order</a>
+            </p>
+       	<table class="table table-bordered" id="{{lang.label.product_table}}">
+       		<thead>
+       			<tr>
+                              <th>{{lang.label.remove}}</th>
+       				<th width="5%">{{lang.label.quantity}}</th>
+       				<th>{{lang.label.item_number}}</th>
+       				<th>{{lang.label.description}}</th>
+       				<th>{{lang.label.retail_price}}</th>
+                              <th>{{lang.label.sub_total}}</th>
+       			</tr>
+       		</thead>
+       		<tbody>
+       			{% for o in orders %}
+                        <tr>
+                              <td>
+                                    <a href="{{path_for('get.remove.from.cart', {'id':o.item_number})}}" onclick="return confirm('Remove item from cart?')">remove</a>
+                              </td>
+                              <td class="text-right">
+                                    {{o.quantity}}
+                              </td>
+                              <td>{{o.item_number}}</td>
+                              <td>{{o.description}}</td>
+                              <td class="text-right">{{o.retail_price}} &euro;</td>
+                              <td class="text-right">{{o.quantity * o.retail_price}} &euro;</td>
+                        </tr>
+                        {% endfor %}
+       		</tbody>
+       	</table>
+            {{csrf_field() | raw}}
+    </div>
+{% endblock %}

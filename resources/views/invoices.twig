@@ -1,0 +1,32 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+        <table class="table" id="{{lang.label.product_table}}">
+        	<thead>
+        		<tr>
+        			<th>{{lang.label.invoice_number}}</th>
+        			<th>{{lang.label.date}}</th>
+        			<th>{{lang.label.due_date}}</th>
+        			<th>{{lang.label.total_amount}}</th>
+        			<th>{{lang.label.outstanding_amount}}</th>
+        			<th>{{lang.label.sort}}</th>
+        			<th>{{lang.label.counter}}</th>
+        		</tr>
+        	</thead>
+        	<tbody>
+        		{% for d in data %}
+				<tr>
+					<td>{{d.invoice_number}}</td>
+					<td>{{d.invoice_date}}</td>
+					<td>{{d.expiry_date}}</td>
+					<td>{{d.total_amount}}</td>
+					<td>{{(d.total_amount == d.open_amount)?'0.00':d.open_amount}}</td>
+					<td>{{d.type}}</td>
+					<td>{{d.counter}}</td>
+				</tr>
+        		{% endfor %}
+        	</tbody>
+        </table>
+    </div>
+{% endblock %}
