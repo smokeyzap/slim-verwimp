@@ -113,6 +113,9 @@ class Lang
         $lang['q_price_request'] = 'Price request';
         $lang['q_other'] = 'Other';
         $lang['q_type_your_question'] = 'Type your question';
+        $lang['digital_billing_confirmation'] = 'YES, I would like to use digital billing';
+        $lang['email_addresses'] = 'Email addresses for invoices';
+        $lang['send_request_digital_billing_button'] = 'Send request digital billing';
         return $lang;
     }
 }

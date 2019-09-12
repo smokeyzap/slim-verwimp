@@ -1,0 +1,28 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-4 col-md-offset-4">
+    	{% include 'layouts/flash.twig' %}
+        <h3>{{lang.label.requst_digital_billing}}</h3>
+        <hr>
+        <form action="#" method="post">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="question_options" value="yes">
+                    {{lang.label.digital_billing_confirmation}}
+                </label>
+            </div>
+        	<div class="form-group">
+        		<label for="emails">{{lang.label.email_addresses}}</label>
+        		<input type="email" name="emails[]" class="form-control" id="emails">
+        	</div>
+            <div class="form-group">
+        		<input type="email" name="emails[]" class="form-control">
+        	</div>
+        	<div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-block btn-lg" value="{{lang.label.send_request_digital_billing_button}}">
+                </div>
+        	{{csrf_field() | raw}}
+        </form>
+    </div>
+{% endblock %}
