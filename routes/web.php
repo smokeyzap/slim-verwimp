@@ -18,6 +18,7 @@ use App\Controllers\InformationController;
 use App\Controllers\RequestDigitalBillingController;
 use App\Controllers\HelpController;
 use App\Controllers\GeneralInformationController;
+use App\Controllers\TeamVerwimpController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -142,6 +143,11 @@ $app->group('/information', function () {
 	$this->get('/newsletter', InformationController::class . ':index')->setName('get.newsletter');
 
 	$this->get('/request-digital-billing', RequestDigitalBillingController::class . ':index')->setName('get.request.digital.billing');
+});
+
+//Team Verwimp
+$app->group('/team-verwimp', function () {
+	$this->get('/', TeamVerwimpController::class . ':index')->setName('get.team.verwimp');
 });
 
 //Help
