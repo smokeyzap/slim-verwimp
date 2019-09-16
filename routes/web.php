@@ -17,6 +17,7 @@ use App\Controllers\QuestionController;
 use App\Controllers\InformationController;
 use App\Controllers\RequestDigitalBillingController;
 use App\Controllers\HelpController;
+use App\Controllers\GeneralInformationController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -146,6 +147,11 @@ $app->group('/information', function () {
 //Help
 $app->group('/help', function () {
 	$this->get('/', HelpController::class . ':index')->setName('get.help');
+});
+
+//General information
+$app->group('/general-information', function () {
+	$this->get('/', GeneralInformationController::class . ':index')->setName('get.general.information');
 });
 
 $app->group('', function() {
