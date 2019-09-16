@@ -1,4 +1,48 @@
 <!-- Fixed navbar -->
+<nav class="navbar navbar-default" id="top_nav_bar">
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li class="text-center">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <strong>{{lang.label.file}}</strong>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{path_for('get.item.list')}}">{{lang.label.item_list}}</a></li>
+                    <li><a href="{{path_for('get.offer')}}">{{lang.label.offer}}</a></li>
+                    <li><a href="{{path_for('get.you.snooze')}}">{{lang.label.you_snooze_you_loose}}</a></li>
+                    <li><a href="{{path_for('get.new.product')}}">{{lang.label.new}}</a></li>
+                    <li><a href="{{path_for('get.order.list')}}">{{lang.label.order_list}}</a></li>
+                    <li><a href="{{path_for('get.favorites')}}">{{lang.label.favorites}}</a></li>
+                    <li><a href="{{path_for('get.item.index')}}">{{lang.label.item_index}}</a></li>
+                    {# <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            {{lang.label.history}}
+                        </a>
+                    </li> #}
+                    <li><a href="{{path_for('get.back.orders')}}">{{lang.label.backorders}}</a></li>
+                    <li><a href="{{path_for('get.invoices')}}">{{lang.label.invoices}}</a></li>
+                    <li><a href="https://adsoft.verwimp.nl/dropbox/browse" target="_blank">{{lang.label.product_information}}</a></li>
+                    <li><a href="#">{{lang.label.front_offer}}</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="{{path_for('signout')}}">{{lang.label.signout}}</a></li>
+                </ul>
+            </li>
+            <li class="text-center">
+                <a href="#">
+                    <strong>{{lang.label.configuration}}</strong>
+                </a>
+            </li>
+            <li class="text-center">
+                <a href="#">
+                    <strong>{{lang.label.help}}</strong>
+                </a>
+            </li>
+        </ul>
+    </div><!--/.nav-collapse -->
+</nav>
+
+
+<!-- Fixed navbar -->
 <nav class="navbar navbar-default" >
     {# <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -12,53 +56,55 @@
         </a>
     </div> #}
     <div id="navbar" class="navbar-collapse collapse">
+        
+
         <ul class="nav navbar-nav">
             <li class="text-center {{(title == lang.label.item_list)?'active':'' }}">
                 <a href="{{path_for('get.item.list')}}">
                     <img src="{{base_url()}}/public/logo/item_list.bmp" alt="Item list"> <br> 
-                    {{lang.label.item_list}}
+                    <strong>{{lang.label.item_list}}</strong>
                 </a>
             </li>
             <li class="text-center {{(title == lang.label.offer)?'active':''}}">
                 <a href="{{path_for('get.offer')}}">
                     <img src="{{base_url()}}/public/logo/offer.bmp" alt="Offer"> <br>
-                    {{lang.label.offer}}
+                    <strong>{{lang.label.offer}}</strong>
                 </a>
             </li>
             <li class="text-center {{(title == lang.label.you_snooze_you_loose)?'active':''}}">
                 <a href="{{path_for('get.you.snooze')}}">
                 <img src="{{base_url()}}/public/logo/you_snooze.bmp" alt="You snooze"> <br>
-                {{lang.label.you_snooze_you_loose}}
+                <strong>{{lang.label.you_snooze_you_loose}}</strong>
                 </a>
             </li>
             <li class="text-center {{(title == lang.label.new)?'active':''}}">
                 <a href="{{path_for('get.new.product')}}">
                     <img src="{{base_url()}}/public/logo/new.bmp" alt="New Products"> <br>
-                    {{lang.label.new}}
+                    <strong>{{lang.label.new}}</strong>
                 </a>
             </li>
             <li class="text-center {{(title == lang.label.order_list)?'active':''}}">
                 <a href="{{path_for('get.order.list')}}">
                     <img src="{{base_url()}}/public/logo/order_list.bmp" alt="Order list"> <br>
-                    {{lang.label.order_list}}
+                    <strong>{{lang.label.order_list}}</strong>
                 </a>
             </li>
             <li class="text-center {{(title == lang.label.favorites)?'active':''}}">
                 <a href="{{path_for('get.favorites')}}">
                     <img src="{{base_url()}}/public/logo/favorite.bmp" alt="Favorites"> <br>
-                    {{lang.label.favorites}}
+                    <strong>{{lang.label.favorites}}</strong>
                 </a>
             </li>
             <li class="text-center {{(title == lang.label.item_index)?'active':''}}">
                 <a href="{{path_for('get.item.index')}}">
                     <img src="{{base_url()}}/public/logo/index.bmp" alt="Item index"> <br>
-                    {{lang.label.item_index}}
+                    <strong>{{lang.label.item_index}}</strong>
                 </a>
             </li>
             <li class="text-center {{(title == lang.label.history)?'active':''}}">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <img src="{{base_url()}}/public/logo/history.bmp" alt="History"> <br>
-                    {{lang.label.history}}
+                    <strong>{{lang.label.history}}</strong>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="#">{{lang.label.orders}}</a></li>
@@ -75,19 +121,19 @@
             <li class="text-center {{(title == lang.label.backorders)?'active':''}}">
                 <a href="{{path_for('get.back.orders')}}">
                     <img src="{{base_url()}}/public/logo/backorders.bmp" alt="Backorders"> <br>
-                    {{lang.label.backorders}}
+                    <strong>{{lang.label.backorders}}</strong>
                 </a>
             </li>
             <li class="text-center {{(title == lang.label.invoices)?'active':''}}">
                 <a href="{{path_for('get.invoices')}}">
                     <img src="{{base_url()}}/public/logo/invoice.bmp" alt="Invoices"> <br>
-                    {{lang.label.invoices}}
+                    <strong>{{lang.label.invoices}}</strong>
                 </a>
             </li>
             <li class="text-center {{(title == lang.label.return_warranty)?'active':''}}">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <img src="{{base_url()}}/public/logo/return_warranty.bmp" alt="Return warrant"> <br>
-                    {{lang.label.return_warranty}}
+                    <strong>{{lang.label.return_warranty}}</strong>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="#">{{lang.label.return_warranty_bikes}}</a></li>
@@ -97,19 +143,19 @@
             <li class="text-center {{(title == lang.label.product_information)?'active':''}}">
                 <a href="https://adsoft.verwimp.nl/dropbox/browse" target="_blank">
                     <img src="{{base_url()}}/public/logo/offertes.bmp" alt="Product information"> <br>
-                    {{lang.label.product_information}}
+                    <strong>{{lang.label.product_information}}</strong>
                 </a>
             </li>
             <li class="text-center {{(title == lang.label.questions)?'active':''}}">
                 <a href="{{path_for('get.ask.question')}}">
                     <img src="{{base_url()}}/public/logo/questions.bmp" alt="Questions"> <br>
-                    {{lang.label.questions}}
+                    <strong>{{lang.label.questions}}</strong>
                 </a>
             </li>
             <li class="text-center {{(title == lang.label.information)?'active':''}}">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <img src="{{base_url()}}/public/logo/information.bmp" alt="Information"> <br>
-                    {{lang.label.information}}
+                    <strong>{{lang.label.information}}</strong>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="{{path_for('get.newsletter')}}">{{lang.label.newsletter}}</a></li>
@@ -124,7 +170,7 @@
             <li class="text-center {{(title == lang.label.dropship)?'active':''}}">
                 <a href="{{path_for('get.dropship')}}">
                     <img src="{{base_url()}}/public/logo/dropship.bmp" alt="Dropshipment"> <br>
-                    {{lang.label.dropship}}
+                    <strong>{{lang.label.dropship}}</strong>
                 </a>
             </li>
             {# <li class="dropdown">

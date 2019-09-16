@@ -13,3 +13,6 @@ body{font-family: Montserrat, sans-serif; font-size: 11px;}
         padding: 0;
     }
 }
+#top_nav_bar{
+    margin-bottom: -19px;
+}

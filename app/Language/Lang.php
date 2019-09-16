@@ -116,6 +116,10 @@ class Lang
         $lang['digital_billing_confirmation'] = 'YES, I would like to use digital billing';
         $lang['email_addresses'] = 'Email addresses for invoices';
         $lang['send_request_digital_billing_button'] = 'Send request digital billing';
+        $lang['file'] = 'File';
+        $lang['configuration'] = 'Configuration';
+        $lang['help'] = 'Help';
+        $lang['front_offer'] = 'Front offer';
         return $lang;
     }
 }
