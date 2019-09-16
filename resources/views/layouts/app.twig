@@ -33,12 +33,15 @@
         {% endif %}
         
         <div class="container-fluid">
+            <br>
             {% if user_id %}
-                <h3 class="text-right">{{lang.label.office_tel}}: {{lang.label.office_number}}</h3>
+                {# <h3 class="text-right">{{lang.label.office_tel}}: {{lang.label.office_number}}</h3> #}
                 {# <h2 class="text-right">Order amount: <span id="txt_total_amount">0.00</span></h2> #}
             {% endif %}
             {% block content %}{% endblock %}
+            
         </div>
+        <br>
         <script src="{{base_url()}}/public/js/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="{{base_url()}}/public/js/bootstrap.min.js"></script>

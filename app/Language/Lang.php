@@ -7,7 +7,11 @@ class Lang
     public function label ()
     {
         
-        $lang['app_title'] = 'Louis Verwimp';
+        $lang['app_title'] = 'Louis Verwimp B.V';
+        $lang['app_title_1'] = 'Handelsonderneming';
+        $lang['app_sub_heading'] = 'Wholesale business in bicycle, mopeds, tyres, motor, scooter and bike parts, and accessories';
+        $lang['copyright'] = 'Copyright 1999, 2015 Adsoft bvba';
+        $lang['address'] = 'De Vest 21, 5555 XL Valkenswaard (NL)';
         $lang['app_title_mini'] = 'LVW';
         $lang['email'] = 'Email';
         $lang['password'] = 'Password';
@@ -42,6 +46,19 @@ class Lang
         $lang['order_amount'] = 'Order amount';
         $lang['office_tel'] = 'Tel. office sales';
         $lang['office_number'] = '+31-(0)40 204 15 15';
+        $lang['tel_administration'] = 'Tel. Administration';
+        $lang['tel_administration_number'] = '+31-(0)402071032';
+        $lang['tel_billing'] = 'Tel. Billing';
+        $lang['tel_billing_number'] = '+31-(0)402071032';
+        $lang['fax_number'] = '+31-(0)402045285';
+        $lang['vat_nr'] = 'VAT-nr';
+        $lang['vat_nr_number'] = 'NL802708286B01';
+        $lang['kvk'] = 'KvK (chamber of commerce)';
+        $lang['kvk_number'] = 'nr. 17077890';
+        $lang['abn_amro_bank'] = 'ABN-AMRO Bank nr.';
+        $lang['kbc_belguim'] = 'KBC Belgium nr.';
+        $lang['abn_amro_bank_number'] = 'IBAN NL81ABNA0483487260 BIC ABNANL2A';
+        $lang['kbc_belguim_number'] = 'IBAN BE48452040101127 BIC KREDBEBB';
         $lang['item_number'] = 'Item number';
         $lang['description'] = 'Description';
         $lang['your_price'] = 'YOUR price';
@@ -93,6 +110,8 @@ class Lang
         $lang['customer_country'] = 'Country';
         $lang['customer_city'] = 'City';
         $lang['customer_fax'] = 'Fax';
+        $lang['customer_tel'] = 'Tel';
+        $lang['customer_web'] = 'Web';
         $lang['customer_vat_number'] = 'Vat number';
         $lang['confirm'] = 'Confirm';
         $lang['detail_info'] = 'Details';
@@ -120,6 +139,15 @@ class Lang
         $lang['configuration'] = 'Configuration';
         $lang['help'] = 'Help';
         $lang['front_offer'] = 'Front offer';
+        $lang['in_case_of_problem'] = 'In case of problems/support, contact Adsoft bvba';
+        $lang['adsoft_bvba'] = 'Adsoft bvba';
+        $lang['kloosterstraat'] = 'Kloosterstraat 65';
+        $lang['lichtaart'] = '2460 Lichtaart';
+        $lang['belgium'] = 'Belgium';
+        $lang['support_tel_number'] = '00 32 (0)9 357.23.71';
+        $lang['support_fax_number'] = '00 32 (0)9 357.23.75';
+        $lang['support_email'] = 'info@adsoft.be';
+        $lang['support_web'] = 'www.adsoft.be';
         return $lang;
     }
 }

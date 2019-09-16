@@ -1,0 +1,35 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+        <h2 class="text-center">{{lang.label.app_title_1}} {{lang.label.app_title | upper}}</h2>
+        <p class="text-center">{{lang.label.app_sub_heading}}</p>
+        <p class="text-center">&copy; {{lang.label.copyright}}</p>
+        <hr>
+        <div class="col-md-6">
+            <p><strong>{{lang.label.app_title}}</strong></p>
+            <p>{{lang.label.address}}</p>
+            <p>{{lang.label.office_tel}} : {{lang.label.office_number}}</p>
+            <p>{{lang.label.tel_administration}} : {{lang.label.tel_administration_number}}</p>
+            <p>{{lang.label.tel_billing}} : {{lang.label.tel_billing_number}}</p>
+            <p>{{lang.label.customer_fax}} : {{lang.label.fax_number}}</p>
+            <p>{{lang.label.vat_nr}} : {{lang.label.vat_nr_number}}</p>
+            <p>{{lang.label.kvk}} {{lang.label.kvk_number}}</p>
+            <p>{{lang.label.abn_amro_bank}} {{lang.label.abn_amro_bank_number}}</p>
+            <p>{{lang.label.kbc_belguim}} {{lang.label.kbc_belguim_number}}</p>
+        </div>
+
+        <div class="col-md-6">
+            <p><strong>{{lang.label.in_case_of_problem}}</strong></p>
+            <p>{{lang.label.adsoft_bvba}}</p>
+            <p>{{lang.label.kloosterstraat}}</p>
+            <p>{{lang.label.lichtaart}}</p>
+            <p>{{lang.label.customer_tel}} : {{lang.label.support_tel_number}}</p>
+            <p>{{lang.label.customer_fax}} : {{lang.label.support_fax_number}}</p>
+            <p>{{lang.label.email}} : {{lang.label.support_email}}</p>
+            <p>{{lang.label.customer_web}} : {{lang.label.support_web}}</p>
+            <br>
+            <p>{{lang.label.belgium}}</p>
+        </div>
+    </div>
+{% endblock %}

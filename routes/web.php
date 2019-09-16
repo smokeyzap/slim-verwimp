@@ -16,6 +16,7 @@ use App\Controllers\DropShipController;
 use App\Controllers\QuestionController;
 use App\Controllers\InformationController;
 use App\Controllers\RequestDigitalBillingController;
+use App\Controllers\HelpController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -140,6 +141,11 @@ $app->group('/information', function () {
 	$this->get('/newsletter', InformationController::class . ':index')->setName('get.newsletter');
 
 	$this->get('/request-digital-billing', RequestDigitalBillingController::class . ':index')->setName('get.request.digital.billing');
+});
+
+//Help
+$app->group('/help', function () {
+	$this->get('/', HelpController::class . ':index')->setName('get.help');
 });
 
 $app->group('', function() {
