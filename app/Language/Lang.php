@@ -148,6 +148,16 @@ class Lang
         $lang['support_fax_number'] = '00 32 (0)9 357.23.75';
         $lang['support_email'] = 'info@adsoft.be';
         $lang['support_web'] = 'www.adsoft.be';
+        $lang['round_off'] = 'Round off';
+        $lang['barcode_printer'] = 'Barcode printer';
+        $lang['vat_margin'] = 'VAT margins';
+        $lang['label_dimension'] = 'Label dimension';
+        $lang['login_codes'] = 'Login codes';
+        $lang['language'] = 'Language';
+        $lang['shop_information'] = 'Shop information';
+        $lang['profit_margin'] = 'Profit margin';
+        $lang['shelf_tag_editor'] = 'Label/Shelf tag editor';
+        $lang['download_images'] = 'Download images';
         return $lang;
     }
 }
