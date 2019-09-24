@@ -19,6 +19,7 @@ use App\Controllers\RequestDigitalBillingController;
 use App\Controllers\HelpController;
 use App\Controllers\GeneralInformationController;
 use App\Controllers\TeamVerwimpController;
+use App\Controllers\CustomerInformationController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -158,6 +159,11 @@ $app->group('/help', function () {
 //General information
 $app->group('/general-information', function () {
 	$this->get('/', GeneralInformationController::class . ':index')->setName('get.general.information');
+});
+
+//Customer information
+$app->group('/customer-information', function () {
+	$this->get('/', CustomerInformationController::class . ':index')->setName('get.customer.information');
 });
 
 $app->group('', function() {

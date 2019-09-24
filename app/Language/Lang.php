@@ -158,6 +158,35 @@ class Lang
         $lang['profit_margin'] = 'Profit margin';
         $lang['shelf_tag_editor'] = 'Label/Shelf tag editor';
         $lang['download_images'] = 'Download images';
+        $lang['discount'] = 'Discount';
+        $lang['opening_hours'] = 'Opening Hours';
+        $lang['customer_id'] = 'Customer ID';
+        $lang['billing_address_label'] = 'Billing Address';
+        $lang['billing_delivery_address_label'] = 'Delivery address';
+        $lang['billing_name'] = 'Name';
+        $lang['billing_address'] = 'Address';
+        $lang['billing_postal_code'] = 'Postal code';
+        $lang['community'] = 'Community';
+        $lang['billing_delivery_receipt_label'] = 'Delivery receipt';
+        $lang['billing_valid_email_message_label'] = 'Enter a valid email addres in order to receive a confirmation of your order';
+        $lang['user_information_transport_label'] = 'Transport';
+        $lang['user_information_delivery_note_label'] = 'Delivery note';
+        $lang['user_information_delivery_note_via_email_label'] = 'Delivery note via email';
+        $lang['user_information_delivery_specify_prices_label'] = 'Specify prices on delivery note';
+        $lang['update_button_label'] = 'Update';
+        $lang['user_information_invoice_label'] = 'Invoice';
+        $lang['user_information_invoice_via_email_label'] = 'Invoice via email';
+        $lang['user_information_invoice_in_the_post_label'] = 'Invoice in the post';
+        $lang['user_information_backorders_label'] = 'Backorders';
+        $lang['user_information_backorders_never_label'] = 'Never';
+        $lang['user_information_backorders_always_label'] = 'Always';
+        $lang['user_information_backorders_only_full_number_label'] = 'Only full number';
+        $lang['user_information_invoice_payment_label'] = 'Invoice/Payment discount';
+        $lang['user_information_for_payment_label'] = 'For payment within 8 days via Cash/Bank/Authorized debit';
+        $lang['user_information_opening_hours_text1'] = 'If the closing and / or holiday period is set right with us, Louis Verwimp ensures that your order will be offered until the day AFTER the closing and / or holiday season, make sure it is set correctly please.';
+        $lang['user_information_opening_hours_text2'] = 'Next, you need the customer to keep your closing and closing times still itself with the carrier communicate / maintenance to keep them / stay informed thereof.';
+        $lang['user_information_opening_hours_label'] = 'Opening hours';
+        $lang['user_information_vacation_label'] = 'Vacation';
         return $lang;
     }
 }

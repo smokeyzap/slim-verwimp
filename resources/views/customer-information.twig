@@ -1,0 +1,114 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-6 col-md-offset-3">
+        <h2>{{lang.label.customer_info}}</h2>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#{{lang.label.general_info | lower | replace({' ':''})}}" aria-controls="{{lang.label.general_info}}" role="tab" data-toggle="tab">{{lang.label.general_info}}</a></li>
+            <li role="presentation"><a href="#{{lang.label.discount}}" aria-controls="{{lang.label.discount}}" role="tab" data-toggle="tab">{{lang.label.discount}}</a></li>
+            <li role="presentation"><a href="#{{lang.label.opening_hours | lower | replace({' ':''})}}" aria-controls="{{lang.label.opening_hours}}" role="tab" data-toggle="tab">{{lang.label.opening_hours}}</a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="{{lang.label.general_info | lower | replace({' ':''})}}">
+                <br>
+                <p>{{lang.label.customer_id}} : <strong>test</strong></p>
+
+                <div class="col-md-6">
+                    <p><strong>{{lang.label.billing_address_label}}</strong></p>
+                    <p>{{lang.label.billing_name}} : <strong>name</strong></p>
+                    <p>{{lang.label.billing_address}} : <strong>address</strong></p>
+                    <p>{{lang.label.billing_postal_code}} : <strong>postal</strong></p>
+                </div>
+
+                <div class="col-md-6">
+                    <p><strong>{{lang.label.billing_delivery_address_label}}</strong></p>
+                    <p>{{lang.label.billing_name}} : <strong>name</strong></p>
+                    <p>{{lang.label.billing_address}} : <strong>address</strong></p>
+                    <p>{{lang.label.billing_postal_code}} : <strong>postal</strong></p>
+                </div>
+                <p>{{lang.label.customer_tel}} : <strong>445u8</strong></p>
+                <p>{{lang.label.customer_fax}} : <strong>589</strong></p>
+                <p>{{lang.label.customer_vat_number}} : <strong>47890</strong></p>
+                <hr>
+                <p><strong><u>{{lang.label.billing_delivery_receipt_label}}</u></strong> ({{lang.label.billing_valid_email_message_label}})</p>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="{{lang.label.email | lower}}">{{lang.label.email}}*</label>
+                        <input type="text" class="form-control" name="{{lang.label.email | lower}}" id="{{lang.label.email | lower}}">
+                    </div>
+                </form>
+                <p>{{lang.label.user_information_transport_label}} : <strong>fghjjmgfa</strong></p>
+                <hr>
+                <p><strong><u>{{lang.label.user_information_delivery_note_label}}</u></strong></p>
+                <div class="col-md-6"><label><input type="checkbox" value="" checked="checked" disabled> {{lang.label.user_information_delivery_note_via_email_label}}</label></div>
+                <div class="col-md-6"><label><input type="checkbox" value="" checked="checked" disabled> {{lang.label.user_information_delivery_specify_prices_label}}</label></div>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="delivery_email">{{lang.label.email}}</label>
+                        <input type="text" class="form-control" name="delivery_email" id="delivery_emial">
+                    </div>
+                    <input type="submit" value="{{lang.label.update_button_label}}" class="btn btn-primary btn-block">
+                    {{csrf_field() | raw}}
+                </form>
+                <hr>
+                <p><strong><u>{{lang.label.user_information_invoice_label}}</u></strong></p>
+                <div class="col-md-6"><label><input type="checkbox" value="" checked="checked" disabled> {{lang.label.user_information_invoice_via_email_label}}</label></div>
+                <div class="col-md-6"><label><input type="checkbox" value="" checked="checked" disabled> {{lang.label.user_information_invoice_in_the_post_label}}</label></div>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <label for="invoice_email">{{lang.label.email}}</label>
+                        <input type="text" class="form-control" name="invoice_email" id="invoice_emial">
+                    </div>
+                    <input type="submit" value="{{lang.label.update_button_label}}" class="btn btn-primary btn-block">
+                    {{csrf_field() | raw}}
+                </form>
+                <hr>
+                <p><strong><u>{{lang.label.user_information_backorders_label}}</u></strong></p>
+                <form action="#" method="post">
+                    <div class="form-group">
+                        <select name="backorders_option" id="backorders_option" class="form-control">
+                            <option value="{{lang.label.user_information_backorders_never_label}}">{{lang.label.user_information_backorders_never_label}}</option>
+                            <option value="{{lang.label.user_information_backorders_always_label}}">{{lang.label.user_information_backorders_always_label}}</option>
+                            <option value="{{lang.label.user_information_backorders_only_full_number_label}}">{{lang.label.user_information_backorders_only_full_number_label}}</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="{{lang.label.update_button_label}}" class="btn btn-primary btn-block">
+                    {{csrf_field() | raw}}
+                </form>
+                <br>
+                <p>{{lang.label.user_information_invoice_payment_label}} : <strong>0</strong></p>
+                <p>{{lang.label.user_information_for_payment_label}}</p>
+                <hr>
+
+            </div>
+
+            <div role="tabpanel" class="tab-pane" id="{{lang.label.discount}}">
+                <br>
+                
+            </div>
+            
+            <div role="tabpanel" class="tab-pane" id="{{lang.label.opening_hours | lower | replace({' ':''})}}">
+                <br>
+                <p><strong>{{lang.label.user_information_opening_hours_text1}}</strong></p>
+                <p><strong>{{lang.label.user_information_opening_hours_text2}}</strong></p>
+                <br>
+                <p><strong><u>{{lang.label.user_information_opening_hours_label}}</u></strong></p>
+                {% set days_label = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] %}
+                <form action="#" method="post">
+                    {% for key, d in days_label %}
+                        <div class="form-group">
+                            <label for="{{key}}">{{d}}</label>
+                            <input type="text" name="days[]" class="form-control" id="{{key}}">
+                        </div>
+                    {% endfor %}
+                    {{csrf_field() | raw}}
+                </form>
+                <hr>
+                <p><strong>{{lang.label.user_information_vacation_label}}</strong></p>
+                
+            </div>
+        </div>
+    <div>
+{% endblock %}
