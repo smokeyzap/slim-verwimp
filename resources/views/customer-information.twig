@@ -13,53 +13,54 @@
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="{{lang.label.general_info | lower | replace({' ':''})}}">
                 <br>
-                <p>{{lang.label.customer_id}} : <strong>test</strong></p>
+                <p>{{lang.label.customer_id}} : <strong>{{user_info.customer_number}}</strong></p>
 
                 <div class="col-md-6">
                     <p><strong>{{lang.label.billing_address_label}}</strong></p>
-                    <p>{{lang.label.billing_name}} : <strong>name</strong></p>
-                    <p>{{lang.label.billing_address}} : <strong>address</strong></p>
-                    <p>{{lang.label.billing_postal_code}} : <strong>postal</strong></p>
+                    <p>{{lang.label.billing_name}} : <strong>{{user_info.name}}</strong></p>
+                    <p>{{lang.label.billing_address}} : <strong>{{user_info.address}}</strong></p>
+                    <p>{{lang.label.billing_postal_code}} : <strong>{{user_info.zip}}</strong></p>
+                    <p>{{lang.label.community}} : <strong>{{user_info.city}}</strong></p>
                 </div>
 
                 <div class="col-md-6">
                     <p><strong>{{lang.label.billing_delivery_address_label}}</strong></p>
-                    <p>{{lang.label.billing_name}} : <strong>name</strong></p>
-                    <p>{{lang.label.billing_address}} : <strong>address</strong></p>
-                    <p>{{lang.label.billing_postal_code}} : <strong>postal</strong></p>
+                    <p>{{lang.label.billing_name}} : <strong>{{user_info.delivery_name}}</strong></p>
+                    <p>{{lang.label.billing_address}} : <strong>{{user_info.delivery_address}}</strong></p>
+                    <p>{{lang.label.billing_postal_code}} : <strong>{{user_info.delivery_zip}}</strong></p>
                 </div>
-                <p>{{lang.label.customer_tel}} : <strong>445u8</strong></p>
-                <p>{{lang.label.customer_fax}} : <strong>589</strong></p>
-                <p>{{lang.label.customer_vat_number}} : <strong>47890</strong></p>
+                <p>{{lang.label.customer_tel}} : <strong>{{user_info.phone}}</strong></p>
+                <p>{{lang.label.customer_fax}} : <strong>{{user_info.fax}}</strong></p>
+                <p>{{lang.label.customer_vat_number}} : <strong>{{user_info.vat_number}}</strong></p>
                 <hr>
                 <p><strong><u>{{lang.label.billing_delivery_receipt_label}}</u></strong> ({{lang.label.billing_valid_email_message_label}})</p>
                 <form action="#" method="post">
                     <div class="form-group">
                         <label for="{{lang.label.email | lower}}">{{lang.label.email}}*</label>
-                        <input type="text" class="form-control" name="{{lang.label.email | lower}}" id="{{lang.label.email | lower}}">
+                        <input type="text" class="form-control" name="{{lang.label.email | lower}}" id="{{lang.label.email | lower}}" value="{{user_info.email}}">
                     </div>
                 </form>
-                <p>{{lang.label.user_information_transport_label}} : <strong>fghjjmgfa</strong></p>
+                <p>{{lang.label.user_information_transport_label}} : <strong>{{user_info.transport}}</strong></p>
                 <hr>
                 <p><strong><u>{{lang.label.user_information_delivery_note_label}}</u></strong></p>
-                <div class="col-md-6"><label><input type="checkbox" value="" checked="checked" disabled> {{lang.label.user_information_delivery_note_via_email_label}}</label></div>
-                <div class="col-md-6"><label><input type="checkbox" value="" checked="checked" disabled> {{lang.label.user_information_delivery_specify_prices_label}}</label></div>
+                <div class="col-md-6"><label><input type="checkbox" value="" {{(user_info.delivery_note_mail)?"checked":""}} disabled> {{lang.label.user_information_delivery_note_via_email_label}}</label></div>
+                <div class="col-md-6"><label><input type="checkbox" value="" {{(user_info.packing_price)?"checked":""}} disabled> {{lang.label.user_information_delivery_specify_prices_label}}</label></div>
                 <form action="#" method="post">
                     <div class="form-group">
                         <label for="delivery_email">{{lang.label.email}}</label>
-                        <input type="text" class="form-control" name="delivery_email" id="delivery_emial">
+                        <input type="text" class="form-control" name="delivery_email" id="delivery_emial" value="{{user_info.email}}">
                     </div>
                     <input type="submit" value="{{lang.label.update_button_label}}" class="btn btn-primary btn-block">
                     {{csrf_field() | raw}}
                 </form>
                 <hr>
                 <p><strong><u>{{lang.label.user_information_invoice_label}}</u></strong></p>
-                <div class="col-md-6"><label><input type="checkbox" value="" checked="checked" disabled> {{lang.label.user_information_invoice_via_email_label}}</label></div>
-                <div class="col-md-6"><label><input type="checkbox" value="" checked="checked" disabled> {{lang.label.user_information_invoice_in_the_post_label}}</label></div>
+                <div class="col-md-6"><label><input type="checkbox" value="" {{(user_info.invoice_mail)?"checked":""}} disabled> {{lang.label.user_information_invoice_via_email_label}}</label></div>
+                <div class="col-md-6"><label><input type="checkbox" value="" {{(user_info.invoice_post)?"checked":""}} disabled> {{lang.label.user_information_invoice_in_the_post_label}}</label></div>
                 <form action="#" method="post">
                     <div class="form-group">
                         <label for="invoice_email">{{lang.label.email}}</label>
-                        <input type="text" class="form-control" name="invoice_email" id="invoice_emial">
+                        <input type="text" class="form-control" name="invoice_email" id="invoice_emial" value="{{user_info.invoice_email}}">
                     </div>
                     <input type="submit" value="{{lang.label.update_button_label}}" class="btn btn-primary btn-block">
                     {{csrf_field() | raw}}
@@ -69,16 +70,16 @@
                 <form action="#" method="post">
                     <div class="form-group">
                         <select name="backorders_option" id="backorders_option" class="form-control">
-                            <option value="{{lang.label.user_information_backorders_never_label}}">{{lang.label.user_information_backorders_never_label}}</option>
-                            <option value="{{lang.label.user_information_backorders_always_label}}">{{lang.label.user_information_backorders_always_label}}</option>
-                            <option value="{{lang.label.user_information_backorders_only_full_number_label}}">{{lang.label.user_information_backorders_only_full_number_label}}</option>
+                            <option value="{{lang.label.user_information_backorders_never_label}}" {{(user_info.backorder == lang.label.user_information_backorders_never_label)?"selected":""}}>{{lang.label.user_information_backorders_never_label}}</option>
+                            <option value="{{lang.label.user_information_backorders_always_label}}"{{(user_info.backorder == lang.label.user_information_backorders_always_label)?"selected":""}}>{{lang.label.user_information_backorders_always_label}}</option>
+                            <option value="{{lang.label.user_information_backorders_only_full_number_label}}" {{(user_info.backorder == lang.label.user_information_backorders_only_full_number_label)?"selected":""}}>{{lang.label.user_information_backorders_only_full_number_label}}</option>
                         </select>
                     </div>
                     <input type="submit" value="{{lang.label.update_button_label}}" class="btn btn-primary btn-block">
                     {{csrf_field() | raw}}
                 </form>
                 <br>
-                <p>{{lang.label.user_information_invoice_payment_label}} : <strong>0</strong></p>
+                <p>{{lang.label.user_information_invoice_payment_label}} : <strong>{{user_info.invoice_discount}}</strong></p>
                 <p>{{lang.label.user_information_for_payment_label}}</p>
                 <hr>
 
@@ -97,17 +98,38 @@
                 <p><strong><u>{{lang.label.user_information_opening_hours_label}}</u></strong></p>
                 {% set days_label = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] %}
                 <form action="#" method="post">
-                    {% for key, d in days_label %}
-                        <div class="form-group">
-                            <label for="{{key}}">{{d}}</label>
-                            <input type="text" name="days[]" class="form-control" id="{{key}}">
+                    {% for key,d in days_label %}
+                        <label for="{{key}}">{{d}}</label>
+                        <div class="input-group">
+                            <input type="text" id="{{key}}" name="days[]" class="form-control"  aria-describedby="basic-addon2">
+                            <span class="input-group-addon" id="basic-addon2"><input type="checkbox" value="{{d}}" name="is_closed[]"> {{lang.label.user_information_closed_label}}</span>
                         </div>
                     {% endfor %}
+                    <br>
+                    <div class="form-group">
+                        <input type="submit" value="{{lang.label.update_button_label}}" class="btn btn-primary btn-block">
+                    </div>
                     {{csrf_field() | raw}}
                 </form>
                 <hr>
-                <p><strong>{{lang.label.user_information_vacation_label}}</strong></p>
-                
+                <p><strong><u>{{lang.label.user_information_vacation_label}}</u></strong></p>
+                <form action="#" method="post">
+                    <div class="col-md-5">
+                        <input type="date" name="vacation_from" class="form-control">
+                    </div>
+                    <div class="col-md-2 text-center">
+                        <label>To</label>
+                    </div>
+                    <div class="col-md-5">
+                        <input type="date" name="vacation_to" class="form-control">
+                    </div>
+                    <div class="col-md-12"><br></div>
+                     <div class="col-md-12">
+                        <input type="submit" value="{{lang.label.user_information_send_request_label}}" class="btn btn-primary btn-block">
+                    </div>
+                    {{csrf_field() | raw}}
+                </form>
+                <div class="col-md-12"><hr></div>
             </div>
         </div>
     <div>

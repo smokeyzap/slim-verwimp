@@ -187,6 +187,8 @@ class Lang
         $lang['user_information_opening_hours_text2'] = 'Next, you need the customer to keep your closing and closing times still itself with the carrier communicate / maintenance to keep them / stay informed thereof.';
         $lang['user_information_opening_hours_label'] = 'Opening hours';
         $lang['user_information_vacation_label'] = 'Vacation';
+        $lang['user_information_closed_label'] = 'Closed';
+        $lang['user_information_send_request_label'] = 'Send request';
         return $lang;
     }
 }
