@@ -1,0 +1,54 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-6 col-md-offset-3">
+        {% include 'layouts/flash.twig' %}
+        <h2>{{lang.label.round_off_label}}</h2>
+        <hr>
+        <form action="{{path_for('post.new.round.off')}}" method="post">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="text" placeholder="{{lang.label.round_off_from_label}}" class="form-control" name="from" id="from" required>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="text" placeholder="{{lang.label.round_off_to_label}}" class="form-control" name="to" id="to" required>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="text" placeholder="{{lang.label.round_off_precision_label}}" class="form-control" name="precision" id="precision" required>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <input type="submit" class="btn btn-primary" value="{{lang.label.submit}}">
+            </div>
+            {{csrf_field() | raw}}
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{lang.label.round_off_from_label}}</th>
+                    <th>{{lang.label.round_off_to_label}}</th>
+                    <th>{{lang.label.round_off_precision_label}}</th>
+                    <th>{{lang.label.round_off_action_label}}</th>
+                </tr>
+                <tbody>
+                {% for d in data %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{d.completion_from | number_format(2)}}</td>
+                        <td>{{d.completion_until | number_format(2)}}</td>
+                        <td>{{d.completion_precision | number_format(2)}}</td>
+                        <td>
+                            <a href="{{path_for('edit.round.off',{id:d.id})}}">{{lang.label.edit}}</a> | <a href="{{path_for('delete.round.off',{id:d.id})}}" onclick="return confirm('Selection will be deleted. Would you like to continue?')">{{lang.label.delete}}</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </thead>
+        </table>
+    <div>
+{% endblock %}

@@ -117,6 +117,7 @@ class Lang
         $lang['detail_info'] = 'Details';
         $lang['action'] = 'Action';
         $lang['edit'] = 'Edit';
+        $lang['delete'] = 'Delete';
         $lang['edit_dealer'] = 'Edit dealer';
         $lang['add_dealer'] = 'Add dealer';
         $lang['remove'] = 'Remove';
@@ -148,7 +149,7 @@ class Lang
         $lang['support_fax_number'] = '00 32 (0)9 357.23.75';
         $lang['support_email'] = 'info@adsoft.be';
         $lang['support_web'] = 'www.adsoft.be';
-        $lang['round_off'] = 'Round off';
+        $lang['round_off_label'] = 'Round off';
         $lang['barcode_printer'] = 'Barcode printer';
         $lang['vat_margin'] = 'VAT margins';
         $lang['label_dimension'] = 'Label dimension';
@@ -189,6 +190,12 @@ class Lang
         $lang['user_information_vacation_label'] = 'Vacation';
         $lang['user_information_closed_label'] = 'Closed';
         $lang['user_information_send_request_label'] = 'Send request';
+        $lang['round_off_from_label'] = 'From';
+        $lang['round_off_to_label'] = 'To';
+        $lang['round_off_precision_label'] = 'Precision';
+        $lang['round_off_action_label'] = 'Action';
+        $lang['add_label'] = 'Add';
+        $lang['cancel_label'] = 'Cancel';
         return $lang;
     }
 }

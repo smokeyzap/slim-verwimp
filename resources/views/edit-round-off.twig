@@ -1,0 +1,26 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-6 col-md-offset-3">
+        <form action="{{path_for('update.round.off')}}" method="post">
+            <input type="hidden" name="id" value="{{data.id}}">
+            <div class="form-group">
+                <label for="from">{{lang.label.round_off_from_label}}</label>
+                <input type="text" class="form-control" id="from" name="from" value="{{data.completion_from}}">
+            </div>
+            <div class="form-group">
+                <label for="to">{{lang.label.round_off_to_label}}</label>
+                <input type="text" class="form-control" id="to" name="to" value="{{data.completion_until}}">
+            </div>
+            <div class="form-group">
+                <label for="precision">{{lang.label.round_off_precision_label}}</label>
+                <input type="text" class="form-control" id="precision" name="precision" value="{{data.completion_precision}}">
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-block" value="{{lang.label.update_button_label}}">
+                <a href="{{path_for('get.round.off')}}" class="btn btn-warning btn-block">{{lang.label.cancel_label}}</a>
+            </div>
+            {{csrf_field() | raw}}
+        </form>
+    </div>
+{% endblock %}

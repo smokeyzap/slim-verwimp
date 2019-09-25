@@ -20,6 +20,7 @@ use App\Controllers\HelpController;
 use App\Controllers\GeneralInformationController;
 use App\Controllers\TeamVerwimpController;
 use App\Controllers\CustomerInformationController;
+use App\Controllers\RoundOffController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -164,6 +165,19 @@ $app->group('/general-information', function () {
 //Customer information
 $app->group('/customer-information', function () {
 	$this->get('/', CustomerInformationController::class . ':index')->setName('get.customer.information');
+});
+
+//Round off
+$app->group('/round-off', function () {
+	$this->get('/', RoundOffController::class . ':index')->setName('get.round.off');
+
+	$this->get('/delete-round-off/{id}', RoundOffController::class . ':deleteRoundOff')->setName('delete.round.off');
+
+	$this->get('/edit-round-off/{id}', RoundOffController::class . ':editRoundOff')->setName('edit.round.off');
+
+	$this->post('/update-round-off', RoundOffController::class . ':updateRoundOff')->setName('update.round.off');
+
+	$this->post('/post-new-round-off', RoundOffController::class . ':postNewRoundOff')->setName('post.new.round.off');
 });
 
 $app->group('', function() {
