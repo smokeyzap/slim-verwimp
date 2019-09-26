@@ -112,6 +112,8 @@ $app->group('/favorites', function () {
 
 	$this->post('/api/postaddtocart', FavoriteController::class . ':postAddToCart');
 
+	$this->get('/remove-from-favorite/{id}', FavoriteController::class . ':removeFromFavorite')->setName('remove.from.favorite');
+
 })->add(new AuthClient($container));
 
 //Item index

@@ -39,6 +39,7 @@ class FavoriteController extends Controller
         $articles = Article::whereIn('item_number', $fav_item_numbers)->get();
         $output = [];
         foreach ($articles as $article) {
+            
             $output[] = [
                 $article->id,
                 $article->item_number,
@@ -46,9 +47,20 @@ class FavoriteController extends Controller
                 $article->current_purchase_price,
                 number_format((float)round($article->sales_price / 1.21, 2), 2, '.', ''),
                 $article->sales_price,
+                '<a href="'.$this->c->router->pathFor('remove.from.favorite',['id'=>$article->item_number]).'" onclick="return confirm(\'Remove from favorite. Continue?\')">remove</a>'
             ];
         }
         return $response->withJson(["data"=>$output]);
+    }
+
+    public function removeFromFavorite (Request $request, Response $response)
+    {
+        $id = $request->getAttribute('id');
+        Favorite::where('article_number', $id)
+                ->where('customer_number', $_SESSION['customer_number'])
+                ->delete();
+        
+        return $response->withRedirect($this->c->router->pathFor('get.favorites'));
     }
 
     public function getArticleDetails (Request $request, Response $response)
