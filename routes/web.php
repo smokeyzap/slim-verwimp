@@ -21,6 +21,7 @@ use App\Controllers\GeneralInformationController;
 use App\Controllers\TeamVerwimpController;
 use App\Controllers\CustomerInformationController;
 use App\Controllers\RoundOffController;
+use App\Controllers\ShopInformationController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -179,6 +180,14 @@ $app->group('/round-off', function () {
 
 	$this->post('/post-new-round-off', RoundOffController::class . ':postNewRoundOff')->setName('post.new.round.off');
 });
+
+//Shop information
+$app->group('/shop-information', function () {
+	$this->get('/', ShopInformationController::class . ':index')->setName('get.shop.information');
+
+	$this->post('/post-shop-information', ShopInformationController::class . ':postShopInformation')->setName('post.shop.information');
+});
+
 
 $app->group('', function() {
 	//admin signin

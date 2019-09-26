@@ -196,6 +196,7 @@ class Lang
         $lang['round_off_action_label'] = 'Action';
         $lang['add_label'] = 'Add';
         $lang['cancel_label'] = 'Cancel';
+        $lang['confirmation_order_label'] = 'To receive a confirmation of your order, you need to enter a valid email address';
         return $lang;
     }
 }

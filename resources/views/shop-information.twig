@@ -1,0 +1,57 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-6 col-md-offset-3">
+        {% include 'layouts/flash.twig' %}
+        <h2>{{lang.label.shop_information}}</h2>
+        <form action="{{path_for('post.shop.information')}}" method="post">
+            <table class="table table-unstripe">
+                <tr>
+                    <td>{{lang.label.customer_id}}</td>
+                    <td><strong>{{data.customer_number}}</strong></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.customer_name}}</td>
+                    <td><strong>{{data.name}}</strong></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.customer_address}}</td>
+                    <td><strong>{{data.address}}</strong></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.billing_postal_code}}</td>
+                    <td><strong>{{data.zip}}</strong></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.community}}</td>
+                    <td><strong>{{data.city}}</strong></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.customer_tel}}</td>
+                    <td><strong>{{data.phone}}</strong></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.customer_fax}}</td>
+                    <td><strong>{{data.fax}}</strong></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.customer_vat_number}}</td>
+                    <td><strong>{{data.vat_number}}</strong></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.email}}*</td>
+                    <td>
+                        <input type="text" class="form-control" name="email" value="{{data.email}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">(*) {{lang.label.confirmation_order_label}}</td>
+                </tr>
+            </table>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-block" value="{{lang.label.submit}}">
+            </div>
+        {{csrf_field() | raw}}
+        </form>
+    <div>
+{% endblock %}
