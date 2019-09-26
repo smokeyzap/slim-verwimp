@@ -16,9 +16,14 @@ class FavoriteController extends Controller
     public function index (Request $request, Response $response) 
     {   
         //get all item from favorite table
+        $item_list = "";
+        $image = "";
         $favorite = Favorite::where('customer_number', $_SESSION['customer_number'])->first();
-        $item_list = Article::where('item_number', $favorite->article_number)->first();
-        $image = Image::where('line_number', $item_list->sort_number)->first();
+        if ($favorite) {
+            $item_list = Article::where('item_number', $favorite->article_number)->first();
+            $image = Image::where('line_number', $item_list->sort_number)->first();
+        }
+        
 
         return $this->c->view->render($response, 'favorite.twig', [
             'title' => $this->c->lang->label()['favorites'],
