@@ -155,7 +155,7 @@ class Lang
         $lang['barcode_printer'] = 'Barcode printer';
         $lang['vat_margin'] = 'VAT margins';
         $lang['label_dimension'] = 'Label dimension';
-        $lang['login_codes'] = 'Login codes';
+        $lang['login_codes_label'] = 'Login codes';
         $lang['language'] = 'Language';
         $lang['shop_information'] = 'Shop information';
         $lang['profit_margin'] = 'Profit margin';
@@ -200,6 +200,28 @@ class Lang
         $lang['cancel_label'] = 'Cancel';
         $lang['confirmation_order_label'] = 'To receive a confirmation of your order, you need to enter a valid email address';
         $lang['accept_label'] = 'Accept';
+        $lang['item_number_label'] = 'Item number';
+        $lang['name_label'] = 'Name';
+        $lang['bike_type_label'] = 'Bike type';
+        $lang['frame_number_label'] = 'Frame number';
+        $lang['battery_number_label'] = 'Battery number';
+        $lang['date_of_purchase_label'] = 'Date of purchase';
+        $lang['registered_label'] = 'Registered';
+        $lang['failure_label'] = 'Failure';
+        $lang['failure_code_label'] = 'Failure code';
+        $lang['send_label'] = 'Send';
+        $lang['password_label'] = 'Password';
+        $lang['description_label'] = 'Description';
+        $lang['full_access_label'] = 'Full access';
+        $lang['purchase_price_label'] = 'Purchase price';
+        $lang['invoices_label'] = 'Invoices';
+        $lang['customer_information_label'] = 'Customer Information';
+        $lang['question_label'] = 'Question';
+        $lang['access_label'] = 'Access';
+        $lang['order_total_label'] = 'Order total';
+        $lang['favorites_label'] = 'Favorites';
+        $lang['delete_label'] = 'Delete';
+        $lang['you_snooze_you_loose_label'] = 'You snooze, you lose';
         return $lang;
     }
 }

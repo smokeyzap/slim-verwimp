@@ -23,6 +23,7 @@ use App\Controllers\CustomerInformationController;
 use App\Controllers\RoundOffController;
 use App\Controllers\ShopInformationController;
 use App\Controllers\ReturnWarrantyController;
+use App\Controllers\LoginCodesController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -195,6 +196,13 @@ $app->group('/shop-information', function () {
 //Return warranty
 $app->group('/return-warranty', function () {
 	$this->get('/', ReturnWarrantyController::class . ':index')->setName('get.return.warranty');
+});
+
+//Login codes
+$app->group('/login-codes', function () {
+	$this->get('/', LoginCodesController::class . ':index')->setName('get.login.codes');
+
+	$this->post('/post-login-codes', LoginCodesController::class . ':postLoginCodes')->setName('post.login.codes');
 });
 
 $app->group('', function() {

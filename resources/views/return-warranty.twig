@@ -1,7 +1,48 @@
 {% extends 'layouts/app.twig' %}
 
 {% block content %}
-    
+    <div class="col-md-10 col-md-offset-1">
+        {% include 'layouts/flash.twig' %}
+        <h1>{{lang.label.return_warranty_bikes}}</h1><hr>
+        <div class="col-md-6">
+            <a href="#" class="btn btn-primary">{{lang.label.add_label}}</a>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="#" class="btn btn-primary">{{lang.label.send_label}}</a>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{lang.label.item_number_label}}</th>
+                    <th>{{lang.label.name_label}}</th>
+                    <th>{{lang.label.bike_type_label}}</th>
+                    <th>{{lang.label.frame_number_label}}</th>
+                    <th>{{lang.label.battery_number_label}}</th>
+                    <th>{{lang.label.date_of_purchase_label}}</th>
+                    <th>{{lang.label.registered_label}}</th>
+                    <th>{{lang.label.failure_label}}</th>
+                    <th>{{lang.label.failure_code_label}}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for r in data %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 
 

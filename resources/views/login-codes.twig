@@ -1,0 +1,146 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+        {% include 'layouts/flash.twig' %}
+        <h1>{{lang.label.login_codes_label}}</h1><hr>
+         <!-- Trigger the modal with a button -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">{{lang.label.add_label}}</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{lang.label.password_label}}</th>
+                    <th>{{lang.label.description_label}}</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    
+    {# Modal #}
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <form action="{{path_for('post.login.codes')}}" method="post">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">{{lang.label.add_label}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="password">{{lang.label.password_label}}</label>
+                                <input type="text" class="form-control" name="password">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="name">{{lang.label.name_label}}</label>
+                                <input type="text" class="form-control" name="name">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6"><label><input type="checkbox" name="full_access"> {{lang.label.full_access_label}}</label></div>
+                        </div>
+                        <div id="permissions">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p>{{lang.label.general_info}}</p>
+                                            <p><label><input type="checkbox" name="general_info_purchase"> {{lang.label.purchase_price_label}}</label></p>
+                                            <p><label><input type="checkbox" name="general_info_invoices"> {{lang.label.invoices_label}}</label></p>
+                                            <p><label><input type="checkbox" name="general_info_customer_info"> {{lang.label.customer_information_label}}</label></p>
+                                            <p><label><input type="checkbox" name="general_info_question"> {{lang.label.question_label}}</label></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p>{{lang.label.offer}}</p>
+                                            <p><label><input type="checkbox" name="offer_access"> {{lang.label.offer}}</label></p>
+                                            <p><label><input type="checkbox" name="offer_order_total"> {{lang.label.order_total_label}}</label></p>
+                                            <p><label><input type="checkbox" name="offer_favorites"> {{lang.label.favorites_label}}</label></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p>{{lang.label.new}}</p>
+                                            <p><label><input type="checkbox" name="new_access"> {{lang.label.offer}}</label></p>
+                                            <p><label><input type="checkbox" name="new_order_total"> {{lang.label.order_total_label}}</label></p>
+                                            <p><label><input type="checkbox" name="new_favorites"> {{lang.label.favorites_label}}</label></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p>{{lang.label.you_snooze_you_loose_label}}</p>
+                                            <p><label><input type="checkbox" name="you_snooze_access"> {{lang.label.offer}}</label></p>
+                                            <p><label><input type="checkbox" name="you_snooze_order_total"> {{lang.label.order_total_label}}</label></p>
+                                            <p><label><input type="checkbox" name="you_snooze_favorites"> {{lang.label.favorites_label}}</label></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p>{{lang.label.item_list}}</p>
+                                            <p><label><input type="checkbox" name="item_list_access"> {{lang.label.offer}}</label></p>
+                                            <p><label><input type="checkbox" name="item_list_order_total"> {{lang.label.order_total_label}}</label></p>
+                                            <p><label><input type="checkbox" name="item_list_favorites"> {{lang.label.favorites_label}}</label></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p>{{lang.label.item_index}}</p>
+                                            <p><label><input type="checkbox" name="item_index_access"> {{lang.label.offer}}</label></p>
+                                            <p><label><input type="checkbox" name="item_index_order_total"> {{lang.label.order_total_label}}</label></p>
+                                            <p><label><input type="checkbox" name="item_index_favorites"> {{lang.label.favorites_label}}</label></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p>{{lang.label.favorites_label}}</p>
+                                            <p><label><input type="checkbox" name="favorites_access"> {{lang.label.offer}}</label></p>
+                                            <p><label><input type="checkbox" name="favorites_order_total"> {{lang.label.order_total_label}}</label></p>
+                                            <p><label><input type="checkbox" name="favorites_delete"> {{lang.label.delete_label}}</label></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="col-md-4">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <p>{{lang.label.order_list}}</p>
+                                            <p><label><input type="checkbox" name="order_list_access"> {{lang.label.offer}}</label></p>
+                                            <p><label><input type="checkbox" name="order_list_send"> {{lang.label.send_label}}</label></p>
+                                            <p><label><input type="checkbox" name="order_list_add"> {{lang.label.add_label}}</label></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="{{lang.label.submit}}">
+                    </div>
+                </div>
+            {{csrf_field() | raw}}
+            </form>
+        </div>
+    </div>
+{% endblock %}
