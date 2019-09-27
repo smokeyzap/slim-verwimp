@@ -96,6 +96,8 @@ class Lang
         $lang['orders'] = 'Orders';
         $lang['return_warranty_bikes'] = 'Return-Warranty (Bikkel bikes / Ibee)';
         $lang['return_warranty_other'] = 'Return-Warranty (other)';
+        $lang['return_warranty_label'] = 'Return Warranty';
+        $lang['return_warranty_other_label'] = 'Return Warranty Other';
         $lang['orders_local'] = 'Orders (local)';
         $lang['return_warranty_bikes_local'] = 'Return-Warranty (Bikkel bikes / Ibee) (Local)';
         $lang['return_warranty_other_local'] = 'Return-Warranty (other) (local)';
@@ -197,6 +199,7 @@ class Lang
         $lang['add_label'] = 'Add';
         $lang['cancel_label'] = 'Cancel';
         $lang['confirmation_order_label'] = 'To receive a confirmation of your order, you need to enter a valid email address';
+        $lang['accept_label'] = 'Accept';
         return $lang;
     }
 }

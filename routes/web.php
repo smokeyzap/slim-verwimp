@@ -22,6 +22,7 @@ use App\Controllers\TeamVerwimpController;
 use App\Controllers\CustomerInformationController;
 use App\Controllers\RoundOffController;
 use App\Controllers\ShopInformationController;
+use App\Controllers\ReturnWarrantyController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -190,6 +191,11 @@ $app->group('/shop-information', function () {
 	$this->post('/post-shop-information', ShopInformationController::class . ':postShopInformation')->setName('post.shop.information');
 });
 
+
+//Return warranty
+$app->group('/return-warranty', function () {
+	$this->get('/', ReturnWarrantyController::class . ':index')->setName('get.return.warranty');
+});
 
 $app->group('', function() {
 	//admin signin

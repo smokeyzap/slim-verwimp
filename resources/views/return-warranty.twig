@@ -1,0 +1,72 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    
+
+
+
+    {# Modal #}
+    <div id="return_warranty_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="{{path_for('get.item.list')}}" class="close">&times;</a>
+                    <h4 class="modal-title">{{lang.label.return_warranty_bikes}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Retour- en garantievoorwaarden Bikkel bikes BV.</p>
+
+                    <p>Voor een snelle en correcte afhandeling vragen wij u het volgende;</p>
+
+                    <p>Vul het retourformulier/ garantielabel uit het bestelprogramma van Verwimp volledig in. Dit kunt u vinden onder de knop retour/garantie. Hierbij vragen wij U te kiezen voor Bikkel onderdelen.</p>
+                    <p>Na het verzenden van het formulier wordt de zending automatisch de 1e of 3e woensdag van de maand bij u afgehaald. Mits u aan heeft gegeven dat de goederen afgehaald moeten worden.</p>
+                    <p>Wanneer er  eventuele reparatie accu’s tussen zitten worden de goederen direct bij u afgehaald.</p>
+                    <p>Als u aangeeft dat de zending retour gaat via de vertegenwoordiger, dan zal deze de goederen retour nemen.</p>
+                    <p>Voor het kosteloos ophalen door onze transporteur houden wij een minimum bedrag met betrekking tot de waarde van het op te halen product aan van €50,-. Zelf onderdelen naar ons versturen kan natuurlijk altijd.</p>
+                    <p><strong>Voorwaarden  retour-garantie:</strong></p>
+                    <ul>
+                        <li>Ieder artikel dient te zijn voorzien van een volledig ingevuld Bikkel garantielabel (als pdf verkrijgbaar via het bestelprogramma van Louis Verwimp BV of digitaal via de retour/ garantie module van het Verwimp bestelprogramma. Zonder een Bikkel garantielabel worden de onderdelen niet in behandeling genomen. Het defect dient nauwkeurig omschreven te worden in het garantielabel;</li>
+                        <li>Indien een artikel niet voorzien is van een garantielabel dan wel niet onder garantie valt, kunnen onderzoekskosten door Bikkel bikes in rekening worden gebracht;</li>
+                        <li>Bij het geheel van goederen dat geretourneerd wordt, dient een verzamel bon gevoegd te worden. Deze verzamel bon is een retour-garantieformulier dat als pdf verkrijgbaar is via het Louis Verwimp BV bestelprogramma of krijgt u automatisch na het digitaal aanmaken van de garantielabels in het bestelprogramma van Verwimp.</li>
+                        <li>Neem altijd eerst contact op met de technische dienst van Bikkel bikes tel: +31(0)495-546807 of mail naar: service@bikkelbikes.com alvorens goederen te retourneren. Ook fietsen kunnen alleen geretourneerd worden na overleg met de technische dienst van Bikkel bikes.</li>
+                        <li>Uitsluitend na akkoord van Bikkel bikes kunt u Bikkel bikes vragen om een afhaalopdracht in orde te maken, middels welke uw onderdelen rechtstreeks worden verstuurd naar Bikkel bikes. Afhaalopdrachten worden enkel uitgevoerd op de eerste en derde woensdag van de maand; <br><br>Uiteraard heeft u ook de mogelijkheid om artikelen zelf (uitsluitend na akkoord van Bikkel bikes) retour te sturen naar Bikkel bikes (adres: Magnesiumstraat 37, 6031RV Nederweert);</li>
+                        <li>2 à 3 weken na ontvangst van het product bij Bikkel bikes ontvangt u bericht inzake de beoordeling van de geretourneerde goederen;</li>
+                        <li>Na beoordeling door Bikkel bikes zorgt Louis Verwimp Bv voor vervangende artikelen en/of creditering.</li>
+                    </ul>
+                    <p>Welke artikelen kunnen niet retour naar Bikkel bikes;
+                    -Artikelen waar geen Bikkel garantielabel bijzit;
+                    -Artikelen waar geen verzamel bon / retour- garantieformulier bijzit*;
+                    -Artikelen waarvoor Bikkel bikes geen toestemming heeft gegeven om deze te retourneren;
+                    -Artikelen waarvan de garantietermijn is verlopen.</p>
+
+                    <p><em>* Let op in het geval u geen verzamel bon/ retour garantieformulier verstuurd heeft en de goederen raken zoek tijdens vervoer; heeft u geen recht op vergoeding/vervanging door Bikkel bikes.</em></p>
+
+
+                    <p>Garantiebepalingen Bikkel bikes/ ibee</p>
+
+                    <p>Wij streven er natuurlijk naar om  ten alle tijden goede en deugdelijke artikelen te maken. Mocht het onverhoopt zo zijn dat een artikel eerder kapot gaat of beschadigd raakt dan je van het artikel kan verwachten, dan horen wij dit graag.</p>
+                    <p>Op alle Bikkel artikelen zijn de volgende garantiebepalingen* van toepassing:</p>
+                    <p>Op ons Ibee systeem verlenen we de onderstaande fabrieksgarantie:</p>
+                    <p>i. Frame en vork: 5 jaar</p>
+                    <p>ii. Onderdelen: 2 jaar uitgezonderd banden en remblokken</p>
+                    <p>iii. Accupakket: 2 jaar; maximaal 300 laad cycli. Op accu vanaf modeljaar 2012 mits de fiets direct na aankoop is geregistreerd (zonder registratie geldt 1 jaar vanaf de verkoopdatum op de factuur)</p>
+                    <p>De garantie kan uitsluitend worden ingeroepen op vertoon van het aan de eigenaar overhandigde garantiebewijs of met het framenummer mits de fiets geregistreerd is.</p>
+                    <p>De garantie vervalt met onmiddellijke ingang indien:</p>
+                    <p>I. Het ibee systeem oneigenlijk, onjuist en/of onzorgvuldig is gebruikt;</p>
+                    <p>II. de E-bike niet conform het bij aankoop aan de eigenaar overhandigde instructieboekje is onderhouden;</p>
+                    <p>III. (technische) reparaties aan de E-bike op ondeskundige wijze zijn verricht (waaronder onjuiste montage van onderdelen);</p>
+                    <p>IV. bij onderhoud en reparaties aan de ibee systeem geen originele onderdelen of onderdelen van gelijke kwaliteit zijn gebruikt;</p>
+                    <p>V. de constructie van de E-bike zonder toestemming van de fabrikant gewijzigd is;</p>
+                    <p>VI. de accu is geopend;</p>
+                    <p>VII. een andere acculader is gebruikt dan de meegeleverde lader;</p>
+                    <p>VIII. het gebrek is ontstaan door of het gevolg is van omstandigheden waar Fabrikant geen invloed op kan uitoefenen, daaronder begrepen weersomstandigheden (zoals bijvoorbeeld doch niet uitsluitend, extreme regenval of temperaturen) et cetera.</p>
+                    <em>*Deze garantievoorwaarden maken deel uit van de algemene voorwaarden van Bikkel bikes BV gedeponeerd bij de Kamer van Koophandel te Roermond en zijn tevens op onze site te vinden:  http://www.bikkelbikes.com/algemene-voorwaarden</em>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">{{lang.label.accept_label}}</button> <a href="{{path_for('get.item.list')}}" class="btn btn-warning">{{lang.label.cancel_label}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
