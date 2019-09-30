@@ -112,7 +112,7 @@ class LoginCodesController extends Controller
         if (!$login_code) {
             die('Access denied');
         }
-
+        dump($login_code);
         return $this->c->view->render($response, 'edit-login-code.twig', [
             'title' => $this->c->lang->label()['edit'] . ' ' . $this->c->lang->label()['login_codes_label'],
             'data' => $login_code
@@ -157,7 +157,6 @@ class LoginCodesController extends Controller
             $lc->order_addition = 1;
             $lc->save();
         } else {
-            $lc->customer_number = $_SESSION['customer_number'];
             $lc->password = $postData['password'];
             $lc->name = $postData['name'];
             $lc->full_access = 0;

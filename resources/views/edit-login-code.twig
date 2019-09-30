@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="col-md-12">
-                <div class="col-md-6"><label><input type="checkbox" name="full_access" id="is_full_access" onclick="isFullAccess()" checked="{{(data.full_acess)?'checked':''}}"> {{lang.label.full_access_label}}</label></div>
+                <div class="col-md-6"><label><input type="checkbox" name="full_access" id="is_full_access" onclick="isFullAccess()" {{(data.full_access)?'checked':''}}> {{lang.label.full_access_label}}</label></div>
             </div>
             <div id="permissions">
                 <div class="col-md-12">
@@ -29,10 +29,10 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <p>{{lang.label.general_info}}</p>
-                                <p><label><input type="checkbox" name="general_info_purchase" checked="{{(data.purchase_price_access)?'checked':''}}"> {{lang.label.purchase_price_label}}</label></p>
-                                <p><label><input type="checkbox" name="general_info_invoices" checked="{{(data.invoice_access)?'checked':''}}"> {{lang.label.invoices_label}}</label></p>
-                                <p><label><input type="checkbox" name="general_info_customer_info" checked="{{(data.customer_info_access)?'checked':''}}"> {{lang.label.customer_information_label}}</label></p>
-                                <p><label><input type="checkbox" name="general_info_question" checked="{{(data.question_access)?'checked':''}}"> {{lang.label.question_label}}</label></p>
+                                <p><label><input type="checkbox" name="general_info_purchase" {{(data.purchase_price_access)?'checked':''}}> {{lang.label.purchase_price_label}}</label></p>
+                                <p><label><input type="checkbox" name="general_info_invoices" {{(data.invoice_access)?'checked':''}}> {{lang.label.invoices_label}}</label></p>
+                                <p><label><input type="checkbox" name="general_info_customer_info" {{(data.customer_info_access)?'checked':''}}> {{lang.label.customer_information_label}}</label></p>
+                                <p><label><input type="checkbox" name="general_info_question" {{(data.question_access)?'checked':''}}> {{lang.label.question_label}}</label></p>
                             </div>
                         </div>
                     </div>
@@ -40,9 +40,9 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <p>{{lang.label.offer}}</p>
-                                <p><label><input type="checkbox" name="offer_access" checked="{{(data.offer_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
-                                <p><label><input type="checkbox" name="offer_order_total" checked="{{(data.offer_order)?'checked':''}}"> {{lang.label.order_total_label}}</label></p>
-                                <p><label><input type="checkbox" name="offer_favorites" checked="{{(data.offer_favorite)?'checked':''}}"> {{lang.label.favorites_label}}</label></p>
+                                <p><label><input type="checkbox" name="offer_access" {{(data.offer_access)?'checked':''}}> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="offer_order_total" {{(data.offer_order)?'checked':''}}> {{lang.label.order_total_label}}</label></p>
+                                <p><label><input type="checkbox" name="offer_favorites" {{(data.offer_favorite)?'checked':''}}> {{lang.label.favorites_label}}</label></p>
                             </div>
                         </div>
                     </div>
@@ -50,9 +50,9 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <p>{{lang.label.new}}</p>
-                                <p><label><input type="checkbox" name="new_access" checked="{{(data.new_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
-                                <p><label><input type="checkbox" name="new_order_total" checked="{{(data.new_order)?'checked':''}}"> {{lang.label.order_total_label}}</label></p>
-                                <p><label><input type="checkbox" name="new_favorites" checked="{{(data.new_favorite)?'checked':''}}"> {{lang.label.favorites_label}}</label></p>
+                                <p><label><input type="checkbox" name="new_access" {{(data.new_access)?'checked':''}}> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="new_order_total" {{(data.new_order)?'checked':''}}> {{lang.label.order_total_label}}</label></p>
+                                <p><label><input type="checkbox" name="new_favorites" {{(data.new_favorite)?'checked':''}}> {{lang.label.favorites_label}}</label></p>
                             </div>
                         </div>
                     </div>
@@ -62,9 +62,9 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <p>{{lang.label.you_snooze_you_loose_label}}</p>
-                                <p><label><input type="checkbox" name="you_snooze_access" checked="{{(data.closeout_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
-                                <p><label><input type="checkbox" name="you_snooze_order_total" checked="{{(data.closeout_order)?'checked':''}}"> {{lang.label.order_total_label}}</label></p>
-                                <p><label><input type="checkbox" name="you_snooze_favorites" checked="{{(data.closeout_favorite)?'checked':''}}"> {{lang.label.favorites_label}}</label></p>
+                                <p><label><input type="checkbox" name="you_snooze_access" {{(data.closeout_access)?'checked':''}}> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="you_snooze_order_total" {{(data.closeout_order)?'checked':''}}> {{lang.label.order_total_label}}</label></p>
+                                <p><label><input type="checkbox" name="you_snooze_favorites" {{(data.closeout_favorite)?'checked':''}}> {{lang.label.favorites_label}}</label></p>
                             </div>
                         </div>
                     </div>
@@ -72,9 +72,9 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <p>{{lang.label.item_list}}</p>
-                                <p><label><input type="checkbox" name="item_list_access" checked="{{(data.list_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
-                                <p><label><input type="checkbox" name="item_list_order_total" checked="{{(data.list_order)?'checked':''}}"> {{lang.label.order_total_label}}</label></p>
-                                <p><label><input type="checkbox" name="item_list_favorites" checked="{{(data.list_favorite)?'checked':''}}"> {{lang.label.favorites_label}}</label></p>
+                                <p><label><input type="checkbox" name="item_list_access" {{(data.list_access)?'checked':''}}> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="item_list_order_total" {{(data.list_order)?'checked':''}}> {{lang.label.order_total_label}}</label></p>
+                                <p><label><input type="checkbox" name="item_list_favorites" {{(data.list_favorite)?'checked':''}}> {{lang.label.favorites_label}}</label></p>
                             </div>
                         </div>
                     </div>
@@ -82,9 +82,9 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <p>{{lang.label.item_index}}</p>
-                                <p><label><input type="checkbox" name="item_index_access" checked="{{(data.index_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
-                                <p><label><input type="checkbox" name="item_index_order_total" checked="{{(data.index_order)?'checked':''}}"> {{lang.label.order_total_label}}</label></p>
-                                <p><label><input type="checkbox" name="item_index_favorites" checked="{{(data.index_favorite)?'checked':''}}"> {{lang.label.favorites_label}}</label></p>
+                                <p><label><input type="checkbox" name="item_index_access" {{(data.index_access)?'checked':''}}> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="item_index_order_total" {{(data.index_order)?'checked':''}}> {{lang.label.order_total_label}}</label></p>
+                                <p><label><input type="checkbox" name="item_index_favorites" {{(data.index_favorite)?'checked':''}}> {{lang.label.favorites_label}}</label></p>
                             </div>
                         </div>
                     </div>
@@ -94,9 +94,9 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <p>{{lang.label.favorites_label}}</p>
-                                <p><label><input type="checkbox" name="favorites_access" checked="{{(data.favorite_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
-                                <p><label><input type="checkbox" name="favorites_order_total" checked="{{(data.favorite_order)?'checked':''}}"> {{lang.label.order_total_label}}</label></p>
-                                <p><label><input type="checkbox" name="favorites_delete" checked="{{(data.favorite_remove)?'checked':''}}"> {{lang.label.delete_label}}</label></p>
+                                <p><label><input type="checkbox" name="favorites_access" {{(data.favorite_access)?'checked':''}}> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="favorites_order_total" {{(data.favorite_order)?'checked':''}}> {{lang.label.order_total_label}}</label></p>
+                                <p><label><input type="checkbox" name="favorites_delete" {{(data.favorite_remove)?'checked':''}}> {{lang.label.delete_label}}</label></p>
                             </div>
                         </div>
                     </div>
@@ -104,9 +104,9 @@
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <p>{{lang.label.order_list}}</p>
-                                <p><label><input type="checkbox" name="order_list_access" checked="{{(data.order_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
-                                <p><label><input type="checkbox" name="order_list_send" checked="{{(data.order_send)?'checked':''}}"> {{lang.label.send_label}}</label></p>
-                                <p><label><input type="checkbox" name="order_list_add" checked="{{(data.order_addition)?'checked':''}}"> {{lang.label.add_label}}</label></p>
+                                <p><label><input type="checkbox" name="order_list_access" {{(data.order_access)?'checked':''}}> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="order_list_send" {{(data.order_send)?'checked':''}}> {{lang.label.send_label}}</label></p>
+                                <p><label><input type="checkbox" name="order_list_add" {{(data.order_addition)?'checked':''}}> {{lang.label.add_label}}</label></p>
                             </div>
                         </div>
                     </div>
