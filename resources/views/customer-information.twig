@@ -1,7 +1,8 @@
 {% extends 'layouts/app.twig' %}
 
 {% block content %}
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-8 col-md-offset-2">
+        {% include 'layouts/flash.twig' %}
         <h2>{{lang.label.customer_info}}</h2>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -45,7 +46,7 @@
                 <p><strong><u>{{lang.label.user_information_delivery_note_label}}</u></strong></p>
                 <div class="col-md-6"><label><input type="checkbox" value="" {{(user_info.delivery_note_mail)?"checked":""}} disabled> {{lang.label.user_information_delivery_note_via_email_label}}</label></div>
                 <div class="col-md-6"><label><input type="checkbox" value="" {{(user_info.packing_price)?"checked":""}} disabled> {{lang.label.user_information_delivery_specify_prices_label}}</label></div>
-                <form action="#" method="post">
+                <form action="{{path_for('update.customer.delivery.email')}}" method="post">
                     <div class="form-group">
                         <label for="delivery_email">{{lang.label.email}}</label>
                         <input type="text" class="form-control" name="delivery_email" id="delivery_emial" value="{{user_info.email}}">
@@ -57,7 +58,7 @@
                 <p><strong><u>{{lang.label.user_information_invoice_label}}</u></strong></p>
                 <div class="col-md-6"><label><input type="checkbox" value="" {{(user_info.invoice_mail)?"checked":""}} disabled> {{lang.label.user_information_invoice_via_email_label}}</label></div>
                 <div class="col-md-6"><label><input type="checkbox" value="" {{(user_info.invoice_post)?"checked":""}} disabled> {{lang.label.user_information_invoice_in_the_post_label}}</label></div>
-                <form action="#" method="post">
+                <form action="{{path_for('update.customer.invoice.email')}}" method="post">
                     <div class="form-group">
                         <label for="invoice_email">{{lang.label.email}}</label>
                         <input type="text" class="form-control" name="invoice_email" id="invoice_emial" value="{{user_info.invoice_email}}">
@@ -67,7 +68,7 @@
                 </form>
                 <hr>
                 <p><strong><u>{{lang.label.user_information_backorders_label}}</u></strong></p>
-                <form action="#" method="post">
+                <form action="{{path_for('update.customer.backorder')}}" method="post">
                     <div class="form-group">
                         <select name="backorders_option" id="backorders_option" class="form-control">
                             <option value="{{lang.label.user_information_backorders_never_label}}" {{(user_info.backorder == lang.label.user_information_backorders_never_label)?"selected":""}}>{{lang.label.user_information_backorders_never_label}}</option>

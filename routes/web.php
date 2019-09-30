@@ -171,6 +171,12 @@ $app->group('/general-information', function () {
 //Customer information
 $app->group('/customer-information', function () {
 	$this->get('/', CustomerInformationController::class . ':index')->setName('get.customer.information');
+
+	$this->post('/update-deliver-email', CustomerInformationController::class . ':updateCustomerDeliveryEmail')->setName('update.customer.delivery.email');
+
+	$this->post('/update-invoice-email', CustomerInformationController::class . ':updateCustomerInvoiceEmail')->setName('update.customer.invoice.email');
+
+	$this->post('/update-customer-backorder', CustomerInformationController::class . ':updateCustomerBackorder')->setName('update.customer.backorder');
 });
 
 //Round off
