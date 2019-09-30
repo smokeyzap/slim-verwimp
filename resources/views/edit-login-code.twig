@@ -1,0 +1,124 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+        {% include 'layouts/flash.twig' %}
+        <h1>{{lang.label.edit}} {{lang.label.login_codes_label | replace({'codes':'code'})}}</h1><hr>
+        <form action="{{path_for('update.login.code')}}" method="post">
+            <input type="hidden" name="id" value="{{data.id}}">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="password">{{lang.label.password_label}}</label>
+                        <input type="text" class="form-control" name="password" value="{{data.password}}" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">{{lang.label.name_label}}</label>
+                        <input type="text" class="form-control" name="name" value="{{data.name}}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-6"><label><input type="checkbox" name="full_access" id="is_full_access" onclick="isFullAccess()" checked="{{(data.full_acess)?'checked':''}}"> {{lang.label.full_access_label}}</label></div>
+            </div>
+            <div id="permissions">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p>{{lang.label.general_info}}</p>
+                                <p><label><input type="checkbox" name="general_info_purchase" checked="{{(data.purchase_price_access)?'checked':''}}"> {{lang.label.purchase_price_label}}</label></p>
+                                <p><label><input type="checkbox" name="general_info_invoices" checked="{{(data.invoice_access)?'checked':''}}"> {{lang.label.invoices_label}}</label></p>
+                                <p><label><input type="checkbox" name="general_info_customer_info" checked="{{(data.customer_info_access)?'checked':''}}"> {{lang.label.customer_information_label}}</label></p>
+                                <p><label><input type="checkbox" name="general_info_question" checked="{{(data.question_access)?'checked':''}}"> {{lang.label.question_label}}</label></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p>{{lang.label.offer}}</p>
+                                <p><label><input type="checkbox" name="offer_access" checked="{{(data.offer_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="offer_order_total" checked="{{(data.offer_order)?'checked':''}}"> {{lang.label.order_total_label}}</label></p>
+                                <p><label><input type="checkbox" name="offer_favorites" checked="{{(data.offer_favorite)?'checked':''}}"> {{lang.label.favorites_label}}</label></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p>{{lang.label.new}}</p>
+                                <p><label><input type="checkbox" name="new_access" checked="{{(data.new_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="new_order_total" checked="{{(data.new_order)?'checked':''}}"> {{lang.label.order_total_label}}</label></p>
+                                <p><label><input type="checkbox" name="new_favorites" checked="{{(data.new_favorite)?'checked':''}}"> {{lang.label.favorites_label}}</label></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p>{{lang.label.you_snooze_you_loose_label}}</p>
+                                <p><label><input type="checkbox" name="you_snooze_access" checked="{{(data.closeout_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="you_snooze_order_total" checked="{{(data.closeout_order)?'checked':''}}"> {{lang.label.order_total_label}}</label></p>
+                                <p><label><input type="checkbox" name="you_snooze_favorites" checked="{{(data.closeout_favorite)?'checked':''}}"> {{lang.label.favorites_label}}</label></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p>{{lang.label.item_list}}</p>
+                                <p><label><input type="checkbox" name="item_list_access" checked="{{(data.list_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="item_list_order_total" checked="{{(data.list_order)?'checked':''}}"> {{lang.label.order_total_label}}</label></p>
+                                <p><label><input type="checkbox" name="item_list_favorites" checked="{{(data.list_favorite)?'checked':''}}"> {{lang.label.favorites_label}}</label></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p>{{lang.label.item_index}}</p>
+                                <p><label><input type="checkbox" name="item_index_access" checked="{{(data.index_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="item_index_order_total" checked="{{(data.index_order)?'checked':''}}"> {{lang.label.order_total_label}}</label></p>
+                                <p><label><input type="checkbox" name="item_index_favorites" checked="{{(data.index_favorite)?'checked':''}}"> {{lang.label.favorites_label}}</label></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p>{{lang.label.favorites_label}}</p>
+                                <p><label><input type="checkbox" name="favorites_access" checked="{{(data.favorite_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="favorites_order_total" checked="{{(data.favorite_order)?'checked':''}}"> {{lang.label.order_total_label}}</label></p>
+                                <p><label><input type="checkbox" name="favorites_delete" checked="{{(data.favorite_remove)?'checked':''}}"> {{lang.label.delete_label}}</label></p>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col-md-4">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p>{{lang.label.order_list}}</p>
+                                <p><label><input type="checkbox" name="order_list_access" checked="{{(data.order_access)?'checked':''}}"> {{lang.label.offer}}</label></p>
+                                <p><label><input type="checkbox" name="order_list_send" checked="{{(data.order_send)?'checked':''}}"> {{lang.label.send_label}}</label></p>
+                                <p><label><input type="checkbox" name="order_list_add" checked="{{(data.order_addition)?'checked':''}}"> {{lang.label.add_label}}</label></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <input type="submit" class="btn btn-primary btn-block btn-lg" value="{{lang.label.update_label}}">
+                </div>
+            </div>
+            {{csrf_field() | raw}}
+        </form>
+    </div>
+    
+{% endblock %}

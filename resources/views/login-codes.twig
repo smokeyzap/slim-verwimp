@@ -1,7 +1,7 @@
 {% extends 'layouts/app.twig' %}
 
 {% block content %}
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-6 col-md-offset-3">
         {% include 'layouts/flash.twig' %}
         <h1>{{lang.label.login_codes_label}}</h1><hr>
          <!-- Trigger the modal with a button -->
@@ -12,8 +12,21 @@
                     <th>#</th>
                     <th>{{lang.label.password_label}}</th>
                     <th>{{lang.label.description_label}}</th>
+                    <th>{{lang.label.action}}</th>
                 </tr>
             </thead>
+            <tbody>
+            {% for d in data %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{d.password}}</td>
+                    <td>{{d.name}}</td>
+                    <td>
+                        <a href="{{path_for('edit.login.code', {'id':d.id})}}">{{lang.label.edit}}</a> | <a href="{{path_for('delete.login.code', {'id':d.id})}}" onclick="return confirm('You are about to delete login codes. Continue?')">{{lang.label.delete}}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
         </table>
     </div>
     
@@ -29,24 +42,25 @@
                         <h4 class="modal-title">{{lang.label.add_label}}</h4>
                     </div>
                     <div class="modal-body">
-                        
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="password">{{lang.label.password_label}}</label>
-                                <input type="text" class="form-control" name="password">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="password">{{lang.label.password_label}}</label>
+                                    <input type="text" class="form-control" name="password" required>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="name">{{lang.label.name_label}}</label>
-                                <input type="text" class="form-control" name="name">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">{{lang.label.name_label}}</label>
+                                    <input type="text" class="form-control" name="name" required>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="col-md-6"><label><input type="checkbox" name="full_access"> {{lang.label.full_access_label}}</label></div>
+                            <div class="col-md-6"><label><input type="checkbox" name="full_access" id="is_full_access" onclick="isFullAccess()"> {{lang.label.full_access_label}}</label></div>
                         </div>
                         <div id="permissions">
-                            <div class="row">
+                            <div class="col-md-12">
                                 <div class="col-md-4">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
@@ -79,7 +93,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="col-md-12">
                                 <div class="col-md-4">
                                     <div class="panel panel-default">
                                         <div class="panel-body">
@@ -111,7 +125,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="col-md-12">
                                 <div class="col-md-4">
                                     <div class="panel panel-default">
                                         <div class="panel-body">

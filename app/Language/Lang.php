@@ -120,6 +120,7 @@ class Lang
         $lang['action'] = 'Action';
         $lang['edit'] = 'Edit';
         $lang['delete'] = 'Delete';
+        $lang['update_label'] = 'Update';
         $lang['edit_dealer'] = 'Edit dealer';
         $lang['add_dealer'] = 'Add dealer';
         $lang['remove'] = 'Remove';
@@ -222,6 +223,8 @@ class Lang
         $lang['favorites_label'] = 'Favorites';
         $lang['delete_label'] = 'Delete';
         $lang['you_snooze_you_loose_label'] = 'You snooze, you lose';
+        $lang['order_history_label'] = 'Order History';
+        
         return $lang;
     }
 }

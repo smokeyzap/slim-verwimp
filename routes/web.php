@@ -24,6 +24,7 @@ use App\Controllers\RoundOffController;
 use App\Controllers\ShopInformationController;
 use App\Controllers\ReturnWarrantyController;
 use App\Controllers\LoginCodesController;
+use App\Controllers\OrderHistoryController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -203,6 +204,17 @@ $app->group('/login-codes', function () {
 	$this->get('/', LoginCodesController::class . ':index')->setName('get.login.codes');
 
 	$this->post('/post-login-codes', LoginCodesController::class . ':postLoginCodes')->setName('post.login.codes');
+
+	$this->get('/delete-login-code/{id}', LoginCodesController::class . ':deleteLoginCode')->setName('delete.login.code');
+
+	$this->get('/edit-login-code/{id}', LoginCodesController::class . ':editLoginCode')->setName('edit.login.code');
+
+	$this->post('/update-login-code', LoginCodesController::class . ':updateLoginCode')->setName('update.login.code');
+});
+
+//Orders history
+$app->group('/orders-history', function () {
+	$this->get('/', OrderHistoryController::class . ':index')->setName('get.orders.history');
 });
 
 $app->group('', function() {
