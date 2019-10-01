@@ -33,7 +33,7 @@
                     <td>{{d.spacing}}</td>
                     <td>{{d.height}}</td>
                     <td>
-                        <a href="#">{{lang.label.edit}}</a> | <a href="#">{{lang.label.delete}}</a>
+                        <a href="{{path_for('edit.label.dimension', {'id':d.id})}}">{{lang.label.edit}}</a> | <a href="#">{{lang.label.delete}}</a>
                     </td>
                 </tr>
             {% endfor %}

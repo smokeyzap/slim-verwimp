@@ -187,6 +187,10 @@ $app->group('/label-dimension', function () {
 	$this->get('/add-dimension', LabelDimensionController::class . ':addDimension')->setName('get.add.dimension');
 
 	$this->post('/post-label-dimension', LabelDimensionController::class . ':postLabelDimension')->setName('post.label.dimension');
+
+	$this->get('/edit-label-dimension/{id}', LabelDimensionController::class . ':editLabelDimension')->setName('edit.label.dimension');
+
+	$this->post('/update-label-dimension', LabelDimensionController::class . ':updateLabelDimension')->setName('update.label.dimension');
 });
 
 //Round off

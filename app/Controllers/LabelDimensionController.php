@@ -44,4 +44,46 @@ class LabelDimensionController extends Controller
         return $response->withRedirect($this->c->router->pathFor('get.label.dimension'));
 
     }
+
+    public function editLabelDimension (Request $request, Response $response)
+    {
+        $id = $request->getAttribute('id');
+        $label = Eticket::where('id', $id)
+                ->where('customer_number', $_SESSION['customer_number'])
+                ->first();
+
+        if (!$label) {
+            die('Access denied');
+        }
+
+        return $this->c->view->render($response, 'edit-label-dimension.twig', [
+            'title' => $this->c->lang->label()['edit'] . ' ' . $this->c->lang->label()['label_dimension_label'],
+            'data' => $label,
+        ]);
+    }
+
+    public function updateLabelDimension (Request $request, Response $response)
+    {
+        $postData = $request->getParsedBody();
+        $label = Eticket::where('id', $postData['id'])
+                ->where('customer_number', $_SESSION['customer_number'])
+                ->first();
+        
+        if (!$label) {
+            die('Access denied');
+        }
+
+        $label->name = $postData['name'];
+        $label->eticket_left = $postData['left'];
+        $label->eticket_right = $postData['right'];
+        $label->above = $postData['up'];
+        $label->below = $postData['down'];
+        $label->number_for_columns = $postData['column'];
+        $label->spacing = $postData['space'];
+        $label->height = $postData['height'];
+        $label->save();
+
+        $this->c->flash->addMessage('info', 'Updated successfully.');
+        return $response->withRedirect($this->c->router->pathFor('get.label.dimension'));
+    }   
 }
