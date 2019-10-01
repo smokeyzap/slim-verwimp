@@ -96,14 +96,14 @@
                 <p><strong>{{lang.label.user_information_opening_hours_text1}}</strong></p>
                 <p><strong>{{lang.label.user_information_opening_hours_text2}}</strong></p>
                 <br>
-                <p><strong><u>{{lang.label.user_information_opening_hours_label}}</u></strong></p>
+                <p><strong><u>{{lang.label.user_information_opening_hours_label}}</u> (format 08:00 - 13:00)</strong></p>
                 {% set days_label = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] %}
-                <form action="#" method="post">
-                    {% for key,d in days_label %}
-                        <label for="{{key}}">{{d}}</label>
+                <form action="{{path_for('update.opening.hours')}}" method="post">
+                    {% for key,d in opening_hours %}
+                        <label for="{{key}}">{{days_label[key]}}</label>
                         <div class="input-group">
-                            <input type="text" id="{{key}}" name="days[]" class="form-control"  aria-describedby="basic-addon2">
-                            <span class="input-group-addon" id="basic-addon2"><input type="checkbox" value="{{d}}" name="is_closed[]"> {{lang.label.user_information_closed_label}}</span>
+                            <input type="text" id="{{key}}" name="days[{{d.id}}]" class="form-control"  aria-describedby="basic-addon2" value="{{d.open_from}} - {{d.open_until}}">
+                            <span class="input-group-addon" id="basic-addon2"><input type="checkbox" {{(d.closed)?'checked':''}} name="is_closed[{{d.id}}]"> {{lang.label.user_information_closed_label}}</span>
                         </div>
                     {% endfor %}
                     <br>

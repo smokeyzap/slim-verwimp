@@ -178,6 +178,8 @@ $app->group('/customer-information', function () {
 	$this->post('/update-invoice-email', CustomerInformationController::class . ':updateCustomerInvoiceEmail')->setName('update.customer.invoice.email');
 
 	$this->post('/update-customer-backorder', CustomerInformationController::class . ':updateCustomerBackorder')->setName('update.customer.backorder');
+
+	$this->post('/update-opening-hours', CustomerInformationController::class . ':updateOpeningHours')->setName('update.opening.hours');
 });
 
 //Label Dimension
