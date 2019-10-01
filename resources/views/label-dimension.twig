@@ -1,0 +1,42 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+        {% include 'layouts/flash.twig' %}
+        <h1>{{lang.label.label_dimension_label}}</h1><hr>
+        <a href="{{path_for('get.add.dimension')}}" class="btn btn-primary">{{lang.label.add_label}}</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{lang.label.name_label}}</th>
+                    <th>{{lang.label.left_label}}</th>
+                    <th>{{lang.label.right_label}}</th>
+                    <th>{{lang.label.up_label}}</th>
+                    <th>{{lang.label.down_label}}</th>
+                    <th>{{lang.label.column_label}}</th>
+                    <th>{{lang.label.space_label}}</th>
+                    <th>{{lang.label.height_label}}</th>
+                    <th>{{lang.label.action}}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for d in data %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{d.name}}</td>
+                    <td>{{d.eticket_left}}</td>
+                    <td>{{d.eticket_right}}</td>
+                    <td>{{d.above}}</td>
+                    <td>{{d.below}}</td>
+                    <td>{{d.number_for_columns}}</td>
+                    <td>{{d.spacing}}</td>
+                    <td>{{d.height}}</td>
+                    <td>
+                        <a href="#">{{lang.label.edit}}</a> | <a href="#">{{lang.label.delete}}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+{% endblock %}

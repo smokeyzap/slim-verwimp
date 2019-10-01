@@ -224,7 +224,19 @@ class Lang
         $lang['delete_label'] = 'Delete';
         $lang['you_snooze_you_loose_label'] = 'You snooze, you lose';
         $lang['order_history_label'] = 'Order History';
-        
+        $lang['label_dimension_label'] = 'Label dimensions';
+        $lang['left_label'] = 'Left';
+        $lang['right_label'] = 'Right';
+        $lang['up_label'] = 'Up';
+        $lang['down_label'] = 'Down';
+        $lang['column_label'] = 'Column';
+        $lang['space_label'] = 'Space';
+        $lang['height_label'] = 'Height';
+        $lang['margins_label'] = 'Margins';
+        $lang['number_of_columns_label'] = 'Number of columns';
+        $lang['space_between_columns_label'] = 'Space between columns';
+        $lang['height_of_label_label'] = 'Height of label';
+        $lang['milimeter_label'] = 'mm';
         return $lang;
     }
 }

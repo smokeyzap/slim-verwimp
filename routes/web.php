@@ -25,6 +25,7 @@ use App\Controllers\ShopInformationController;
 use App\Controllers\ReturnWarrantyController;
 use App\Controllers\LoginCodesController;
 use App\Controllers\OrderHistoryController;
+use App\Controllers\LabelDimensionController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -177,6 +178,15 @@ $app->group('/customer-information', function () {
 	$this->post('/update-invoice-email', CustomerInformationController::class . ':updateCustomerInvoiceEmail')->setName('update.customer.invoice.email');
 
 	$this->post('/update-customer-backorder', CustomerInformationController::class . ':updateCustomerBackorder')->setName('update.customer.backorder');
+});
+
+//Label Dimension
+$app->group('/label-dimension', function () {
+	$this->get('/', LabelDimensionController::class . ':index')->setName('get.label.dimension');
+
+	$this->get('/add-dimension', LabelDimensionController::class . ':addDimension')->setName('get.add.dimension');
+
+	$this->post('/post-label-dimension', LabelDimensionController::class . ':postLabelDimension')->setName('post.label.dimension');
 });
 
 //Round off
