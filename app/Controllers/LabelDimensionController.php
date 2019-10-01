@@ -86,4 +86,15 @@ class LabelDimensionController extends Controller
         $this->c->flash->addMessage('info', 'Updated successfully.');
         return $response->withRedirect($this->c->router->pathFor('get.label.dimension'));
     }   
+
+    public function deleteLabelDimension (Request $request, Response $response)
+    {
+        $id = $request->getAttribute('id');
+        $label = Eticket::where('id', $id)
+                ->where('customer_number', $_SESSION['customer_number'])
+                ->delete();
+
+        $this->c->flash->addMessage('info', 'Label dimension deleted successfully.');
+        return $response->withRedirect($this->c->router->pathFor('get.label.dimension'));
+    }
 }

@@ -190,6 +190,8 @@ $app->group('/label-dimension', function () {
 
 	$this->get('/edit-label-dimension/{id}', LabelDimensionController::class . ':editLabelDimension')->setName('edit.label.dimension');
 
+	$this->get('/delete-label-dimension/{id}', LabelDimensionController::class . ':deleteLabelDimension')->setName('delete.label.dimension');
+
 	$this->post('/update-label-dimension', LabelDimensionController::class . ':updateLabelDimension')->setName('update.label.dimension');
 });
 
