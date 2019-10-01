@@ -237,6 +237,10 @@ class Lang
         $lang['space_between_columns_label'] = 'Space between columns';
         $lang['height_of_label_label'] = 'Height of label';
         $lang['milimeter_label'] = 'mm';
+        $lang['discount_group_label'] = 'Discount group';
+        $lang['min_amount_label'] = 'Min.Amount';
+        $lang['date_until_label'] = 'Date until';
+        $lang['discount_percent_label'] = '% Discount';
         return $lang;
     }
 }

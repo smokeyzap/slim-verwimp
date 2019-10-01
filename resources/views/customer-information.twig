@@ -88,7 +88,30 @@
 
             <div role="tabpanel" class="tab-pane" id="{{lang.label.discount}}">
                 <br>
-                
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{lang.label.item_number_label}}</th>
+                            <th>{{lang.label.discount_group_label}}</th>
+                            <th>{{lang.label.min_amount_label}}</th>
+                            <th>{{lang.label.date_until_label}}</th>
+                            <th>{{lang.label.discount_percent_label}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for d in discounts %}
+                        <tr>
+                            <td>{{loop.index}}</td>
+                            <td>{{d.article_number}}</td>
+                            <td>{{d.discount_group}}</td>
+                            <td>{{d.min_number}}</td>
+                            <td>{{d.date_to}}</td>
+                            <td>{{d.discount}}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
             
             <div role="tabpanel" class="tab-pane" id="{{lang.label.opening_hours | lower | replace({' ':''})}}">

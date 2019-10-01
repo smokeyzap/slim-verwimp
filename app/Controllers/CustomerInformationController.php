@@ -7,6 +7,7 @@ use Psr\Http\Message\{
 use App\Controllers\Controller;
 use App\Models\Dealer;
 use App\Models\OpenHour;
+use App\Models\QuanDisc;
 
 class CustomerInformationController extends Controller
 {
@@ -14,11 +15,13 @@ class CustomerInformationController extends Controller
     {   
         $dealers = Dealer::find($_SESSION['id']);
         $opening_hours = OpenHour::where('customer_number', $_SESSION['customer_number'])->get();
+        $discounts = QuanDisc::where('customer_number', $_SESSION['customer_number'])->get();
         
         return $this->c->view->render($response, 'customer-information.twig', [
             'title' => $this->c->lang->label()['customer_info'],
             'user_info' => $dealers,
             'opening_hours' => $opening_hours,
+            'discounts' => $discounts,
         ]);
     }
 
