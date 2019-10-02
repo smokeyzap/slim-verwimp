@@ -112,7 +112,6 @@ class LoginCodesController extends Controller
         if (!$login_code) {
             die('Access denied');
         }
-        dump($login_code);
         return $this->c->view->render($response, 'edit-login-code.twig', [
             'title' => $this->c->lang->label()['edit'] . ' ' . $this->c->lang->label()['login_codes_label'],
             'data' => $login_code
