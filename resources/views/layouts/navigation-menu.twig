@@ -22,7 +22,7 @@
                     <li><a href="{{path_for('get.back.orders')}}">{{lang.label.backorders}}</a></li>
                     <li><a href="{{path_for('get.invoices')}}">{{lang.label.invoices}}</a></li>
                     <li><a href="https://adsoft.verwimp.nl/dropbox/browse" target="_blank">{{lang.label.product_information}}</a></li>
-                    <li><a href="https://adsoft.verwimp.nl/en/frontpage?showPrice=true" target="_blank">{{lang.label.front_offer}}</a></li>
+                    <li><a href="https://adsoft.verwimp.nl/en/frontpage?showPrice=true" target="_blank" onclick="window.open('https://adsoft.verwimp.nl/en/frontpage?showPrice=true', 'newwindow', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=800,height=600'); return false;">{{lang.label.front_offer}}</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="{{path_for('signout')}}">{{lang.label.signout}}</a></li>
                 </ul>
@@ -177,7 +177,7 @@
                     <strong>{{lang.label.information}}</strong>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{path_for('get.newsletter')}}">{{lang.label.newsletter}}</a></li>
+                    <li><a href="https://adsoft.verwimp.nl/en/news" target="_blank" onclick="window.open('https://adsoft.verwimp.nl/en/news', 'newwindow', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=800,height=600'); return false;">{{lang.label.newsletter}}</a></li>
                     <li><a href="{{path_for('get.customer.information')}}">{{lang.label.customer_info}}</a></li>
                     <li><a href="{{path_for('get.general.information')}}">{{lang.label.general_info}}</a></li>
                     <li><a href="{{path_for('get.team.verwimp')}}">{{lang.label.team_verwimp}}</a></li>
