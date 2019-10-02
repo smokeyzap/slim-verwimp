@@ -21,7 +21,7 @@
                     </li> #}
                     <li><a href="{{path_for('get.back.orders')}}">{{lang.label.backorders}}</a></li>
                     <li><a href="{{path_for('get.invoices')}}">{{lang.label.invoices}}</a></li>
-                    <li><a href="https://adsoft.verwimp.nl/dropbox/browse" target="_blank">{{lang.label.product_information}}</a></li>
+                    <li><a href="https://adsoft.verwimp.nl/dropbox/browse" target="_blank" onclick="window.open('https://adsoft.verwimp.nl/dropbox/browse', 'newwindow', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=800,height=600'); return false;">{{lang.label.product_information}}</a></li>
                     <li><a href="https://adsoft.verwimp.nl/en/frontpage?showPrice=true" target="_blank" onclick="window.open('https://adsoft.verwimp.nl/en/frontpage?showPrice=true', 'newwindow', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=800,height=600'); return false;">{{lang.label.front_offer}}</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="{{path_for('signout')}}">{{lang.label.signout}}</a></li>
@@ -160,7 +160,7 @@
                 </ul>
             </li>
             <li class="text-center {{(title == lang.label.product_information)?'active':''}}">
-                <a href="https://adsoft.verwimp.nl/dropbox/browse" target="_blank">
+                <a href="https://adsoft.verwimp.nl/dropbox/browse" target="_blank" onclick="window.open('https://adsoft.verwimp.nl/dropbox/browse', 'newwindow', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=800,height=600'); return false;">
                     <img src="{{base_url()}}/public/logo/offertes.bmp" alt="Product information"> <br>
                     <strong>{{lang.label.product_information}}</strong>
                 </a>
