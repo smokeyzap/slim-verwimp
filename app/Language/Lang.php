@@ -241,6 +241,12 @@ class Lang
         $lang['min_amount_label'] = 'Min.Amount';
         $lang['date_until_label'] = 'Date until';
         $lang['discount_percent_label'] = '% Discount';
+        $lang['reference_label'] = 'Reference';
+        $lang['representative_label'] = 'Representative';
+        $lang['client_number_label'] = 'Client number';
+        $lang['id_label'] = 'ID';
+        $lang['notes_label'] = 'Notes';
+        $lang['inv_number'] = 'Invoice #';
         return $lang;
     }
 }

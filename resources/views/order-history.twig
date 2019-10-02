@@ -1,9 +1,54 @@
 {% extends 'layouts/app.twig' %}
 
 {% block content %}
-    <div class="col-md-8 col-md-offset-2">
-        {% include 'layouts/flash.twig' %}
-        <h1>{{lang.label.order_history_label}}</h1><hr>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum obcaecati beatae, officia velit unde corrupti mollitia autem vel dignissimos. Dolorum assumenda esse laudantium nihil fugit! Ut alias saepe suscipit quidem?
+    {% include 'layouts/flash.twig' %}
+    <div class="col-md-12"><h1>{{lang.label.order_history_label}}</h1><hr></div>
+    <div class="col-md-12">
+        <table class="table table-condensed table-hover" id="order_order" style="cursor:pointer;">
+            <thead>
+                <tr>
+                    <th>{{lang.label.inv_number}}</th>
+                    <th>{{lang.label.date}}</th>
+                    <th>{{lang.label.reference_label}}</th>
+                    <th>{{lang.label.order_amount}}</th>
+                    <th>{{lang.label.representative_label}}</th>
+                    <th>{{lang.label.client_number_label}}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for o in orders %}
+                <tr>
+                    <td>{{o.id}}</td>
+                    <td>{{o.date}}</td>
+                    <td>{{o.reference}}</td>
+                    <td>{{o.order_amount}}</td>
+                    <td>{{o.representative_name}}</td>
+                    <td>{{o.customer_number}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
+    <div class="col-md-12">
+        <hr>
+    </div>
+    <div class="col-md-12">
+        <div class="table-responsive">
+            <table class="table table-condensed" id="order_items">
+                <thead>
+                    <tr>
+                        <th>{{lang.label.invoice_number}}</th>
+                        <th>{{lang.label.item_number}}</th>
+                        <th>{{lang.label.name_label}}</th>
+                        <th>{{lang.label.quantity}}</th>
+                        <th>{{lang.label.purchase_price}}</th>
+                        <th>{{lang.label.notes_label}}</th>
+                        <th>{{lang.label.retail_price}}</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    
+    {{csrf_field() | raw}}
 {% endblock %}
