@@ -1,6 +1,5 @@
 $(document).ready(function () {
     var pt;
-    var oi;
     var csrf_name = $('input[name=csrf_name]').val();
     var csrf_value =  $('input[name=csrf_value]').val();
 
@@ -19,13 +18,10 @@ $(document).ready(function () {
             $(this).addClass('selected');
         }
         var order_id = pt.row( this ).data();
-        $.ajax({
-            url: 'api/getorderitems',
-            method: 'post',
-            data: "csrf_name="+csrf_name+"&csrf_value="+csrf_value+"&id="+order_id[0],
-            success: function (data) {
-                
-            }
+
+        $('#order_items').DataTable({
+            "ajax": "api/getorderitems/"+order_id[0],
+            "destroy": true
         });
     });
 })

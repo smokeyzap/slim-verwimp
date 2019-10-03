@@ -25,9 +25,9 @@ class OrderHistoryController extends Controller
 
     public function getOrderItems (Request $request, Response $response)
     {
-        $postData = $request->getParsedBody();
+        $id = $request->getAttribute('id');
 
-        $order_items = OrderLine::where('invoice_number', $postData['id'])->get();
+        $order_items = OrderLine::where('invoice_number', $id)->get();
         $output = [];
     	foreach ($order_items as $item) {
     		$output[] = [
@@ -40,6 +40,6 @@ class OrderHistoryController extends Controller
                 $item->original_purchase_price
     		];
     	}
-    	return $response->withJson($output);
+    	return $response->withJson(["data"=>$output]);
     }
 }

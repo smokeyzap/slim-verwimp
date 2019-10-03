@@ -240,7 +240,7 @@ $app->group('/login-codes', function () {
 $app->group('/orders-history', function () {
 	$this->get('/', OrderHistoryController::class . ':index')->setName('get.orders.history');
 
-	$this->post('/api/getorderitems', OrderHistoryController::class . ':getOrderItems');
+	$this->get('/api/getorderitems/{id}', OrderHistoryController::class . ':getOrderItems');
 });
 
 $app->group('', function() {
