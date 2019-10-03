@@ -94,6 +94,7 @@ class Lang
         $lang['home'] = 'Dashboard';
         $lang['dealers'] = 'Dealers';
         $lang['orders'] = 'Orders';
+        $lang['return_warranty_history'] = 'Return-Warranty History';
         $lang['return_warranty_bikes'] = 'Return-Warranty (Bikkel bikes / Ibee)';
         $lang['return_warranty_other'] = 'Return-Warranty (other)';
         $lang['return_warranty_label'] = 'Return Warranty';

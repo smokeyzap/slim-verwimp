@@ -1,0 +1,44 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    {% include 'layouts/flash.twig' %}
+    <div class="col-md-12"><h1>{{lang.label.return_warranty_bikes}} {{lang.label.history}}</h1><hr></div>
+    <div class="col-md-12">
+        <table class="table" id="return_warranty_history" style="cursor:pointer;">
+            <thead>
+                <tr>
+                    <th>{{lang.label.inv_number}}</th>
+                    <th>{{lang.label.date}}</th>
+                    <th>{{lang.label.client_number_label}}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for r in returns_history %}
+                <tr>
+                    <td>{{r.id}}</td>
+                    <td>{{r.date_of_purchase}}</td>
+                    <td>{{r.customer_number}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12">
+        <hr>
+    </div>
+    <div class="col-md-12">
+        <table class="table" id="return_warranty_history_items">
+            <thead>
+                <tr>
+                    <th>{{lang.label.name_label}}</th>
+                    <th>{{lang.label.frame_number_label}}</th>
+                    <th>{{lang.label.battery_number_label}}</th>
+                    <th>{{lang.label.date_of_purchase_label}}</th>
+                    <th>{{lang.label.registered_label}}</th>
+                    <th>{{lang.label.failure_label}}</th>
+                    <th>{{lang.label.failure_code_label}}</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+{% endblock %}

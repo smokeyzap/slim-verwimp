@@ -26,6 +26,7 @@ use App\Controllers\ReturnWarrantyController;
 use App\Controllers\LoginCodesController;
 use App\Controllers\OrderHistoryController;
 use App\Controllers\LabelDimensionController;
+use App\Controllers\ReturnWarrantyHistoryController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -241,6 +242,13 @@ $app->group('/orders-history', function () {
 	$this->get('/', OrderHistoryController::class . ':index')->setName('get.orders.history');
 
 	$this->get('/api/getorderitems/{id}', OrderHistoryController::class . ':getOrderItems');
+});
+
+//Return warranty history (bikes)
+$app->group('/return-warranty-history', function () {
+	$this->get('/', ReturnWarrantyHistoryController::class . ':index')->setName('get.return.warranty.history');
+
+	$this->get('/api/getreturnwarrantyhistory/{id}', ReturnWarrantyHistoryController::class . ':getReturnWarrantyHistoryItems');
 });
 
 $app->group('', function() {
