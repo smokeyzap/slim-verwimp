@@ -52,7 +52,7 @@ class FavoriteController extends Controller
                 $article->current_purchase_price,
                 number_format((float)round($article->sales_price / 1.21, 2), 2, '.', ''),
                 $article->sales_price,
-                '<a href="'.$this->c->router->pathFor('remove.from.favorite',['id'=>$article->item_number]).'" onclick="return confirm(\'Remove from favorite. Continue?\')">remove</a>'
+                '<a href="'.$this->c->router->pathFor('remove.from.favorite',['id'=>$article->item_number]).'" onclick="return confirm(\'Remove from favorite. Continue?\')"><span class=\'glyphicon glyphicon-trash\' aria-hidden=\'true\'></span></a>'
             ];
         }
         return $response->withJson(["data"=>$output]);

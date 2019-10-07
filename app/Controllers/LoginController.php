@@ -67,6 +67,9 @@ class LoginController extends Controller
             $dealer->name,
             $this->c->view->fetch('email/reset-password-link.twig', ['name' => $dealer->name, 'token'=>$dealer->recover_hash])
         );
+
+        $this->c->flash->addMessage('info', 'Email sent.');
+        return $response->withRedirect($this->c->router->pathFor('index'));
     }   
 
     public function resetPassword (Request $request, Response $response)

@@ -13,7 +13,7 @@ class Mailer
 
     public function send ($subject, $toEmail, $toName, $content) {
         $email = new \SendGrid\Mail\Mail(); 
-        $email->setFrom("h.vanes@iturion.com", "Louis Verwimp");
+        $email->setFrom("noreply@verwimp.nl", "Louis Verwimp BV");
         $email->setSubject($subject);
         $email->addTo($toEmail, $toName);
         $email->addContent("text/html", $content);

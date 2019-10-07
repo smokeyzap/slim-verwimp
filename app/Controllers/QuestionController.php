@@ -24,6 +24,7 @@ class QuestionController extends Controller
             return $response->withRedirect($this->c->router->pathFor('get.ask.question'));
         }
         $dealer = Dealer::find($_SESSION['id']);
+        
         //send ($subject, $toEmail, $toName, $content)
         $this->c->mailer->send(
             $this->c->lang->label()['app_title'] . ' - ' . $this->c->lang->label()['ask_question'],
