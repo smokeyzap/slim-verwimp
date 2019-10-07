@@ -30,7 +30,7 @@ class QuestionController extends Controller
             $this->c->lang->label()['app_title'] . ' - ' . $this->c->lang->label()['ask_question'],
             $dealer->email,
             $dealer->name,
-            $this->c->view->fetch('email/ask_question.twig', ['name' => $dealer->name])
+            $this->c->view->fetch('email/ask_question.twig', ['name' => $dealer->name, 'about'=>$postData['question_options'], 'question'=>$postData['question']])
         );
 
         $this->c->flash->addMessage('info', 'Your question has been sent.');
