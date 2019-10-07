@@ -2,6 +2,7 @@
 
 {% block content %}
     <div class="col-md-8 col-md-offset-2">
+            {% include 'layouts/flash.twig' %}
             {% set total_amount = 0 %}
             {% for t in orders %}
                   {% set total_amount = total_amount + (t.quantity * t.retail_price) %}
@@ -28,7 +29,8 @@
                                     <a href="{{path_for('get.remove.from.cart', {'id':o.item_number})}}" onclick="return confirm('Remove item from cart?')"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>
                               </td>
                               <td class="text-right">
-                                    {{o.quantity}}
+                                    {# {{o.quantity}} #}
+                                    <input type="number" min="0" class="form-control" value="{{o.quantity}}" onblur="updateQty(this.value, '{{o.item_number}}')">
                               </td>
                               <td>{{o.item_number}}</td>
                               <td>{{o.description}}</td>

@@ -102,6 +102,10 @@ $app->group('/new', function () {
 $app->group('/order-list', function () {
 	$this->get('/', OrderListController::class . ':index')->setName('get.order.list');
 
+	$this->get('/{item_number}', OrderListController::class . ':removeFromOrder');
+
+	$this->get('/{item_number}/{qty}', OrderListController::class . ':updateCartFromOrder');
+
 	$this->post('/api/postaddtocart', OrderListController::class . ':postAddToCart');
 
 	$this->get('/remove-from-cart/{id}', OrderListController::class . ':removeFromCart')->setName('get.remove.from.cart');

@@ -1,7 +1,6 @@
 $(document).ready(function () {
     var csrf_name = $('input[name=csrf_name]').val();
     var csrf_value =  $('input[name=csrf_value]').val();
-
     var pt;
     pt = $('#product_table').DataTable({
     	"ajax": "api/getarticles",

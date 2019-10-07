@@ -58,7 +58,37 @@ class OrderListController extends Controller
     		$order->delete();
     		return $response->withRedirect($this->c->router->pathFor('get.order.list'));
     	}
-    }
+	}
+	
+	public function removeFromOrder (Request $request, Response $response)
+    {
+    	$id = $request->getAttribute('item_number');
+
+    	$order = Order::where('item_number', $id)
+    				->where('customer_number', $_SESSION['customer_number'])
+    				->where('sent', 0)
+					->first();
+					
+		$order->delete();
+		$this->c->flash->addMessage('info', 'Product has been removed from the order');
+		return $response->withRedirect($this->c->router->pathFor('get.order.list'));
+	}
+	
+	public function updateCartFromOrder (Request $request, Response $response)
+	{
+		$item_number = $request->getAttribute('item_number');
+		$qty = $request->getAttribute('qty');
+		$order = Order::where('item_number', $item_number)
+				->where('customer_number', $_SESSION['customer_number'])
+				->where('sent', 0)
+				->first();
+
+		$order->quantity = $qty;
+		$order->save();
+
+		$this->c->flash->addMessage('info', 'Quantity changed');
+		return $response->withRedirect($this->c->router->pathFor('get.order.list'));
+	}
 }
 
  
