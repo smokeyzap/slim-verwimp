@@ -32,7 +32,7 @@ class RequestDigitalBillingController extends Controller
         $file_name = $_SESSION['customer_number'] . '_' . date('mdy_His');
         $filename = "digital_billing/$file_name.csv";
         file_put_contents($filename, $data);
-
+        chmod('digital_billing', 0777);
         $this->c->flash->addMessage('info', 'Request has been submitted.');
         return $response->withRedirect($this->c->router->pathFor('get.request.digital.billing'));
     }
