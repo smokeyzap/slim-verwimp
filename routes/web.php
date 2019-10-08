@@ -156,12 +156,18 @@ $app->group('/questions', function () {
 $app->group('/information', function () {
 	$this->get('/newsletter', InformationController::class . ':index')->setName('get.newsletter');
 
-	$this->get('/request-digital-billing', RequestDigitalBillingController::class . ':index')->setName('get.request.digital.billing');
 });
 
 //Team Verwimp
 $app->group('/team-verwimp', function () {
 	$this->get('/', TeamVerwimpController::class . ':index')->setName('get.team.verwimp');
+});
+
+//Digital billing
+$app->group('/request-digital-billing', function () {
+	$this->get('/', RequestDigitalBillingController::class . ':index')->setName('get.request.digital.billing');
+
+	$this->post('/post-digital-billing', RequestDigitalBillingController::class . ':postDigitalBilling')->setName('post.request.digital.billing');
 });
 
 //Help

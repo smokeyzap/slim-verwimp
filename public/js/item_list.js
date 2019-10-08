@@ -85,7 +85,8 @@ $(document).ready(function () {
                 $('#suggested_retail_price').html(data.data[0].suggested_retail_price);
                 $('#current_purchase_price').html(parseFloat(data.data[0].purchase_price).toFixed(2));
                 $('#your_price').html(parseFloat(data.data[0].your_price).toFixed(2));
-                $('#description').html(data.data[0].description);
+                var str = data.data[0].description;
+                $('#description').html(str.replace('"', ""));
                 
                 if (data.data[0].image == "") {
                     $('#product_image').html("<img src='http://via.placeholder.com/150x150' class='img-rounded'>");
