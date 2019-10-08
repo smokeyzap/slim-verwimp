@@ -22,7 +22,12 @@ class RequestDigitalBillingController extends Controller
         if (!isset($postData['question_options'])){
             $this->c->flash->addMessage('error', 'Please confirm if you would like to use digital billing.');
             return $response->withRedirect($this->c->router->pathFor('get.request.digital.billing'));
-        } 
+        }
+
+        if ($postData['email1'] === "" && $postData['email2'] === "") {
+            $this->c->flash->addMessage('error', 'Please enter at least one email address.');
+            return $response->withRedirect($this->c->router->pathFor('get.request.digital.billing'));
+        }
 
         
         $data = "";
