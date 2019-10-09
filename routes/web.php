@@ -27,6 +27,7 @@ use App\Controllers\LoginCodesController;
 use App\Controllers\OrderHistoryController;
 use App\Controllers\LabelDimensionController;
 use App\Controllers\ReturnWarrantyHistoryController;
+use App\Controllers\VatMarginController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -245,6 +246,13 @@ $app->group('/login-codes', function () {
 	$this->get('/edit-login-code/{id}', LoginCodesController::class . ':editLoginCode')->setName('edit.login.code');
 
 	$this->post('/update-login-code', LoginCodesController::class . ':updateLoginCode')->setName('update.login.code');
+});
+
+//VAT margin
+$app->group('/vat-margin', function () {
+	$this->get('/', VatMarginController::class . ':index')->setName('get.vat.margin');
+
+	$this->post('/post-vat-margin', VatMarginController::class . ':postVatMargin')->setName('post.vat.margin');
 });
 
 //Orders history

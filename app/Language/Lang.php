@@ -155,7 +155,7 @@ class Lang
         $lang['support_web'] = 'www.adsoft.be';
         $lang['round_off_label'] = 'Round off';
         $lang['barcode_printer'] = 'Barcode printer';
-        $lang['vat_margin'] = 'VAT margins';
+        $lang['vat_margin_label'] = 'VAT Margins';
         $lang['label_dimension'] = 'Label dimension';
         $lang['login_codes_label'] = 'Login codes';
         $lang['language'] = 'Language';
