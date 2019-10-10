@@ -155,12 +155,12 @@ class Lang
         $lang['support_web'] = 'www.adsoft.be';
         $lang['round_off_label'] = 'Round off';
         $lang['barcode_printer'] = 'Barcode printer';
-        $lang['vat_margin_label'] = 'VAT Margins';
+        $lang['vat_margin_label'] = 'VAT margins';
         $lang['label_dimension'] = 'Label dimension';
         $lang['login_codes_label'] = 'Login codes';
         $lang['language'] = 'Language';
         $lang['shop_information'] = 'Shop information';
-        $lang['profit_margin'] = 'Profit margin';
+        $lang['profit_margin_label'] = 'Profit margins';
         $lang['shelf_tag_editor'] = 'Label/Shelf tag editor';
         $lang['download_images'] = 'Download images';
         $lang['discount'] = 'Discount';

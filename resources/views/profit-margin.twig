@@ -1,0 +1,45 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+        {% include 'layouts/flash.twig' %}
+        <h1>{{lang.label.profit_margin_label}}</h1><hr>
+        <div class="col-md-6 pre-scrollable">
+            <div id="group_list">
+                <ul>
+                    <li class="jstree-open">Default - {{margin_profit.margin}}
+                        <ul>
+                            {% for group_name in group_names  %}
+                            <li>{{group_name.group_name}} - {{margin_profit.margin}}
+                                {% for key, sgt in sub_group_and_title %}
+                                <ul>
+                                    <li>{{key}}
+
+                                    </li>
+                                </ul>
+                                {% endfor %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            data
+        </div>
+    <div>
+{% endblock %}
+
+{# 
+{% for sub_group in group_name.sub_group %}
+                                <ul>
+                                    <li>{{sub_group.sub_group}} - {{margin_profit.margin}}
+                                    {% for title in group_name.title  %}
+                                        <ul>
+                                            <li>{{title.title}}</li>
+                                        </ul>
+                                    {% endfor %}
+                                    </li>
+                                </ul>
+                                {% endfor %} #}

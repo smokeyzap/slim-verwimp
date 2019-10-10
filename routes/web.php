@@ -28,6 +28,7 @@ use App\Controllers\OrderHistoryController;
 use App\Controllers\LabelDimensionController;
 use App\Controllers\ReturnWarrantyHistoryController;
 use App\Controllers\VatMarginController;
+use App\Controllers\ProfitMarginController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -249,10 +250,15 @@ $app->group('/login-codes', function () {
 });
 
 //VAT margin
-$app->group('/vat-margin', function () {
+$app->group('/vat-margins', function () {
 	$this->get('/', VatMarginController::class . ':index')->setName('get.vat.margin');
 
 	$this->post('/post-vat-margin', VatMarginController::class . ':postVatMargin')->setName('post.vat.margin');
+});
+
+//Profit margin
+$app->group('/profit-margins', function () {
+	$this->get('/', ProfitMarginController::class . ':index')->setName('get.profit.margin');
 });
 
 //Orders history
