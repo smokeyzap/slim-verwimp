@@ -141,7 +141,7 @@ class Lang
         $lang['email_addresses'] = 'Email addresses for invoices';
         $lang['send_request_digital_billing_button'] = 'Send request digital billing';
         $lang['file'] = 'File';
-        $lang['configuration'] = 'Configuration';
+        $lang['configuration_label'] = 'Configuration';
         $lang['help'] = 'Help';
         $lang['front_offer'] = 'Front offer';
         $lang['in_case_of_problem'] = 'In case of problems/support, contact Adsoft bvba';
@@ -248,6 +248,9 @@ class Lang
         $lang['id_label'] = 'ID';
         $lang['notes_label'] = 'Notes';
         $lang['inv_number'] = 'Invoice #';
+        $lang['show_purchase_prices_label'] = 'Show purchase prices';
+        $lang['screen_saver_tonen_na_label'] = 'Screensaver tonen na';
+        $lang['minutes_label'] = 'minute/s';
         return $lang;
     }
 }
