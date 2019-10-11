@@ -13,6 +13,7 @@ class ProfitMarginController extends Controller
     public function index (Request $request, Response $response) 
     {   
         $margin_profit = MarginOfProfit::where('customer_number', $_SESSION['customer_number'])->first();
+
         $group_names = Article::distinct()->orderBy('group_name', 'asc')->get(['group_name']);
         
         $sub_group = [];
