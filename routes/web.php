@@ -164,24 +164,24 @@ $app->group('/information', function () {
 //Team Verwimp
 $app->group('/team-verwimp', function () {
 	$this->get('/', TeamVerwimpController::class . ':index')->setName('get.team.verwimp');
-});
+})->add(new AuthClient($container));
 
 //Digital billing
 $app->group('/request-digital-billing', function () {
 	$this->get('/', RequestDigitalBillingController::class . ':index')->setName('get.request.digital.billing');
 
 	$this->post('/post-digital-billing', RequestDigitalBillingController::class . ':postDigitalBilling')->setName('post.request.digital.billing');
-});
+})->add(new AuthClient($container));
 
 //Help
 $app->group('/help', function () {
 	$this->get('/', HelpController::class . ':index')->setName('get.help');
-});
+})->add(new AuthClient($container));
 
 //General information
 $app->group('/general-information', function () {
 	$this->get('/', GeneralInformationController::class . ':index')->setName('get.general.information');
-});
+})->add(new AuthClient($container));
 
 //Customer information
 $app->group('/customer-information', function () {
@@ -194,7 +194,7 @@ $app->group('/customer-information', function () {
 	$this->post('/update-customer-backorder', CustomerInformationController::class . ':updateCustomerBackorder')->setName('update.customer.backorder');
 
 	$this->post('/update-opening-hours', CustomerInformationController::class . ':updateOpeningHours')->setName('update.opening.hours');
-});
+})->add(new AuthClient($container));
 
 //Label Dimension
 $app->group('/label-dimension', function () {
@@ -209,7 +209,7 @@ $app->group('/label-dimension', function () {
 	$this->get('/delete-label-dimension/{id}', LabelDimensionController::class . ':deleteLabelDimension')->setName('delete.label.dimension');
 
 	$this->post('/update-label-dimension', LabelDimensionController::class . ':updateLabelDimension')->setName('update.label.dimension');
-});
+})->add(new AuthClient($container));
 
 //Round off
 $app->group('/round-off', function () {
@@ -222,20 +222,20 @@ $app->group('/round-off', function () {
 	$this->post('/update-round-off', RoundOffController::class . ':updateRoundOff')->setName('update.round.off');
 
 	$this->post('/post-new-round-off', RoundOffController::class . ':postNewRoundOff')->setName('post.new.round.off');
-});
+})->add(new AuthClient($container));
 
 //Shop information
 $app->group('/shop-information', function () {
 	$this->get('/', ShopInformationController::class . ':index')->setName('get.shop.information');
 
 	$this->post('/post-shop-information', ShopInformationController::class . ':postShopInformation')->setName('post.shop.information');
-});
+})->add(new AuthClient($container));
 
 
 //Return warranty
 $app->group('/return-warranty', function () {
 	$this->get('/', ReturnWarrantyController::class . ':index')->setName('get.return.warranty');
-});
+})->add(new AuthClient($container));
 
 //Login codes
 $app->group('/login-codes', function () {
@@ -248,38 +248,38 @@ $app->group('/login-codes', function () {
 	$this->get('/edit-login-code/{id}', LoginCodesController::class . ':editLoginCode')->setName('edit.login.code');
 
 	$this->post('/update-login-code', LoginCodesController::class . ':updateLoginCode')->setName('update.login.code');
-});
+})->add(new AuthClient($container));
 
 //VAT margin
 $app->group('/vat-margins', function () {
 	$this->get('/', VatMarginController::class . ':index')->setName('get.vat.margin');
 
 	$this->post('/post-vat-margin', VatMarginController::class . ':postVatMargin')->setName('post.vat.margin');
-});
+})->add(new AuthClient($container));
 
 //Profit margin
 $app->group('/profit-margins', function () {
 	$this->get('/', ProfitMarginController::class . ':index')->setName('get.profit.margin');
-});
+})->add(new AuthClient($container));
 
 //Configuration
 $app->group('/configuration', function () {
 	$this->get('/', ConfigurationController::class . ':index')->setName('get.configuration');
-});
+})->add(new AuthClient($container));
 
 //Orders history
 $app->group('/orders-history', function () {
 	$this->get('/', OrderHistoryController::class . ':index')->setName('get.orders.history');
 
 	$this->get('/api/getorderitems/{id}', OrderHistoryController::class . ':getOrderItems');
-});
+})->add(new AuthClient($container));
 
 //Return warranty history (bikes)
 $app->group('/return-warranty-history', function () {
 	$this->get('/', ReturnWarrantyHistoryController::class . ':index')->setName('get.return.warranty.history');
 
 	$this->get('/api/getreturnwarrantyhistory/{id}', ReturnWarrantyHistoryController::class . ':getReturnWarrantyHistoryItems');
-});
+})->add(new AuthClient($container));
 
 $app->group('', function() {
 	//admin signin
