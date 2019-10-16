@@ -15,7 +15,7 @@ class ProfitMarginController extends Controller
         $margin_profit = MarginOfProfit::where('customer_number', $_SESSION['customer_number'])->first();
 
         $group_names = Article::distinct()->orderBy('group_name', 'asc')->get(['group_name']);
-        
+
         $sub_group = [];
 
         $group_sub_group = [];
