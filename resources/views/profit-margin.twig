@@ -1,7 +1,7 @@
 {% extends 'layouts/app.twig' %}
 
 {% block content %}
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-12">
         {% include 'layouts/flash.twig' %}
         <h1>{{lang.label.profit_margin_label}}</h1><hr>
         <div class="col-md-6 pre-scrollable">
@@ -9,15 +9,20 @@
                 <ul>
                     <li class="jstree-open">Default - {{margin_profit.margin}}
                         <ul>
-                            {% for group_name in group_names  %}
-                            <li>{{group_name.group_name}} - {{margin_profit.margin}}
-                                {% for key, sgt in sub_group_and_title %}
+                            {% for key, d in data  %}
+                            <li>{{key}}
                                 <ul>
-                                    <li>{{key}}
-
+                                    {% for s in d %}
+                                    <li>{{s.sub_group}}
+                                        <ul>
+                                            {% set titles = s.title | split(',') %}
+                                            {% for title in titles %}
+                                                <li>{{title}}</li>
+                                            {% endfor %}
+                                        </ul>
                                     </li>
+                                    {% endfor %}
                                 </ul>
-                                {% endfor %}
                             </li>
                             {% endfor %}
                         </ul>
@@ -26,20 +31,44 @@
             </div>
         </div>
         <div class="col-md-6">
-            data
+            <table class="table">
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="profit_option" value="{{lang.label.profit_margin_percent_label}}" checked>
+                            {{lang.label.profit_margin_percent_label}}
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="profit_option" value="{{lang.label.profit_factor_label}}">
+                            {{lang.label.profit_factor_label}}
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.group_label}}</td>
+                    <td><strong><p id="grouptitle"></p></strong></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.sub_group_label}}</td>
+                    <td><strong><p id="subgrouptitle"></p></strong></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.title_label}}</td>
+                    <td><strong><p id="title_title"></p></strong></td>
+                </tr>
+                <tr>
+                    <td>
+                    {{lang.label.profit_margin_label | replace({'margins':'margin'})}} <input type="text" id="profit_margin" name="profit_margin" value={{margin_profit.margin}}>
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-primary">{{lang.label.set_label}}</a>
+                        <a href="#" onclick="return confirm('The profit margin will be deleted. Are you sure?')" class="btn btn-danger">{{lang.label.delete}}</a>
+                    </td>
+                </tr>
+
+            </table>
         </div>
     <div>
 {% endblock %}
-
-{# 
-{% for sub_group in group_name.sub_group %}
-                                <ul>
-                                    <li>{{sub_group.sub_group}} - {{margin_profit.margin}}
-                                    {% for title in group_name.title  %}
-                                        <ul>
-                                            <li>{{title.title}}</li>
-                                        </ul>
-                                    {% endfor %}
-                                    </li>
-                                </ul>
-                                {% endfor %} #}

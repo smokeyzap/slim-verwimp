@@ -161,6 +161,8 @@ class Lang
         $lang['language'] = 'Language';
         $lang['shop_information'] = 'Shop information';
         $lang['profit_margin_label'] = 'Profit margins';
+        $lang['profit_margin_percent_label'] = 'Profit margin (%)';
+        $lang['profit_factor_label'] = 'Profit factor';
         $lang['shelf_tag_editor'] = 'Label/Shelf tag editor';
         $lang['download_images'] = 'Download images';
         $lang['discount'] = 'Discount';
@@ -251,6 +253,10 @@ class Lang
         $lang['show_purchase_prices_label'] = 'Show purchase prices';
         $lang['screen_saver_tonen_na_label'] = 'Screensaver tonen na';
         $lang['minutes_label'] = 'minute/s';
+        $lang['group_label'] = 'Group';
+        $lang['sub_group_label'] = 'Sub-group';
+        $lang['title_label'] = 'Title';
+        $lang['set_label'] = 'Set';
         return $lang;
     }
 }
