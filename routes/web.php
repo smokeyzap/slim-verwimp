@@ -146,6 +146,10 @@ $app->group('/invoices', function () {
 //Dropship
 $app->group('/dropship', function () {
 	$this->get('/', DropShipController::class . ':index')->setName('get.dropship');
+
+	$this->get('/api/getarticles', ItemListController::class . ':getArticles');
+
+	$this->post('/api/getarticledetails', ItemListController::class . ':getArticleDetails');
 })->add(new AuthClient($container));
 
 //Questions
