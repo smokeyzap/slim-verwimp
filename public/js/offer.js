@@ -81,7 +81,7 @@ $(document).ready(function () {
                 $('#barcode').html(data.data[0].barcode);
                 $('#name').html(data.data[0].item_name);
                 $('#brand').html(data.data[0].brand);
-                $('#packaging_quantity').html(data.data[0].packaging);
+                $('#packaging').html(data.data[0].packaging);
                 $('#suggested_retail_price').html(data.data[0].suggested_retail_price);
                 $('#current_purchase_price').html(parseFloat(data.data[0].purchase_price).toFixed(2));
                 $('#your_price').html(parseFloat(data.data[0].your_price).toFixed(2));
