@@ -34,7 +34,7 @@ class RequestDigitalBillingController extends Controller
         $data .= "Customer username" . "," . "Email 1" . "," . "Email 2" . "," . "Created at\n";
         $data .= $_SESSION['customer_number'] . ',' . $postData['email1'] . ',' . $postData['email2'] . ',' . date('Y-m-d H:i:s');
 
-        $file_name = $_SESSION['customer_number'] . '_' . date('mdy_His');
+        $file_name = $_SESSION['customer_number'] . '_' . date('ymd_His');
         $filename = "digital_billing/$file_name.csv";
         file_put_contents($filename, $data);
         chmod('digital_billing', 0777);
