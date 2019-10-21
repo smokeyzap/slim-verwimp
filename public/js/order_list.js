@@ -17,12 +17,15 @@ $(document).ready(function () {
             var c = confirm('Would you like to remove the product from the order?')
             if (c) {
                 window.location = item_number
+                return
             } else {
                 window.location = ""
+                return
             }
         } else {
             //update qty from order page
-            window.location = item_number + '/' + qty 
+            window.location = item_number + '/' + qty
+            return
         }
     }
     // $('#txt_quantity').blur(function () {

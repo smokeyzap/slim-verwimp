@@ -26,7 +26,7 @@
        			{% for o in orders %}
                         <tr>
                               <td class="text-center">
-                                    <a href="{{path_for('get.remove.from.cart', {'id':o.item_number})}}" onclick="return confirm('Remove item from cart?')"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>
+                                    <a href="{{path_for('remove.from.order', {'item_number':o.item_number})}}" onclick="return confirm('Would you like to remove the product from order?')"><span class='glyphicon glyphicon-trash' aria-hidden='true'></span></a>
                               </td>
                               <td class="text-right">
                                     {# {{o.quantity}} #}

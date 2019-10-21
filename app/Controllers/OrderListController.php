@@ -47,7 +47,7 @@ class OrderListController extends Controller
     public function removeFromCart (Request $request, Response $response)
     {
     	$id = $request->getAttribute('id');
-
+		dump($id);die();
     	$order = Order::where('item_number', $id)
     				->where('customer_number', $_SESSION['customer_number'])
     				->where('sent', 0)
@@ -76,6 +76,7 @@ class OrderListController extends Controller
 	
 	public function updateCartFromOrder (Request $request, Response $response)
 	{
+		
 		$item_number = $request->getAttribute('item_number');
 		$qty = $request->getAttribute('qty');
 		$order = Order::where('item_number', $item_number)
@@ -84,11 +85,9 @@ class OrderListController extends Controller
 				->first();
 
 		$order->quantity = $qty;
-		$order->save();
+		//$order->save();
 
-		$this->c->flash->addMessage('info', 'Quantity changed');
+		$this->c->flash->addMessage('info', 'Quantity changed.');
 		return $response->withRedirect($this->c->router->pathFor('get.order.list'));
 	}
 }
-
- 

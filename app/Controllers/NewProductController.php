@@ -30,7 +30,7 @@ class NewProductController extends Controller
 
     public function getArticles (Request $request, Response $response) 
     {
-    	$articles = Article::where('id', '<', 100)->get();
+    	$articles = Article::where('new', 1)->get();
 
     	$output = [];
     	foreach ($articles as $article) {

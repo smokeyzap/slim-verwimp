@@ -31,7 +31,7 @@ class YouSnoozeController extends Controller
 
     public function getArticles (Request $request, Response $response) 
     {
-    	$articles = Article::where('id', '<', 10)->get();
+    	$articles = Article::where('clearance', 1)->get();
 
     	$output = [];
     	foreach ($articles as $article) {
