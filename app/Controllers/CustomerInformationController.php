@@ -94,4 +94,17 @@ class CustomerInformationController extends Controller
         $this->c->flash->addMessage('info', 'Open hours has been updated.');
         return $response->withRedirect($this->c->router->pathFor('get.customer.information'));
     }
+
+    public function postVacation (Request $request, Response $response)
+    {
+        $postData = $request->getParsedBody();
+        $dealer = Dealer::where('customer_number', $_SESSION['customer_number'])->first();
+
+        $dealer->holiday_from = $postData['vacation_from'];
+        $dealer->holiday_until = $postData['vacation_to'];
+        $dealer->save();
+
+        $this->c->flash->addMessage('info', 'Vacation updated successfully.');
+        return $response->withRedirect($this->c->router->pathFor('get.customer.information'));
+    }
 }

@@ -137,15 +137,15 @@
                 </form>
                 <hr>
                 <p><strong><u>{{lang.label.user_information_vacation_label}}</u></strong></p>
-                <form action="#" method="post">
+                <form action="{{path_for('post.vacation')}}" method="post">
                     <div class="col-md-5">
-                        <input type="date" name="vacation_from" class="form-control">
+                        <input type="date" name="vacation_from" class="form-control" value="{{user_info.holiday_from}}">
                     </div>
                     <div class="col-md-2 text-center">
                         <label>To</label>
                     </div>
                     <div class="col-md-5">
-                        <input type="date" name="vacation_to" class="form-control">
+                        <input type="date" name="vacation_to" class="form-control" value="{{user_info.holiday_until}}">
                     </div>
                     <div class="col-md-12"><br></div>
                      <div class="col-md-12">

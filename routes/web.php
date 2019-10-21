@@ -198,6 +198,8 @@ $app->group('/customer-information', function () {
 	$this->post('/update-customer-backorder', CustomerInformationController::class . ':updateCustomerBackorder')->setName('update.customer.backorder');
 
 	$this->post('/update-opening-hours', CustomerInformationController::class . ':updateOpeningHours')->setName('update.opening.hours');
+
+	$this->post('/post-vacation', CustomerInformationController::class . ':postVacation')->setName('post.vacation');
 })->add(new AuthClient($container));
 
 //Label Dimension
