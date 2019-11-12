@@ -10,5 +10,6 @@ class ReturnReceipt extends Model
         'receipt_number',
         'customer_number',
         'date',
+        'balie',
     ];
 }

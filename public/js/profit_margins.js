@@ -11,7 +11,7 @@ $(document).ready(function () {
         var sub_group_title
         var group_title
 
-        console.log(text)
+        //console.log(text)
         //click from sub child
         if (text.length == 5) {
             title_title = text[0]

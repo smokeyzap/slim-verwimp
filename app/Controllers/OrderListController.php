@@ -85,7 +85,7 @@ class OrderListController extends Controller
 				->first();
 
 		$order->quantity = $qty;
-		//$order->save();
+		$order->save();
 
 		$this->c->flash->addMessage('info', 'Quantity changed.');
 		return $response->withRedirect($this->c->router->pathFor('get.order.list'));

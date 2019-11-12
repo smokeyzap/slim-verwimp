@@ -1,0 +1,100 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+        {% include 'layouts/flash.twig' %}
+        <h1>{{lang.label.edit}} {{lang.label.return_warranty_bikes}}</h1><hr>
+        <form action="{{path_for('update.warranty')}}" method="post">
+            <input type="hidden" name="id" value="{{returns.id}}">
+            <div class="form-group">
+                <label for="item_number">{{lang.label.item_number_label}}</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" name="item_number" id="item_number" value="{{returns.item_number}}" required>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-toggle="modal" data-target="#select_items_modal">...</button>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="item_name">{{lang.label.name_label}}</label>
+                <input type="text" class="form-control" name="item_name" id="item_name" value="{{returns.name}}" required>
+            </div>
+            <div class="form-group">
+                <label for="bike_type">{{lang.label.bike_type_label}}</label>
+                <input type="text" class="form-control" name="bike_type" id="bike_type" value="{{returns.bicycle_type}}" required>
+            </div>
+            <div class="form-group">
+                <label for="frame_number">{{lang.label.frame_number_label}}</label>
+                <input type="text" class="form-control" name="frame_number" id="frame_number" value="{{returns.frame_number}}" required>
+            </div>
+            <div class="form-group">
+                <label for="battery_number">{{lang.label.battery_number_label}}</label>
+                <input type="text" class="form-control" name="battery_number" id="battery_number" value="{{returns.accu_number}}" required>
+            </div>
+            <div class="form-group">
+                <label for="date_purchase">{{lang.label.date_of_purchase_label}}</label>
+                <input type="date" class="form-control" name="date_purchase" id="date_purchase" value="{{returns.date_of_purchase}}" required>
+            </div>
+            <div class="form-group">
+                <label for="registered">{{lang.label.registered_label}}</label>
+                <select name="registered" class="form-control" id="registered">
+                    <option value="0" {{(returns.registered == 0)?'selected':''}}>No</option>
+                    <option value="1" {{(returns.registered == 1)?'selected':''}}>Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="failure">{{lang.label.failure_label}}</label>
+                <input type="text" class="form-control" name="failure" id="failure" value="{{returns.defective}}" required>
+            </div>
+            <div class="form-group">
+                <label for="failure_code">{{lang.label.failure_code_label}}</label>
+                <input type="text" class="form-control" name="failure_code" id="failure_code" value="{{returns.defect_code}}" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-block" value="{{lang.label.update_label}}">
+                <a href="{{path_for('get.return.warranty')}}" class="btn btn-warning btn-block">{{lang.label.cancel_label}}</a>
+            </div>
+            {{csrf_field() | raw}}
+        </form>
+    </div>
+
+    {# all item list modal #}
+    <div id="select_items_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="modal-title">{{lang.label.items_label}}</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table-condensed table-bordered table-hover" id="{{lang.label.product_table}}" style="cursor: pointer;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>{{lang.label.item_number}}</th>
+                                <th>{{lang.label.description}}</th>
+                                <th>{{lang.label.your_price}}</th>
+                                <th>{{lang.label.retail_price_ex}}</th>
+                                <th>{{lang.label.retail_price}}</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>{{lang.label.item_number}}</th>
+                                <th>{{lang.label.description}}</th>
+                                <th>{{lang.label.your_price}}</th>
+                                <th>{{lang.label.retail_price_ex}}</th>
+                                <th>{{lang.label.retail_price}}</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="select_button" class="btn btn-success">{{lang.label.select_label}}</button> <button type="button" class="btn btn-warning" data-dismiss="modal">{{lang.label.cancel_label}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -3,7 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
-class Return extends Model
+class Returns extends Model
 {
     protected $table = 'vw_returns';
     protected $fillable = [ 
@@ -20,5 +20,6 @@ class Return extends Model
         'problem_id',
         'issue',
         'part_number',
+        'balie'
     ];
 }

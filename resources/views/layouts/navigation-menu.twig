@@ -75,8 +75,6 @@
         </a>
     </div> #}
     <div id="navbar" class="navbar-collapse collapse">
-        
-
         <ul class="nav navbar-nav">
             <li class="text-center {{(title == lang.label.item_list)?'active':'' }}">
                 <a href="{{path_for('get.item.list')}}">
@@ -128,9 +126,9 @@
                 <ul class="dropdown-menu">
                     <li><a href="{{path_for('get.orders.history')}}">{{lang.label.orders}}</a></li>
                     <li><a href="{{path_for('get.return.warranty.history')}}">{{lang.label.return_warranty_bikes}}</a></li>
-                    <li><a href="#">{{lang.label.return_warranty_other}}</a></li>
+                    <li><a href="{{path_for('get.return.warranty.other.history')}}">{{lang.label.return_warranty_other}}</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">{{lang.label.dropshipment}}</a></li>
+                    <li><a href="{{path_for('get.orders.history')}}">{{lang.label.dropshipment}}</a></li>
                 </ul>
             </li>
             <li class="text-center {{(title == lang.label.backorders)?'active':''}}">
@@ -152,7 +150,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="{{path_for('get.return.warranty')}}">{{lang.label.return_warranty_bikes}}</a></li>
-                    <li><a href="#">{{lang.label.return_warranty_other}}</a></li>
+                    <li><a href="{{path_for('get.return.warranty.other')}}">{{lang.label.return_warranty_other}}</a></li>
                 </ul>
             </li>
             <li class="text-center {{(title == lang.label.product_information)?'active':''}}">

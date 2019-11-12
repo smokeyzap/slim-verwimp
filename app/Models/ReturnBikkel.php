@@ -9,6 +9,7 @@ class ReturnBikkel extends Model
     protected $fillable = [ 
         'id',
         'customer_number',
+        'item_number',
         'name',
         'bicycle_type',
         'frame_number',
@@ -16,6 +17,6 @@ class ReturnBikkel extends Model
         'date_of_purchase',
         'registered',
         'defective',
-        'defective_code',
+        'defect_code',
     ];
 }

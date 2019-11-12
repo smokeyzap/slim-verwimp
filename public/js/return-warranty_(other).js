@@ -1,11 +1,4 @@
 $(document).ready(function () {
-    var pt;
-    var data;
-    $('#return_warranty_modal').modal({
-        backdrop: 'static',
-        keyboard: false
-    });
-
     pt = $('#product_table').DataTable({
     	"ajax": "api/getitemlist",
         "processing": true,
@@ -29,4 +22,4 @@ $(document).ready(function () {
         $('#item_name').val(data[2])
         $('#select_items_modal').modal('hide')
     });
-});
+})

@@ -23,13 +23,16 @@ use App\Controllers\CustomerInformationController;
 use App\Controllers\RoundOffController;
 use App\Controllers\ShopInformationController;
 use App\Controllers\ReturnWarrantyController;
+use App\Controllers\ReturnWarrantyOtherController;
 use App\Controllers\LoginCodesController;
 use App\Controllers\OrderHistoryController;
 use App\Controllers\LabelDimensionController;
 use App\Controllers\ReturnWarrantyHistoryController;
+use App\Controllers\ReturnWarrantyHistoryOtherController;
 use App\Controllers\VatMarginController;
 use App\Controllers\ProfitMarginController;
 use App\Controllers\ConfigurationController;
+use App\Controllers\DropShipmentHistoryController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -131,6 +134,8 @@ $app->group('/favorites', function () {
 //Item index
 $app->group('/item-index', function () {
 	$this->get('/', ItemIndexController::class . ':index')->setName('get.item.index');
+
+	$this->get('/api/getarticles', ItemIndexController::class . ':getArticles');
 })->add(new AuthClient($container));
 
 //Back orders
@@ -241,6 +246,36 @@ $app->group('/shop-information', function () {
 //Return warranty
 $app->group('/return-warranty', function () {
 	$this->get('/', ReturnWarrantyController::class . ':index')->setName('get.return.warranty');
+
+	$this->post('/post-new-return-warranty', ReturnWarrantyController::class . ':postNewReturnWarranty')->setName('post.new.return.warranty');
+
+	$this->get('/api/getitemlist', ItemListController::class . ':getArticles');
+
+	$this->get('/{id}/api/getitemlist', ItemListController::class . ':getArticles');
+
+	$this->get('/remove-warranty/{id}', ReturnWarrantyController::class . ':removeWarranty')->setName('remove.warranty');
+
+	$this->get('/edit-warranty/{id}', ReturnWarrantyController::class . ':editWarranty')->setName('edit.warranty');
+
+	$this->post('/update-warranty', ReturnWarrantyController::class . ':updateWarranty')->setName('update.warranty');
+})->add(new AuthClient($container));
+
+//Return warranty other
+$app->group('/return-warranty-other', function () {
+	$this->get('/', ReturnWarrantyOtherController::class . ':index')->setName('get.return.warranty.other');
+
+	$this->get('/remove-warranty-other/{id}', ReturnWarrantyOtherController::class . ':removeWarrantyOther')->setName('remove.warranty.other');
+
+	$this->get('/edit-warranty-other/{id}', ReturnWarrantyOtherController::class . ':editWarrantyOther')->setName('edit.warranty.other');
+
+	$this->get('/api/getitemlist', ItemListController::class . ':getArticles');
+
+	$this->post('/post-new-return-warranty-other', ReturnWarrantyOtherController::class . ':postNewReturnWarrantyOther')->setName('post.new.return.warranty.other');
+})->add(new AuthClient($container));
+
+//Dropshipment History
+$app->group('/dropshipment-history', function () {
+	$this->get('/', DropShipmentHistoryController::class . ':index')->setName('get.dropshipment.history');
 })->add(new AuthClient($container));
 
 //Login codes
@@ -286,6 +321,14 @@ $app->group('/return-warranty-history', function () {
 
 	$this->get('/api/getreturnwarrantyhistory/{id}', ReturnWarrantyHistoryController::class . ':getReturnWarrantyHistoryItems');
 })->add(new AuthClient($container));
+
+//Return warranty history (other)
+$app->group('/return-warranty-history-other', function () {
+	$this->get('/', ReturnWarrantyHistoryOtherController::class . ':index')->setName('get.return.warranty.other.history');
+
+	$this->get('/api/getreturnwarrantyotherhistory/{id}', ReturnWarrantyHistoryOtherController::class . ':getReturnWarrantyOtherHistoryItems');
+})->add(new AuthClient($container));
+
 
 $app->group('', function() {
 	//admin signin

@@ -2,6 +2,172 @@
 
 {% block content %}
     <div class="col-md-12">
-        item index
-    </div>
+        {% include 'layouts/flash.twig' %}
+        <h1>{{lang.label.item_index}}</h1><hr>
+        <div class="col-md-6">
+            <div id="group_list" class="pre-scrollable">
+                <ul>
+                    <li class="jstree-open">{{lang.label.index_label}}
+                        <ul>
+                            <li class="jstree-open">{{lang.label.bicycle_label | upper}}
+                                <ul>
+                                    {% for key, b in bicycles  %}
+                                    <li>{{key}}
+                                        <ul>
+                                            {% for s in b %}
+                                            <li>{{s.sub_group}}
+                                                <ul>
+                                                    {% set titles = s.title | split(',') %}
+                                                    {% for title in titles %}
+                                                        <li>{{title}}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li>{{lang.label.bike_parts_label | upper}}
+                                <ul>
+                                    {% for key, bp in bike_parts  %}
+                                    <li>{{key}}
+                                        <ul>
+                                            {% for s in bp %}
+                                            <li>{{s.sub_group}}
+                                                <ul>
+                                                    {% set titles = s.title | split(',') %}
+                                                    {% for title in titles %}
+                                                        <li>{{title}}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li>{{lang.label.scooter_parts_label | upper}}
+                                <ul>
+                                    {% for key, sp in scooter_parts  %}
+                                    <li>{{key}}
+                                        <ul>
+                                            {% for s in sp %}
+                                            <li>{{s.sub_group}}
+                                                <ul>
+                                                    {% set titles = s.title | split(',') %}
+                                                    {% for title in titles %}
+                                                        <li>{{title}}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                {# <ul>
+                    <li>{{lang.label.kenmerken_label}}
+                    {% for ap in artprops %}
+                        <ul>
+                            <li>{{ap.template}}</li>
+                        </ul>
+                    {% endfor %}
+                    </li>
+                </ul> #}
+            </div>
+            <table class="table" id="{{lang.label.product_table}}" style="cursor: pointer;">
+                <thead>
+                    <tr>
+                        <th>{{lang.label.item_number}}</th>
+                        <th>{{lang.label.name_label}}</th>
+                        <th>{{lang.label.retail_price}}</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="col-md-3">
+            <table class="table">
+                <tr>
+                    <td>{{lang.label.quantity}}</td>
+                    <td>
+                        <input type="number" min="0" name="quantity" id="txt_quantity" class="form-control" value="0"> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.stock}}</td>
+                    <td>
+                        <span class="label label-success">Sufficient</span>
+                        <div id="favorite_status">
+                            {% if favorite == true %}
+                                <a href="#" onclick="addToFav('{{item_list.item_number}}')" title="remove from favorite"><span class="fill glyphicon glyphicon-star" aria-hidden="true"></span></a>
+                            {% else %}
+                                <a href="#" onclick="addToFav('{{item_list.item_number}}')" title="add to favorite"><span class="empty glyphicon glyphicon-star-empty" aria-hidden="true"></span></a>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.item_number}}</td>
+                    <td><span id="item_number">{{item_list.item_number}}</span></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.barcode}}</td>
+                    <td><span id="barcode">{{item_list.barcode}}</span></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.description}}</td>
+                    <td><span id="name">{{item_list.name}}</span></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.brand}}</td>
+                    <td><span id="brand">{{item_list.brand}}</span></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.packaging_quantity}}</td>
+                    <td><span id="packaging">{{item_list.packaging}}</span></td>
+                </tr>
+            </table>
+            <strong>{{lang.label.price_information}}</strong>
+            <table class="table">
+                <tr>
+                    <td>{{lang.label.suggested_retail_price}}</td>
+                    <td><span id="suggested_retail_price">{{item_list.sales_price | number_format(2, '.', ',')}}</span></td>
+                </tr>
+                <tr>
+                    <td>{{lang.label.purchase_price}}</td>
+                    <td><span id="current_purchase_price">{{item_list.current_purchase_price | number_format(2, '.', ',')}}</span></td>
+                </tr>
+                <tr>
+                    <td><strong style="color: red;">{{lang.label.your_price | upper}}</strong></td>
+                    <td><span id="your_price">{{item_list.current_purchase_price | number_format(2, '.', ',')}}</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-3">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#characteristics">{{lang.label.characteristic_label}}</a></li>
+                <li><a data-toggle="tab" href="#dd">{{lang.label.detailed_description}}</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="characteristics" class="tab-pane fade in active">
+                    <p>Some content.</p>
+                </div>
+                <div id="dd" class="tab-pane fade">
+                    
+                    <p>Some content in menu 1.</p>
+                </div>
+            </div>
+        </div>
+    <div>
+    {{csrf_field() | raw}}
 {% endblock %}

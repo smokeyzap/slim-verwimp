@@ -7,9 +7,13 @@
             {% for t in orders %}
                   {% set total_amount = total_amount + (t.quantity * t.retail_price) %}
             {% endfor %}
-            <h3 class="text-left">Total: {{total_amount}} &euro;</h3>
+            <h3 class="text-left">Total: {{total_amount | number_format(2)}} &euro;</h3>
             <p class="text-right">
-                  <a href="#" onclick="return confirm('You are about to send orders. Continue?')" class="btn btn-primary"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Send order</a>
+                  {% if total_amount <= 0 %}
+                        <a href="#" class="btn btn-primary" disabled><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{lang.label.send_order_label}}</a>
+                  {% else %}
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#return_warranty_modals"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{lang.label.send_order_label}}</a>
+                  {% endif %}
             </p>
        	<table class="table table-bordered" id="{{lang.label.product_table}}">
        		<thead>
@@ -41,5 +45,25 @@
        		</tbody>
        	</table>
             {{csrf_field() | raw}}
+    </div>
+
+        {# Modal #}
+    <div id="return_warranty_modals" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                        <a href="#" class="close" data-dismiss="modal">&times;</a>
+                        <h4 class="modal-title">{{lang.label.approved_label}}</h4>
+                </div>
+                <div class="modal-body">
+                  
+                </div>
+                <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">{{lang.label.ok_label}}</button> 
+                        <a href="#" class="btn btn-warning" data-dismiss="modal">{{lang.label.cancel_label}}</a>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

@@ -1,16 +1,16 @@
 {% extends 'layouts/app.twig' %}
 
 {% block content %}
-    <div class="col-md-10 col-md-offset-1">
+    <div class="col-md-12">
         {% include 'layouts/flash.twig' %}
         <h1>{{lang.label.return_warranty_bikes}}</h1><hr>
         <div class="col-md-6">
-            <a href="#" class="btn btn-primary">{{lang.label.add_label}}</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#add_return_warranty">{{lang.label.add_label}}</a>
         </div>
         <div class="col-md-6 text-right">
             <a href="#" class="btn btn-primary">{{lang.label.send_label}}</a>
         </div>
-        <table class="table">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>#</th>
@@ -23,31 +23,34 @@
                     <th>{{lang.label.registered_label}}</th>
                     <th>{{lang.label.failure_label}}</th>
                     <th>{{lang.label.failure_code_label}}</th>
+                    <th>{{lang.label.action}}</th>
                 </tr>
             </thead>
             <tbody>
-            {# {% for r in data %}
+            {% for r in returns %}
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{loop.index}}</td>
+                    <td>{{r.item_number}}</td>
+                    <td>{{r.name}}</td>
+                    <td>{{r.bicycle_type}}</td>
+                    <td>{{r.frame_number}}</td>
+                    <td>{{r.accu_number}}</td>
+                    <td>{{r.date_of_purchase}}</td>
+                    <td>{{(r.registered == 1)?'Yes':'No'}}</td>
+                    <td>{{r.defective}}</td>
+                    <td>{{r.defect_code}}</td>
+                    <td>
+                        <a href="{{path_for('remove.warranty', {'id':r.id})}}" title="Remove" onclick="return confirm('The selected item will be deleted. Are you sure?')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a> | 
+                        <a href="{{path_for('edit.warranty', {'id':r.id})}}" title="Edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                    </td>
                 </tr>
-            {% endfor %} #}
+            {% endfor %}
             </tbody>
         </table>
     </div>
 
-
-
     {# Modal #}
-    <div id="return_warranty_modal" class="modal fade" role="dialog">
+    <div id="return_warranty_modals" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
             <!-- Modal content-->
             <div class="modal-content">
@@ -106,6 +109,112 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">{{lang.label.accept_label}}</button> <a href="{{path_for('get.item.list')}}" class="btn btn-warning">{{lang.label.cancel_label}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {# Add new return modal #}
+    <div id="add_return_warranty" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <form action="{{path_for('post.new.return.warranty')}}" method="post">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="modal-title">{{lang.label.add_label}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="item_number">{{lang.label.item_number_label}}</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="item_number" id="item_number" required>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#select_items_modal">...</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="item_name">{{lang.label.name_label}}</label>
+                        <input type="text" class="form-control" name="item_name" id="item_name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bike_type">{{lang.label.bike_type_label}}</label>
+                        <input type="text" class="form-control" name="bike_type" id="bike_type" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="frame_number">{{lang.label.frame_number_label}}</label>
+                        <input type="text" class="form-control" name="frame_number" id="frame_number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="battery_number">{{lang.label.battery_number_label}}</label>
+                        <input type="text" class="form-control" name="battery_number" id="battery_number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date_purchase">{{lang.label.date_of_purchase_label}}</label>
+                        <input type="date" class="form-control" name="date_purchase" id="date_purchase" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registered">{{lang.label.registered_label}}</label>
+                        <select name="registered" class="form-control" id="registered">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="failure">{{lang.label.failure_label}}</label>
+                        <input type="text" class="form-control" name="failure" id="failure" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="failure_code">{{lang.label.failure_code_label}}</label>
+                        <input type="text" class="form-control" name="failure_code" id="failure_code" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-success" value="{{lang.label.ok_label}}"> <button type="button" class="btn btn-warning" data-dismiss="modal">{{lang.label.cancel_label}}</button>
+                </div>
+                {{csrf_field() | raw}}
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {# all item list modal #}
+    <div id="select_items_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="modal-title">{{lang.label.items_label}}</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table-condensed table-bordered table-hover" id="{{lang.label.product_table}}" style="cursor: pointer;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>{{lang.label.item_number}}</th>
+                                <th>{{lang.label.description}}</th>
+                                <th>{{lang.label.your_price}}</th>
+                                <th>{{lang.label.retail_price_ex}}</th>
+                                <th>{{lang.label.retail_price}}</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>{{lang.label.item_number}}</th>
+                                <th>{{lang.label.description}}</th>
+                                <th>{{lang.label.your_price}}</th>
+                                <th>{{lang.label.retail_price_ex}}</th>
+                                <th>{{lang.label.retail_price}}</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="select_button" class="btn btn-success">{{lang.label.select_label}}</button> <button type="button" class="btn btn-warning" data-dismiss="modal">{{lang.label.cancel_label}}</button>
                 </div>
             </div>
         </div>

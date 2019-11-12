@@ -1,0 +1,122 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+        {% include 'layouts/flash.twig' %}
+        <h1>{{lang.label.return_warranty_other}}</h1><hr>
+        <div class="col-md-6">
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#add_return_warranty_other">{{lang.label.add_label}}</a>
+        </div>
+        <div class="col-md-6 text-right">
+            <a href="#" class="btn btn-primary">{{lang.label.send_label}}</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{lang.label.quantity}}</th>
+                    <th>{{lang.label.item_number_label}}</th>
+                    <th>{{lang.label.name_label}}</th>
+                    <th>{{lang.label.action}}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for r in returns %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td>{{r.quantity}}</td>
+                    <td>{{r.search_number}}</td>
+                    <td>{{r.name}}</td>
+                    <td>
+                        <a href="{{path_for('remove.warranty.other', {'id':r.id})}}" title="Remove" onclick="return confirm('The selected item will be deleted. Are you sure?')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a> | 
+                        <a href="{{path_for('edit.warranty.other', {'id':r.id})}}" title="Edit"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    {# Add new return modal #}
+    <div id="add_return_warranty_other" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <form action="{{path_for('post.new.return.warranty.other')}}" method="post">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="modal-title">{{lang.label.add_label}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="return_warranty">{{lang.label.return_label}} / {{lang.label.warranty_label}}</label>
+                        <select name="return_warranty" class="form-control" id="return_warranty">
+                            <option value="return">{{lang.label.return_label}}</option>
+                            <option value="warranty">{{lang.label.warranty_label}}</option>
+                        </select>
+                    </div>
+                     <div class="form-group">
+                        <label for="quantity">{{lang.label.quantity}}</label>
+                        <input type="number" min="1" value="1" class="form-control" name="quantity" id="quantity" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="item_number">{{lang.label.item_number_label}} / {{lang.label.eancode_label}} </label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="item_number" id="item_number" required>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" data-toggle="modal" data-target="#select_items_modal">...</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-success" value="{{lang.label.ok_label}}"> <button type="button" class="btn btn-warning" data-dismiss="modal">{{lang.label.cancel_label}}</button>
+                </div>
+                {{csrf_field() | raw}}
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    {# all item list modal #}
+    <div id="select_items_modal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="modal-title">{{lang.label.items_label}}</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table-condensed table-bordered table-hover" id="{{lang.label.product_table}}" style="cursor: pointer;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>{{lang.label.item_number}}</th>
+                                <th>{{lang.label.description}}</th>
+                                <th>{{lang.label.your_price}}</th>
+                                <th>{{lang.label.retail_price_ex}}</th>
+                                <th>{{lang.label.retail_price}}</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>{{lang.label.item_number}}</th>
+                                <th>{{lang.label.description}}</th>
+                                <th>{{lang.label.your_price}}</th>
+                                <th>{{lang.label.retail_price_ex}}</th>
+                                <th>{{lang.label.retail_price}}</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="select_button" class="btn btn-success">{{lang.label.select_label}}</button> <button type="button" class="btn btn-warning" data-dismiss="modal">{{lang.label.cancel_label}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

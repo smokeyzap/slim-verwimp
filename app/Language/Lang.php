@@ -257,6 +257,25 @@ class Lang
         $lang['sub_group_label'] = 'Sub-group';
         $lang['title_label'] = 'Title';
         $lang['set_label'] = 'Set';
+        $lang['index_label'] = 'Index';
+        $lang['bicycle_label'] = 'Bicycles';
+        $lang['bike_parts_label'] = 'Bike Parts';
+        $lang['scooter_parts_label'] = 'Scooter Parts';
+        $lang['kenmerken_label'] = 'Kenmerken';
+        $lang['ok_label'] = 'OK';
+        $lang['items_label'] = 'Items';
+        $lang['select_label'] = 'Select';
+        $lang['return_number_label'] = 'Return number';
+        $lang['balie_label'] = 'Balie';
+        $lang['reason_label'] = 'Reason';
+        $lang['type_label'] = 'Type';
+        $lang['part_number_label'] = 'Part number';
+        $lang['return_label'] = 'Return';
+        $lang['warranty_label'] = 'Warranty';
+        $lang['eancode_label'] = 'EANCode';
+        $lang['characteristic_label'] = 'Characteristics';
+        $lang['send_order_label'] = 'Send order';
+        $lang['approved_label'] = 'Approved';
         return $lang;
     }
 }
