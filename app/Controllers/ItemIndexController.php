@@ -7,6 +7,9 @@ use Psr\Http\Message\{
 use App\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Artprop;
+use App\Models\Order;
+use App\Models\Favorite;
+use App\Models\Image;
 use Illuminate\Database\Capsule\Manager as DB;
 
 class ItemIndexController extends Controller
@@ -36,19 +39,80 @@ class ItemIndexController extends Controller
 
         $artprops = Artprop::distinct()->get(['template'])->where('template', '!=', "");
         
-        
         return $this->c->view->render($response, 'item_index.twig', [
             'title' => $this->c->lang->label()['item_index'],
             'bicycles' => $bicycles,
             'bike_parts' => $bike_parts,
             'scooter_parts' => $scooter_parts,
-            'artprops' => $artprops,
+            'artprops' => $artprops
         ]);
+    }
+
+    public function getAllBikes (Request $request, Response $response) 
+    {
+        $bikes = Article::where('categorie', 'FTS')->get(['item_number', 'name', 'sales_price']);
+
+    	$output = [];
+    	foreach ($bikes as $article) {
+    		$output[] = [
+    			$article->item_number,
+    			$article->name,
+    			$article->sales_price,
+    		];
+    	}
+    	return $response->withJson(["data"=>$output]);
     }
 
     public function getArticles (Request $request, Response $response) 
     {
         $postData = $request->getAttribute('data');
         echo $postData;
+    }
+
+    public function getArticleDetails (Request $request, Response $response)
+    {
+    	$postData = $request->getParsedBody();
+    	$articles = Article::where('item_number', $postData['item_number'])->get();
+    	$output = [];
+    	foreach ($articles as $article) {
+            $order = Order::where('customer_number', $_SESSION['customer_number'])
+                        ->where('item_number', $article->item_number)
+                        ->where('sent', 0)
+                        ->first();
+
+            $favorite = Favorite::where('customer_number', $_SESSION['customer_number'])
+                        ->where('article_number', $article->item_number)
+                        ->first();
+
+            $fav = ($favorite)?true:false;
+
+            $artprops = Artprop::where('search_number', $article->search_number)
+                        ->orderBy('characteristic', 'asc')        
+                        ->get(['characteristic','value']);
+
+            if (!$order) {
+                $qty = 0;
+            } else {
+                $qty = $order->quantity;
+            }
+
+    		$output[] = [
+                'favorite' => $fav,
+    			'id'=>$article->id,
+                'quantity' => $qty,
+    			'item_number'=>$article->item_number,
+    			'barcode' => $article->barcode,
+    			'item_name'=>$article->name,
+   				'brand' => $article->brand,
+   				'packaging' => $article->packaging,
+    			'suggested_retail_price'=>$article->sales_price,
+    			'purchase_price'=>$article->current_purchase_price,
+    			'your_price'=>number_format((float)round($article->current_purchase_price / 1.21, 2), 2, '.', ''),
+    			'description' => $article->book_info,
+                'image'=>Image::where('line_number', $article->sort_number)->first()->image,
+                'artprop' => $artprops,
+    		];
+    	}
+    	return $response->withJson(["data"=>$output]);
     }
 }

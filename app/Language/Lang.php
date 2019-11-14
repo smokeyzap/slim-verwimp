@@ -297,6 +297,11 @@ class Lang
         $lang['dropshipment_condition_label1'] = 'Dropshipment condition';
         $lang['sales_and_delivery_condition_label'] = 'I agree with the sales and delivery conditions';
         $lang['dropshipment_condition_label2'] = 'I agree with the dropshipment condition';
+        $lang['language_label'] = 'Language';
+        $lang['dutch_label'] = 'Dutch';
+        $lang['french_label'] = 'French';
+        $lang['german_label'] = 'German';
+        $lang['english_label'] = 'English';
         return $lang;
     }
 }

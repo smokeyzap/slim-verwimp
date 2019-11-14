@@ -1,0 +1,24 @@
+{% extends 'layouts/app.twig' %}
+
+{% block content %}
+    <div class="col-md-8 col-md-offset-2">
+        {% include 'layouts/flash.twig' %}
+        <h1>{{lang.label.select_label}} {{lang.label.language_label}}</h1><hr>
+        <form action="{{path_for('post.language.setting')}}" method="post">
+            <div class="radio">
+                <label><input type="radio" value="du" name="language_name">{{lang.label.dutch_label}}</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" value="fr" name="language_name">{{lang.label.french_label}}</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" value="ge" name="language_name">{{lang.label.german_label}}</label>
+            </div>
+             <div class="radio">
+                <label><input type="radio" value="en" name="language_name">{{lang.label.english_label}}</label>
+            </div>
+            <input type="submit" class="btn btn-primary btn-block btn-lg" value="{{lang.label.ok_label}}">
+            {{csrf_field() | raw}}
+        </form>
+    </div>
+{% endblock %}

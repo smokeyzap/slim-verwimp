@@ -160,14 +160,49 @@
 
             <div class="tab-content">
                 <div id="characteristics" class="tab-pane fade in active">
-                    <p>Some content.</p>
+                    <div id="characteristic_table">
+                    </div>
+                    <table style="height:10px;overflow-y:scroll;" id="characteristic_table" class="table table-condensed table-bordered table-striped">
+                    </table>
                 </div>
                 <div id="dd" class="tab-pane fade">
-                    
-                    <p>Some content in menu 1.</p>
+                    <p><span id="description">{{item_list.book_info | replace({'"': ''}) | nl2br}}</span></p>
+                </div>
+                <p><strong>{{lang.label.product_image}}</strong></p>
+                
+                <div id="product_image">
+                    {% if image.image == "" %} 
+                        <img src="{{base_url()}}/public/logo/logo.png" alt="image" class="img-rounded">
+                    {% else %}
+                        <img src="{{base_url()}}/public/img/{{image.image}}" alt="product image" width="150" height="150" class="img-rounded">
+                    {% endif %}
                 </div>
             </div>
         </div>
     <div>
+
+    <!-- Product image modal -->
+    <div class="modal fade" id="product_img_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Product image</h4>
+          </div>
+          <div class="modal-body">
+            <div id="prod_img" class="text-center">
+                {% if image.image == "" %} 
+                    <img src="{{base_url()}}/public/logo/logo.png" alt="image" class="img-rounded">
+                {% else %}
+                    <img src="{{base_url()}}/public/img/{{image.image}}" alt="product image"  class="img-rounded" width="560" height="400">
+                {% endif %}
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     {{csrf_field() | raw}}
 {% endblock %}

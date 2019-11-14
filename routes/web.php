@@ -33,6 +33,7 @@ use App\Controllers\VatMarginController;
 use App\Controllers\ProfitMarginController;
 use App\Controllers\ConfigurationController;
 use App\Controllers\DropShipmentHistoryController;
+use App\Controllers\LanguageSettingController;
 
 $app->get('/signout', LoginController::class . ':signout')->setName('signout');
 
@@ -139,7 +140,15 @@ $app->group('/favorites', function () {
 $app->group('/item-index', function () {
 	$this->get('/', ItemIndexController::class . ':index')->setName('get.item.index');
 
+	$this->get('/api/getbicycles', ItemIndexController::class . ':getAllBikes');
+
 	$this->get('/api/getarticles', ItemIndexController::class . ':getArticles');
+
+	$this->post('/api/getarticledetails', ItemIndexController::class . ':getArticleDetails');
+
+	$this->post('/api/addtofavorite', FavoriteController::class . ':addToFavorite');
+
+	$this->post('/api/postaddtocart', OrderListController::class . ':postAddToCart');
 })->add(new AuthClient($container));
 
 //Back orders
@@ -297,6 +306,12 @@ $app->group('/login-codes', function () {
 	$this->get('/edit-login-code/{id}', LoginCodesController::class . ':editLoginCode')->setName('edit.login.code');
 
 	$this->post('/update-login-code', LoginCodesController::class . ':updateLoginCode')->setName('update.login.code');
+})->add(new AuthClient($container));
+
+$app->group('/language', function () {
+	$this->get('/', LanguageSettingController::class . ':index')->setName('get.language.setting');
+
+	$this->get('/post-language-setting', LanguageSettingController::class . ':postLanguange')->setName('post.language.setting');
 })->add(new AuthClient($container));
 
 //VAT margin
