@@ -28,6 +28,14 @@ $(document).ready(function () {
             return
         }
     }
+
+    $('#terms_agreement').change(function () {
+        if ($(this).prop('checked')) {
+            $('#terms_agreement_ok').show();
+        } else {
+            $('#terms_agreement_ok').hide();
+        }
+    });
     // $('#txt_quantity').blur(function () {
     //     $('.item_number').each(function(){
     //        alert($(this).val());

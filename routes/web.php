@@ -106,6 +106,9 @@ $app->group('/new', function () {
 
 //Order list
 $app->group('/order-list', function () {
+
+	$this->post('/orders/send', OrderListController::class . ':sendOrders')->setName('send.all.orders');
+
 	$this->get('/', OrderListController::class . ':index')->setName('get.order.list');
 
 	$this->get('/{item_number}', OrderListController::class . ':removeFromOrder')->setName('remove.from.order');
@@ -115,6 +118,7 @@ $app->group('/order-list', function () {
 	$this->post('/api/postaddtocart', OrderListController::class . ':postAddToCart');
 
 	$this->get('/remove-from-order/{id}', OrderListController::class . ':removeFromCart')->setName('get.remove.from.cart');
+
 })->add(new AuthClient($container));
 
 //Favorite
@@ -154,7 +158,11 @@ $app->group('/dropship', function () {
 
 	$this->get('/api/getarticles', ItemListController::class . ':getArticles');
 
-	$this->post('/api/getarticledetails', ItemListController::class . ':getArticleDetails');
+	$this->post('/api/getarticledetails', DropShipController::class . ':getArticleDetails');
+
+	$this->post('/api/postaddtocart', DropShipController::class . ':postAddToCart');
+
+	$this->post('/send-orders', DropShipController::class . ':sendOrders')->setName('send.all.dropship.orders');
 })->add(new AuthClient($container));
 
 //Questions

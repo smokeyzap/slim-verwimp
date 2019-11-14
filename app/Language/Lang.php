@@ -276,6 +276,27 @@ class Lang
         $lang['characteristic_label'] = 'Characteristics';
         $lang['send_order_label'] = 'Send order';
         $lang['approved_label'] = 'Approved';
+        $lang['with_an_order_label1'] = 'With an order <';
+        $lang['with_an_order_label2'] = 'Alle bestellingen op maandag tm donderdag die gedaan worden voor 18.00u worden gezien als 1 order/zending/factuur.';
+        $lang['with_an_order_label3'] = 'Alle bestellingen op vrijdag die gedaan worden voor 15.00u worden gezien als 1 order/zending/factuur.';
+        $lang['with_an_order_label4'] = 'Van maandag t/m donderdag worden Pakketten en Pallets van orders die via het bestelprogramma voor 18 uur bij ons binnen komen, dezelfde dag verzonden.';
+        $lang['with_an_order_label5'] = 'Voor Fietsen verstuurd via JCL/aernouts (veelal fietsen vanaf 22 inch) hanteren we vanaf 07-01-2019 per fiets een kleine toeslag;
+        NL 7,50 / BE 9,50 / DE/LU 15,95 FR/GB/AT/DK/ES 19,95 Euro';
+        $lang['send_by_postnl_label'] = 'Send by PostNL';
+        $lang['order_pick_up_label'] = 'Order will be picked up at the collection desk';
+        $lang['stated_price_label'] = 'Stated prices are with reservations and may be changed at all times without previous notice';
+        $lang['terms_and_conditions_label'] = 'I agree to the terms and conditions';
+        $lang['general_terms_and_conditions_label'] = 'General terms and conditions of sale, delivery and payment';
+        $lang['privacy_label'] = 'Privacy verklaring';
+        $lang['reference_number_label'] = 'Your Reference/Your order no';
+        $lang['dropship_message_label1'] = 'Your are about to order on the following articles';
+        $lang['dropship_message_label2'] = 'You are going to send a dropshipment order, the costs as stated in the Dropshipment conditions will be charged to you';
+        $lang['company_label'] = 'Company';
+        $lang['first_name_label'] = 'First name';
+        $lang['number_label'] = 'Number';
+        $lang['dropshipment_condition_label1'] = 'Dropshipment condition';
+        $lang['sales_and_delivery_condition_label'] = 'I agree with the sales and delivery conditions';
+        $lang['dropshipment_condition_label2'] = 'I agree with the dropshipment condition';
         return $lang;
     }
 }

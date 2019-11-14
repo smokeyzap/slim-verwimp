@@ -1,8 +1,22 @@
 {% extends 'layouts/app.twig' %}
 
 {% block content %}
-    <div class="col-md-12">
-        <p class="text-right"><button onclick="return confirm('You are about to send Dropship. Continue?')" class="btn btn-primary">{{lang.label.send_label}}</button></p><hr>
+	<div class="col-md-12">
+		{% include 'layouts/flash.twig' %}
+	</div>
+    <div class="col-md-6">
+		{% set total_amount = 0 %}
+		{% for t in orders %}
+				{% set total_amount = total_amount + (t.quantity * t.retail_price) %}
+		{% endfor %}
+        <p><strong>{{lang.label.order_amount}} <span id="order_amount">{{total_amount | number_format(2)}}</span> &euro;</strong></p>
+    </div>
+	<div class="col-md-6 text-right">
+        {% if total_amount <= 0 %}
+			<a href="#" class="btn btn-primary" disabled><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{lang.label.send_order_label}}</a>
+		{% else %}
+			<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#return_warranty_modals"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> {{lang.label.send_order_label}}</a>
+		{% endif %}
     </div>
     <div class="col-lg-6">
     	<div class="table-responsive">
@@ -120,4 +134,122 @@
       </div>
     </div>
     {{csrf_field() | raw}}
+
+
+
+	{# Modal #}
+	<div id="return_warranty_modals" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<a href="#" class="close" data-dismiss="modal">&times;</a>
+					<h4 class="modal-title">{{lang.label.approved_label}}</h4>
+				</div>
+				<div class="modal-body">
+					<form action="{{path_for('send.all.dropship.orders')}}" method="post" autocomplete="off">
+						<input type="hidden" name="order_amount" value="{{total_amount | number_format(2)}}">
+						<p>{{lang.label.dropship_message_label1}}</p>
+						<table class="table table-stripe">
+							<thead>
+								<tr>
+									<th>{{lang.label.quantity}}</th>
+									<th>{{lang.label.item_number_label}}</th>
+									<th>{{lang.label.description_label}}</th>
+									<th>{{lang.label.stock}}</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for o in orders %}
+								<tr>
+									<td>{{o.quantity}}</td>
+									<td>{{o.item_number}}</td>
+									<td>{{o.description}}</td>
+									<td>Sufficient</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+						<p>{{lang.label.dropship_message_label2}}</p>
+						
+						<div class="form-group col-md-6">
+							<label for="company">{{lang.label.company_label}}</label>
+							<input type="text" id="company" name="dropship_company" class="form-control">
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="first_name">{{lang.label.first_name_label}}</label>
+							<input type="text" id="first_name" name="dropship_first_name" class="form-control">
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="name">{{lang.label.name_label}}</label>
+							<input type="text" id="name" name="dropship_name" class="form-control" required>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="address">{{lang.label.customer_address}}</label>
+							<input type="text" id="address" name="dropship_address" class="form-control" required>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="number">{{lang.label.number_label}}</label>
+							<input type="text" id="number" name="dropship_number" class="form-control" required>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="postal">{{lang.label.billing_postal_code}}</label>
+							<input type="text" id="postal" name="dropship_postal_code" class="form-control" required>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="city">{{lang.label.customer_city}}</label>
+							<input type="text" id="city" name="dropship_city" class="form-control" required>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="country">{{lang.label.customer_country}}</label>
+							<select name="dropship_country" id="country" class="form-control">
+								<option value="BE">Belgie</option>
+								<option value="NL">Netherland</option>
+								<option value="LU">Luxemburg</option>
+								<option value="FR">Frankrijk</option>
+								<option value="DE">Duitsland</option>
+							</select>
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="email">{{lang.label.email}}</label>
+							<input type="text" id="email" name="dropship_email" class="form-control">
+						</div>
+
+						<div class="form-group col-md-6">
+							<label for="tel">{{lang.label.customer_tel}}</label>
+							<input type="text" id="tel" name="dropship_tel" class="form-control">
+						</div>
+
+						<p>{{lang.label.stated_price_label}}</p>
+
+						<p>
+							<label><input type="checkbox" class="agreement_checkbox" name="terms_agreement"> {{lang.label.sales_and_delivery_condition_label}}</label><br>
+							<label><input type="checkbox" class="agreement_checkbox" name="terms_agreement"> {{lang.label.dropshipment_condition_label2}}</label>
+							<br>
+							<a href="http://www.verwimp.nl/wp-content/uploads/2014/01/Algemene-voorwaarden.pdf" target="_blank" onclick="window.open('http://www.verwimp.nl/wp-content/uploads/2014/01/Algemene-voorwaarden.pdf', 'newwindow', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=800,height=600'); return false;">{{lang.label.general_terms_and_conditions_label}}</a><br>
+							<a href="http://www.verwimp.nl/wp-content/uploads/2017/04/Dropshipment-voorwaarden.pdf" target="_blank" onclick="window.open('http://www.verwimp.nl/wp-content/uploads/2017/04/Dropshipment-voorwaarden.pdf', 'newwindow', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=800,height=600'); return false;">{{lang.label.dropshipment_condition_label1}}</a><br>
+							<a href="http://www.verwimp.nl/download/Bestelprogramma/Privacyverklaring-Louis-Verwimp-BV-01-01-2019.pdf" target="_blank" onclick="window.open('http://www.verwimp.nl/download/Bestelprogramma/Privacyverklaring-Louis-Verwimp-BV-01-01-2019.pdf', 'newwindow', 'directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=800,height=600'); return false;">{{lang.label.privacy_label}}</a>
+						</p>
+						<p>
+							<label for="reference">{{lang.label.reference_number_label}} <small>(optional)</small></label>
+							<input type="text" name="reference_number" class="form-control" id="reference">
+						</p>
+				</div>
+				<div class="modal-footer">
+					<input type="submit" class="btn btn-primary" id="terms_agreement_ok" value="{{lang.label.ok_label}}" disabled>
+					<a href="#" class="btn btn-warning" data-dismiss="modal">{{lang.label.cancel_label}}</a>
+				</div>
+					{{csrf_field() | raw}}
+					</form>
+			</div>
+		</div>
+	</div>
 {% endblock %}

@@ -7,6 +7,16 @@ $(document).ready(function () {
         "processing": true,
         "serverSide": true,
     });
+    
+    $( ".agreement_checkbox" ).on( "click", function() {
+        if ($( ".agreement_checkbox:checked" ).length > 1) {
+            $('#terms_agreement_ok').prop('disabled', false);
+        }
+        else {
+            $('#terms_agreement_ok').prop('disabled', true);
+        }  
+    });
+    
 
     //add to fav
     window.addToFav = function (item_number) {
@@ -55,7 +65,7 @@ $(document).ready(function () {
             $(this).addClass('selected');
         }
         var data = pt.row( this ).data();
-        
+
         $.ajax({
             url: 'api/getarticledetails',
             method: 'post',
@@ -70,11 +80,11 @@ $(document).ready(function () {
                 // if (parseInt(data[1].open_stocks) <= 0) {
                 //     $('#stock_status').html('<span class="label label-danger">Out of stock</span>');
                 // }
-                if (data.data[0].favorite == true) {
-                    $('#favorite_status').html('<a href=\'#\' onclick=\'addToFav("'+data.data[0].item_number+'")\' title=\'remove from favorite\'><span class=\'fill glyphicon glyphicon-star\' aria-hidden=\'true\'></span></a>')
-                } else {
-                    $('#favorite_status').html('<a href=\'#\' onclick=\'addToFav("'+data.data[0].item_number+'")\' title=\'add to favorite\'><span class=\'empty glyphicon glyphicon-star-empty\' aria-hidden=\'true\'></span></a>')
-                }
+                // if (data.data[0].favorite == true) {
+                //     $('#favorite_status').html('<a href=\'#\' onclick=\'addToFav("'+data.data[0].item_number+'")\' title=\'remove from favorite\'><span class=\'fill glyphicon glyphicon-star\' aria-hidden=\'true\'></span></a>')
+                // } else {
+                //     $('#favorite_status').html('<a href=\'#\' onclick=\'addToFav("'+data.data[0].item_number+'")\' title=\'add to favorite\'><span class=\'empty glyphicon glyphicon-star-empty\' aria-hidden=\'true\'></span></a>')
+                // }
 
                 $('#item_number').html(data.data[0].item_number);
                 $('#txt_quantity').val(data.data[0].quantity);
