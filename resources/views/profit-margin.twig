@@ -7,17 +7,17 @@
         <div class="col-md-6 pre-scrollable">
             <div id="group_list">
                 <ul>
-                    <li class="jstree-open">Default - {{margin_profit.margin}}
+                    <li class="jstree-open">Default - {{margin_profit.margin | number_format(2)}}
                         <ul>
                             {% for key, d in data  %}
-                            <li>{{key}}
+                            <li>{{key}} - {{margin_profit.margin | number_format(2)}}
                                 <ul>
                                     {% for s in d %}
-                                    <li>{{s.sub_group}}
+                                    <li>{{s.sub_group}} - {{margin_profit.margin | number_format(2)}}
                                         <ul>
                                             {% set titles = s.title | split(',') %}
                                             {% for title in titles %}
-                                                <li>{{title}}</li>
+                                                <li>{{title}} - {{margin_profit.margin | number_format(2)}}</li>
                                             {% endfor %}
                                         </ul>
                                     </li>
@@ -60,7 +60,7 @@
                 </tr>
                 <tr>
                     <td>
-                    {{lang.label.profit_margin_label | replace({'margins':'margin'})}} <input type="text" id="profit_margin" name="profit_margin" value={{margin_profit.margin}}>
+                    {{lang.label.profit_margin_label | replace({'margins':'margin'})}} <input type="text" id="profit_margin" name="profit_margin" value={{margin_profit.margin | number_format(2)}}>
                     </td>
                     <td>
                         <a href="#" class="btn btn-primary">{{lang.label.set_label}}</a>

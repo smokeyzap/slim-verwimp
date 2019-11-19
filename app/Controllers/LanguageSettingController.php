@@ -17,6 +17,7 @@ class LanguageSettingController extends Controller
 
     public function postLanguage (Request $request, Response $response)
     {
-
+        $postData = $request->getParsedBody();
+        dump($postData);
     }
 }

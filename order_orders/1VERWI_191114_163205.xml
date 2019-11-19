@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Order>
+  <Header>
+    <User>1VERWI</User>
+    <Naam>H O Louis Verwimp BV TEST</Naam>
+    <Adres>de vest  21</Adres>
+    <Gemeente>5555 XL VALKENSWAARD</Gemeente>
+    <Tel>040-2041515</Tel>
+    <Email>verwimpmailer@gmail.com</Email>
+    <Versie>1.0.0</Versie>
+    <Vertegenwoordiger/>
+    <VertegenwoordigerNaam/>
+    <Bonnummer/>
+    <Datum>2019-11-14</Datum>
+    <Referentie>1950406887</Referentie>
+    <Notities/>
+    <Orderbedrag>33.89</Orderbedrag>
+  </Header>
+  <Items>
+    <Item>
+      <Artikelnummer>5RR5494</Artikelnummer>
+      <Zoeknummer>RR5494</Zoeknummer>
+      <Naam>020846 Simson Yellowchain XL Square 7mmx120cm chainhardened</Naam>
+      <Aantal>2</Aantal>
+      <Orig_Inkoopprijs>14.26</Orig_Inkoopprijs>
+      <Inkoopprijs>14.26</Inkoopprijs>
+      <Opmerking/>
+      <Afspraak>0</Afspraak>
+      <Locatie>302-C05</Locatie>
+    </Item>
+    <Item>
+      <Artikelnummer>ARR5791</Artikelnummer>
+      <Zoeknummer>RR5791</Zoeknummer>
+      <Naam>020731 Simson Batterijen power + AA p/4</Naam>
+      <Aantal>3</Aantal>
+      <Orig_Inkoopprijs>1.79</Orig_Inkoopprijs>
+      <Inkoopprijs>1.79</Inkoopprijs>
+      <Opmerking/>
+      <Afspraak>0</Afspraak>
+      <Locatie>302-H03</Locatie>
+    </Item>
+  </Items>
+</Order>

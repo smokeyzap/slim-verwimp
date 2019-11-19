@@ -275,7 +275,7 @@ class Lang
         $lang['eancode_label'] = 'EANCode';
         $lang['characteristic_label'] = 'Characteristics';
         $lang['send_order_label'] = 'Send order';
-        $lang['approved_label'] = 'Approved';
+        $lang['approved_label'] = 'Consumer details';
         $lang['with_an_order_label1'] = 'With an order <';
         $lang['with_an_order_label2'] = 'Alle bestellingen op maandag tm donderdag die gedaan worden voor 18.00u worden gezien als 1 order/zending/factuur.';
         $lang['with_an_order_label3'] = 'Alle bestellingen op vrijdag die gedaan worden voor 15.00u worden gezien als 1 order/zending/factuur.';

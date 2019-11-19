@@ -6,7 +6,7 @@
         <h1>{{lang.label.select_label}} {{lang.label.language_label}}</h1><hr>
         <form action="{{path_for('post.language.setting')}}" method="post">
             <div class="radio">
-                <label><input type="radio" value="du" name="language_name">{{lang.label.dutch_label}}</label>
+                <label><input type="radio" value="du" name="language_name" required>{{lang.label.dutch_label}}</label>
             </div>
             <div class="radio">
                 <label><input type="radio" value="fr" name="language_name">{{lang.label.french_label}}</label>

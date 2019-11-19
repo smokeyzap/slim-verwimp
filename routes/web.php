@@ -311,7 +311,7 @@ $app->group('/login-codes', function () {
 $app->group('/language', function () {
 	$this->get('/', LanguageSettingController::class . ':index')->setName('get.language.setting');
 
-	$this->get('/post-language-setting', LanguageSettingController::class . ':postLanguange')->setName('post.language.setting');
+	$this->post('/post-language-setting', LanguageSettingController::class . ':postLanguage')->setName('post.language.setting');
 })->add(new AuthClient($container));
 
 //VAT margin
