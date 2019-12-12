@@ -40,7 +40,17 @@
     		</tr>
     		<tr>
     			<td>{{lang.label.stock}}</td>
-    			<td><span class="label label-success">Sufficient</span></td>
+    			<td>
+					<div id="stock_status">
+						{% if stock_status == 'Out of stock' %}
+							<span class="label label-danger">{{stock_status}}</span>
+						{% elseif stock_status == 'Limited' %}
+							<span class="label label-warning">{{stock_status}}</span>
+						{% else %}
+							<span class="label label-success">{{stock_status}}</span>
+                    	{% endif %}
+					</div>
+				</td>
     		</tr>
     		<tr>
     			<td>{{lang.label.item_number}}</td>
@@ -60,7 +70,7 @@
     		</tr>
     		<tr>
     			<td>{{lang.label.packaging_quantity}}</td>
-    			<td><span id="packaging">{{packaging}}</span></td>
+    			<td><span id="packaging">{{item_list.packaging}}</span></td>
     		</tr>
     	</table>
     	<strong>{{lang.label.price_information}}</strong>

@@ -10,6 +10,7 @@ use App\Models\Image;
 use App\Models\DropShipOrderTemp;
 use App\Models\Dealer;
 use App\Models\OrderOld;
+use App\Models\Stocks;
 use DOMDocument;
 
 class DropShipController extends Controller
@@ -35,10 +36,11 @@ class DropShipController extends Controller
         
         $item_list = Article::orderBy('id', 'asc')->first();
     	$image = Image::where('line_number', $item_list->sort_number)->first();
-        
+        $stock = new Stocks;
         return $this->c->view->render($response, 'dropship.twig', [
             'title' => $this->c->lang->label()['dropship'],
-            'item_list' => $item_list,
+			'item_list' => $item_list,
+			'stock_status' => $stock->stockStatus($item_list->sort_number),
             'image' => $image,
             'orders' => $orders
         ]);
@@ -56,37 +58,39 @@ class DropShipController extends Controller
     public function getArticleDetails (Request $request, Response $response)
     {
     	$postData = $request->getParsedBody();
-    	$articles = Article::where('item_number', $postData['item_number'])->get();
+    	$article = Article::where('item_number', $postData['item_number'])->first();
 
-    	$output = [];
-    	foreach ($articles as $article) {
-            $order = DropShipOrderTemp::where('customer_number', $_SESSION['customer_number'])
-                        ->where('item_number', $article->item_number)
-                        ->where('sent', 0)
-                        ->first();
+		$output = [];
+		
+		$order = DropShipOrderTemp::where('customer_number', $_SESSION['customer_number'])
+					->where('item_number', $article->item_number)
+					->where('sent', 0)
+					->first();
 
 
-            if (!$order) {
-                $qty = 0;
-            } else {
-                $qty = $order->quantity;
-            }
+		if (!$order) {
+			$qty = 0;
+		} else {
+			$qty = $order->quantity;
+		}
 
-    		$output[] = [
-    			'id'=>$article->id,
-                'quantity' => $qty,
-    			'item_number'=>$article->item_number,
-    			'barcode' => $article->barcode,
-    			'item_name'=>$article->name,
-   				'brand' => $article->brand,
-   				'packaging' => $article->packaging,
-    			'suggested_retail_price'=>$article->sales_price,
-    			'purchase_price'=>$article->current_purchase_price,
-    			'your_price'=>number_format((float)round($article->current_purchase_price / 1.21, 2), 2, '.', ''),
-    			'description' => $article->book_info,
-    			'image'=>Image::where('line_number', $article->sort_number)->first()->image,
-    		];
-    	}
+		$stock = new Stocks;
+		$output[] = [
+			'id'=>$article->id,
+			'quantity' => $qty,
+			'stock_status' => $stock->stockStatus($article->sort_number),
+			'item_number'=>$article->item_number,
+			'barcode' => $article->barcode,
+			'item_name'=>$article->name,
+			'brand' => $article->brand,
+			'packaging' => $article->packaging,
+			'suggested_retail_price'=>$article->sales_price,
+			'purchase_price'=>$article->current_purchase_price,
+			'your_price'=>number_format((float)round($article->current_purchase_price / 1.21, 2), 2, '.', ''),
+			'description' => $article->book_info,
+			'image'=>Image::where('line_number', $article->sort_number)->first()->image,
+		];
+
     	return $response->withJson(["data"=>$output]);
     }
 

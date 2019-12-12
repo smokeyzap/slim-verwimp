@@ -9,6 +9,7 @@ use App\Models\Article;
 use App\Models\Image;
 use App\Models\Order;
 use App\Models\Favorite;
+use App\Models\Stocks;
 
 class ItemListController extends Controller
 {
@@ -19,11 +20,13 @@ class ItemListController extends Controller
         $favorite = Favorite::where('customer_number', $_SESSION['customer_number'])
                         ->where('article_number', $item_list->item_number)
                         ->first();
-
         $fav = ($favorite)?true:false;
+
+        $stock = new Stocks;
         return $this->c->view->render($response, 'item_list.twig', [
             'title' => $this->c->lang->label()['item_list'],
             'item_list' => $item_list,
+            'stock_status' => $stock->stockStatus($item_list->sort_number),
             'image' => $image,
             'favorite' => $fav,
         ]);
@@ -69,43 +72,44 @@ class ItemListController extends Controller
     public function getArticleDetails (Request $request, Response $response)
     {
     	$postData = $request->getParsedBody();
-    	$articles = Article::where('item_number', $postData['item_number'])->get();
+    	$article = Article::where('item_number', $postData['item_number'])->first();
+
 
     	$output = [];
-    	foreach ($articles as $article) {
-            $order = Order::where('customer_number', $_SESSION['customer_number'])
-                        ->where('item_number', $article->item_number)
-                        ->where('sent', 0)
-                        ->first();
+        $order = Order::where('customer_number', $_SESSION['customer_number'])
+                    ->where('item_number', $article->item_number)
+                    ->where('sent', 0)
+                    ->first();
 
-            $favorite = Favorite::where('customer_number', $_SESSION['customer_number'])
-                        ->where('article_number', $article->item_number)
-                        ->first();
+        $favorite = Favorite::where('customer_number', $_SESSION['customer_number'])
+                    ->where('article_number', $article->item_number)
+                    ->first();
 
-            $fav = ($favorite)?true:false;
+        $fav = ($favorite)?true:false;
 
-            if (!$order) {
-                $qty = 0;
-            } else {
-                $qty = $order->quantity;
-            }
+        if (!$order) {
+            $qty = 0;
+        } else {
+            $qty = $order->quantity;
+        }
 
-    		$output[] = [
-                'favorite' => $fav,
-    			'id'=>$article->id,
-                'quantity' => $qty,
-    			'item_number'=>$article->item_number,
-    			'barcode' => $article->barcode,
-    			'item_name'=>$article->name,
-   				'brand' => $article->brand,
-   				'packaging' => $article->packaging,
-    			'suggested_retail_price'=>$article->sales_price,
-    			'purchase_price'=>$article->current_purchase_price,
-    			'your_price'=>number_format((float)round($article->current_purchase_price / 1.21, 2), 2, '.', ''),
-    			'description' => $article->book_info,
-    			'image'=>Image::where('line_number', $article->sort_number)->first()->image,
-    		];
-    	}
+        $stock = new Stocks;
+        $output[] = [
+            'favorite' => $fav,
+            'id'=>$article->id,
+            'quantity' => $qty,
+            'stock_status' => $stock->stockStatus($article->sort_number),
+            'item_number'=>$article->item_number,
+            'barcode' => $article->barcode,
+            'item_name'=>$article->name,
+            'brand' => $article->brand,
+            'packaging' => $article->packaging,
+            'suggested_retail_price'=>$article->sales_price,
+            'purchase_price'=>$article->current_purchase_price,
+            'your_price'=>$article->current_purchase_price,
+            'description' => $article->book_info,
+            'image'=>Image::where('line_number', $article->sort_number)->first()->image,
+        ];
     	return $response->withJson(["data"=>$output]);
     }
 

@@ -370,5 +370,4 @@ $app->group('', function() {
     $this->get('/reset-password/token/{token_id}', LoginController::class . ':resetPassword')->setName('reset.password');
 
     $this->post('/post-new-password', LoginController::class . ':postNewPassword')->setName('post.new.password');
-
 })->add(new NotAuth($container));

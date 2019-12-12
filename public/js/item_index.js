@@ -69,15 +69,15 @@ $(document).ready(function () {
                 '</tr>';
                 });
                 $('#characteristic_table').html("<table style='overflow-y:scroll;height:300px;display:block;' class='table table-striped table-condensed'>" + res + "</table")
-                // if (parseInt(data[1].open_stocks) > parseInt(data[0].minimum_stock)) {
-                //     $('#stock_status').html('<span class="label label-success">Sufficient</span>');
-                // }
-                // if (parseInt(data[1].open_stocks) <= parseInt(data[0].minimum_stock)) {
-                //     $('#stock_status').html('<span class="label label-warning">Limited</span>');
-                // } 
-                // if (parseInt(data[1].open_stocks) <= 0) {
-                //     $('#stock_status').html('<span class="label label-danger">Out of stock</span>');
-                // }
+                if (data.data[0].stock_status == 'Sufficient') {
+                    $('#stock_status').html('<span class="label label-success">Sufficient</span>');
+                }
+                if (data.data[0].stock_status == 'Limited') {
+                    $('#stock_status').html('<span class="label label-warning">Limited</span>');
+                } 
+                if (data.data[0].stock_status == 'Out of stock') {
+                    $('#stock_status').html('<span class="label label-danger">Out of stock</span>');
+                }
                 if (data.data[0].favorite == true) {
                     $('#favorite_status').html('<a href=\'#\' onclick=\'addToFav("'+data.data[0].item_number+'")\' title=\'remove from favorite\'><span class=\'fill glyphicon glyphicon-star\' aria-hidden=\'true\'></span></a>')
                 } else {

@@ -40,7 +40,15 @@
     		<tr>
     			<td>{{lang.label.stock}}</td>
     			<td>
-                    <span class="label label-success">Sufficient</span>
+                    <div id="stock_status">
+						{% if stock_status == 'Out of stock' %}
+							<span class="label label-danger">{{stock_status}}</span>
+						{% elseif stock_status == 'Limited' %}
+							<span class="label label-warning">{{stock_status}}</span>
+						{% else %}
+							<span class="label label-success">{{stock_status}}</span>
+                    	{% endif %}
+					</div>
                     <div id="favorite_status">
                         {% if favorite == true %}
                             <a href="#" onclick="addToFav('{{item_list.item_number}}')" title="remove from favorite"><span class="fill glyphicon glyphicon-star" aria-hidden="true"></span></a>
