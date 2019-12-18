@@ -17,7 +17,7 @@ class Stocks extends Model
     {
         $result = Stocks::where('sort_number', $sortNumber)->first();
         if (!$result) {
-            return 'Out of stocks';
+            return 'Out of stock';
         }
 
         if ($result->stock <= 0) {

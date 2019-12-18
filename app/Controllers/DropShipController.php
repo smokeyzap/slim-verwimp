@@ -11,6 +11,7 @@ use App\Models\DropShipOrderTemp;
 use App\Models\Dealer;
 use App\Models\OrderOld;
 use App\Models\Stocks;
+use App\Models\QuanDisc;
 use DOMDocument;
 
 class DropShipController extends Controller
@@ -20,7 +21,6 @@ class DropShipController extends Controller
         $all_orders = DropShipOrderTemp::where('customer_number', $_SESSION['customer_number'])
     					->where('sent', 0)
     					->get();
-
 
     	$orders = [];
 
@@ -67,14 +67,10 @@ class DropShipController extends Controller
 					->where('sent', 0)
 					->first();
 
-
-		if (!$order) {
-			$qty = 0;
-		} else {
-			$qty = $order->quantity;
-		}
-
+		$qty = (!$order)? 0 : $order->quantity;
 		$stock = new Stocks;
+		$discount = new QuanDisc;
+        $your_price = $discount->getDiscount($article->discount_group);
 		$output[] = [
 			'id'=>$article->id,
 			'quantity' => $qty,
@@ -86,7 +82,7 @@ class DropShipController extends Controller
 			'packaging' => $article->packaging,
 			'suggested_retail_price'=>$article->sales_price,
 			'purchase_price'=>$article->current_purchase_price,
-			'your_price'=>number_format((float)round($article->current_purchase_price / 1.21, 2), 2, '.', ''),
+			'your_price'=> ($your_price == 0)?$article->current_purchase_price:$article->current_purchase_price - $your_price, 
 			'description' => $article->book_info,
 			'image'=>Image::where('line_number', $article->sort_number)->first()->image,
 		];

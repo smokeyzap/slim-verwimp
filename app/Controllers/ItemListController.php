@@ -10,6 +10,7 @@ use App\Models\Image;
 use App\Models\Order;
 use App\Models\Favorite;
 use App\Models\Stocks;
+use App\Models\QuanDisc;
 
 class ItemListController extends Controller
 {
@@ -48,7 +49,7 @@ class ItemListController extends Controller
             array( 'db' => 'item_number',  'dt' => 1 ),
             array( 'db' => 'name',   'dt' => 2 ),
             array( 'db' => 'current_purchase_price',     'dt' => 3 ),
-            array( 'db' => 'sales_price' , 'dt' => 4),
+            array( 'db' => 'current_purchase_price' , 'dt' => 4),
             array( 'db' => 'sales_price', 'dt' => 5)
         );
          
@@ -86,14 +87,11 @@ class ItemListController extends Controller
                     ->first();
 
         $fav = ($favorite)?true:false;
-
-        if (!$order) {
-            $qty = 0;
-        } else {
-            $qty = $order->quantity;
-        }
+        $qty = (!$order)? 0 : $order->quantity;
 
         $stock = new Stocks;
+        $discount = new QuanDisc;
+        $your_price = $discount->getDiscount($article->discount_group);
         $output[] = [
             'favorite' => $fav,
             'id'=>$article->id,
@@ -106,7 +104,7 @@ class ItemListController extends Controller
             'packaging' => $article->packaging,
             'suggested_retail_price'=>$article->sales_price,
             'purchase_price'=>$article->current_purchase_price,
-            'your_price'=>$article->current_purchase_price,
+            'your_price'=> ($your_price == 0)?$article->current_purchase_price:$article->current_purchase_price - $your_price, 
             'description' => $article->book_info,
             'image'=>Image::where('line_number', $article->sort_number)->first()->image,
         ];

@@ -10,12 +10,15 @@ use App\Models\Article;
 use App\Models\Image;
 use App\Models\Order;
 use App\Models\Stocks;
+use App\Models\QuanDisc;
 
 class OfferController extends Controller
 {
     public function index (Request $request, Response $response) 
     {   
-    	$item_list = Article::orderBy('id', 'desc')->first();
+        $item_list = Article::orderBy('id', 'asc')
+                    ->where('offer', 1)
+                    ->first();
     	$image = Image::where('line_number', $item_list->sort_number)->first();
         $favorite = Favorite::where('customer_number', $_SESSION['customer_number'])
                         ->where('article_number', $item_list->item_number)
@@ -34,16 +37,18 @@ class OfferController extends Controller
     public function getArticles (Request $request, Response $response) 
     {
     	$articles = Article::where('offer', 1)->get();
-
+        $discount = new QuanDisc;
+        
     	$output = [];
     	foreach ($articles as $article) {
+            $your_price = $discount->getDiscount($article->discount_group);
     		$output[] = [
     			$article->id,
     			$article->item_number,
     			$article->name,
-    			$article->current_purchase_price,
-    			number_format((float)round($article->sales_price / 1.21, 2), 2, '.', ''),
-    			$article->sales_price,
+    			($your_price == 0)?$article->current_purchase_price:$article->current_purchase_price - $your_price, 
+                $article->current_purchase_price,
+                $article->sales_price,
     		];
     	}
     	return $response->withJson(["data"=>$output]);
@@ -67,13 +72,10 @@ class OfferController extends Controller
                     ->first();
 
         $fav = ($favorite)?true:false;
-                    
-        if (!$order) {
-            $qty = 0;
-        } else {
-            $qty = $order->quantity;
-        }
+        $qty = (!$order)? 0 : $order->quantity;
         $stock = new Stocks;
+        $discount = new QuanDisc;
+        $your_price = $discount->getDiscount($article->discount_group);
         $output[] = [
             'favorite' => $fav,
             'id'=>$article->id,
@@ -86,7 +88,7 @@ class OfferController extends Controller
             'packaging' => $article->packaging,
             'suggested_retail_price'=>$article->sales_price,
             'purchase_price'=>$article->current_purchase_price,
-            'your_price'=>number_format((float)round($article->current_purchase_price / 1.21, 2), 2, '.', ''),
+            'your_price'=> ($your_price == 0)?$article->current_purchase_price:$article->current_purchase_price - $your_price, 
             'description' => $article->book_info,
             'image'=>Image::where('line_number', $article->sort_number)->first()->image,
         ];

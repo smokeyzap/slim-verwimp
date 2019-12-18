@@ -15,4 +15,18 @@ class QuanDisc extends Model
         'date_to',
         'discount',
     ];
+
+    public function getDiscount ($discount_group) 
+    {
+
+        $discount = Quandisc::where('customer_number', $_SESSION['customer_number'])
+                ->where('discount_group', $discount_group)
+                ->first();
+        
+        if (!$discount) {
+            return 0;
+        }
+
+        return $discount->discount;
+    }
 }

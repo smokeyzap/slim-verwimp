@@ -75,7 +75,7 @@ $(document).ready(function () {
                 } else {
                     $('#favorite_status').html('<a href=\'#\' onclick=\'addToFav("'+data.data[0].item_number+'")\' title=\'add to favorite\'><span class=\'empty glyphicon glyphicon-star-empty\' aria-hidden=\'true\'></span></a>')
                 }
-
+                
                 $('#item_number').html(data.data[0].item_number);
                 $('#txt_quantity').val(data.data[0].quantity);
                 $('#barcode').html(data.data[0].barcode);

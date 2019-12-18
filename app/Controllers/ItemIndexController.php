@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\Favorite;
 use App\Models\Image;
 use App\Models\Stocks;
+use App\Models\QuanDisc;
 use Illuminate\Database\Capsule\Manager as DB;
 
 class ItemIndexController extends Controller
@@ -90,13 +91,11 @@ class ItemIndexController extends Controller
                     ->orderBy('characteristic', 'asc')        
                     ->get(['characteristic','value']);
 
-        if (!$order) {
-            $qty = 0;
-        } else {
-            $qty = $order->quantity;
-        }
+        $qty = (!$order)? 0 : $order->quantity;
 
         $stock = new Stocks;
+        $discount = new QuanDisc;
+        $your_price = $discount->getDiscount($article->discount_group);
         $output[] = [
             'favorite' => $fav,
             'id'=>$article->id,
@@ -109,7 +108,7 @@ class ItemIndexController extends Controller
             'packaging' => $article->packaging,
             'suggested_retail_price'=>$article->sales_price,
             'purchase_price'=>$article->current_purchase_price,
-            'your_price'=>number_format((float)round($article->current_purchase_price / 1.21, 2), 2, '.', ''),
+            'your_price'=> ($your_price == 0)?$article->current_purchase_price:$article->current_purchase_price - $your_price, 
             'description' => $article->book_info,
             'image'=>Image::where('line_number', $article->sort_number)->first()->image,
             'artprop' => $artprops,

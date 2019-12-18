@@ -10,6 +10,7 @@ use App\Models\Article;
 use App\Models\Image;
 use App\Models\Order;
 use App\Models\Stocks;
+use App\Models\QuanDisc;
 
 class FavoriteController extends Controller
 {
@@ -44,15 +45,16 @@ class FavoriteController extends Controller
         }
 
         $articles = Article::whereIn('item_number', $fav_item_numbers)->get();
+        $discount = new QuanDisc;
         $output = [];
         foreach ($articles as $article) {
-            
+            $your_price = $discount->getDiscount($article->discount_group);
             $output[] = [
                 $article->id,
                 $article->item_number,
                 $article->name,
+                ($your_price == 0)?$article->current_purchase_price:$article->current_purchase_price - $your_price,
                 $article->current_purchase_price,
-                number_format((float)round($article->sales_price / 1.21, 2), 2, '.', ''),
                 $article->sales_price,
                 '<a href="'.$this->c->router->pathFor('remove.from.favorite',['id'=>$article->item_number]).'" onclick="return confirm(\'Remove from favorite. Continue?\')"><span class=\'glyphicon glyphicon-trash\' aria-hidden=\'true\'></span></a>'
             ];
@@ -83,11 +85,11 @@ class FavoriteController extends Controller
                     ->where('item_number', $article->item_number)
                     ->where('sent', 0)
                     ->first();
-        if (!$order) {
-            $qty = 0;
-        } else {
-            $qty = $order->quantity;
-        }
+
+        $qty = (!$order)? 0 : $order->quantity;
+        $stock = new Stocks;
+        $discount = new QuanDisc;
+        $your_price = $discount->getDiscount($article->discount_group);
         $output[] = [
             'id'=>$article->id,
             'quantity' => $qty,
@@ -99,7 +101,7 @@ class FavoriteController extends Controller
             'packaging' => $article->packaging,
             'suggested_retail_price'=>$article->sales_price,
             'purchase_price'=>$article->current_purchase_price,
-            'your_price'=>number_format((float)round($article->current_purchase_price / 1.21, 2), 2, '.', ''),
+            'your_price'=> ($your_price == 0)?$article->current_purchase_price:$article->current_purchase_price - $your_price, 
             'description' => $article->book_info,
             'image'=>Image::where('line_number', $article->sort_number)->first()->image,
         ];
